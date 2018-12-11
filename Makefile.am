@@ -1,4 +1,5 @@
 bin_PROGRAMS = obmc-ikvm
+dist_bin_SCRIPTS = create_usbhid.sh
 
 noinst_HEADERS = \
 	ikvm_args.hpp \
