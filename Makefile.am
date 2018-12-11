@@ -1,0 +1,22 @@
+bin_PROGRAMS = obmc-ikvm
+
+noinst_HEADERS = \
+	ikvm_args.hpp
+
+obmc_ikvm_SOURCES = \
+	ikvm_args.cpp \
+	obmc-ikvm.cpp
+
+obmc_ikvm_CXXFLAGS = \
+	$(PHOSPHOR_DBUS_INTERFACES_CFLAGS) \
+	$(PHOSPHOR_LOGGING_CFLAGS) \
+	$(PTHREAD_CFLAGS) \
+	$(SDBUSPLUS_CFLAGS) \
+	$(LIBVNCSERVER_CFLAGS)
+
+obmc_ikvm_LDFLAGS = \
+	$(PHOSPHOR_DBUS_INTERFACES_LIBS) \
+	$(PHOSPHOR_LOGGING_LIBS) \
+	$(PTHREAD_LIBS) \
+	$(SDBUSPLUS_LIBS) \
+	$(LIBVNCSERVER_LIBS)
