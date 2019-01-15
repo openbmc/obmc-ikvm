@@ -39,6 +39,10 @@ Server::Server(const Args& args, Input& i, Video& v) :
     server->desktopName = "OpenBMC IKVM";
     server->frameBuffer = framebuffer.data();
     server->newClientHook = newClient;
+    server->cursor = rfbMakeXCursor(cursorWidth, cursorHeight, (char*)cursor,
+                                    (char*)cursorMask);
+    server->cursor->xhot = 1;
+    server->cursor->yhot = 1;
 
     rfbStringToAddr(&ip[0], &server->listenInterface);
 

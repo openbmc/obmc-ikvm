@@ -380,13 +380,7 @@ void Video::start()
     fd = open(path.c_str(), O_RDWR);
     if (fd < 0)
     {
-        unsigned short xx = SHRT_MAX;
-        char wakeupReport[6] = {0};
-
-        wakeupReport[0] = 2;
-        memcpy(&wakeupReport[2], &xx, 2);
-
-        input.sendRaw(wakeupReport, 6);
+        input.sendWakeupPacket();
 
         fd = open(path.c_str(), O_RDWR);
         if (fd < 0)

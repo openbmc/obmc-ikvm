@@ -72,13 +72,23 @@ class Args
     }
 
     /*
-     * @brief Get the path to the USB input device
+     * @brief Get the path to the USB keyboard device
      *
-     * @return Reference to the string storing the path to the input device
+     * @return Reference to the string storing the path to the keyboard device
      */
-    inline const std::string& getInputPath() const
+    inline const std::string& getKeyboardPath() const
     {
-        return inputPath;
+        return keyboardPath;
+    }
+
+    /*
+     * @brief Get the path to the USB mouse device
+     *
+     * @return Reference to the string storing the path to the mouse device
+     */
+    inline const std::string& getPointerPath() const
+    {
+        return pointerPath;
     }
 
     /*
@@ -100,8 +110,10 @@ class Args
      *        stream
      */
     int frameRate;
-    /* @brief Path to the USB input device */
-    std::string inputPath;
+    /* @brief Path to the USB keyboard device */
+    std::string keyboardPath;
+    /* @brief Path to the USB mouse device */
+    std::string pointerPath;
     /* @brief Path to the V4L2 video device */
     std::string videoPath;
     /* @brief Original command line arguments passed to the application */

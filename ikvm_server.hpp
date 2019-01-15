@@ -105,7 +105,7 @@ class Server
     /* @brief Number of frames handled since a client connected */
     int frameCounter;
     /* @brief Number of connected clients */
-    int numClients;
+    unsigned int numClients;
     /* @brief Microseconds to process RFB events every frame */
     long int processTime;
     /* @brief Handle to the RFB server object */
@@ -116,6 +116,52 @@ class Server
     Video& video;
     /* @brief Default framebuffer storage */
     std::vector<char> framebuffer;
+    /* @brief Cursor bitmap width */
+    static constexpr int cursorWidth = 20;
+    /* @brief Cursor bitmap height */
+    static constexpr int cursorHeight = 20;
+    /* @brief Cursor bitmap */
+    static constexpr char cursor[] = "                    "
+                                     " x                  "
+                                     " xx                 "
+                                     " xxx                "
+                                     " xxxx               "
+                                     " xxxxx              "
+                                     " xxxxxx             "
+                                     " xxxxxxx            "
+                                     " xxxxxxxx           "
+                                     " xxxxxxxxx          "
+                                     " xxxxxxxxxx         "
+                                     " xxxxxxxxxxx        "
+                                     " xxxxxxx            "
+                                     " xxxxxxx            "
+                                     " xxx  xxx           "
+                                     " xx   xxx           "
+                                     " x     xxx          "
+                                     "       xxx          "
+                                     "        x           "
+                                     "                    ";
+    /* @brief Cursor bitmap mask */
+    static constexpr char cursorMask[] = " o                  "
+                                         "oxo                 "
+                                         "oxxo                "
+                                         "oxxxo               "
+                                         "oxxxxo              "
+                                         "oxxxxxo             "
+                                         "oxxxxxxo            "
+                                         "oxxxxxxxo           "
+                                         "oxxxxxxxxo          "
+                                         "oxxxxxxxxxo         "
+                                         "oxxxxxxxxxxo        "
+                                         "oxxxxxxxxxxxo       "
+                                         "oxxxxxxxoooo        "
+                                         "oxxxxxxxo           "
+                                         "oxxxooxxxo          "
+                                         "oxxo oxxxo          "
+                                         "oxo   oxxxo         "
+                                         " o    oxxxo         "
+                                         "       oxo          "
+                                         "        o           ";
 };
 
 } // namespace ikvm
