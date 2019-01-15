@@ -19,9 +19,10 @@ class Input
     /*
      * @brief Constructs Input object
      *
-     * @param[in] p - Path to the USB input device
+     * @param[in] kbdPath - Path to the USB keyboard device
+     * @param[in] ptrPath - Path to the USB mouse device
      */
-    Input(const std::string& p);
+    Input(const std::string& kbdPath, const std::string& ptrPath);
     ~Input();
     Input(const Input&) = default;
     Input& operator=(const Input&) = default;
@@ -47,58 +48,59 @@ class Input
      */
     static void pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl);
 
-    /*
-     * @brief Sends a data packet to the USB input device
-     *
-     * @param[in] data - pointer to data
-     * @param[in] size - number of bytes to send
-     */
-    void sendRaw(char* data, int size);
+    /* @brief Sends a wakeup data packet to the USB input device */
+    void sendWakeupPacket();
     /* @brief Sends an HID report to the USB input device */
     void sendReport();
 
   private:
-    enum
-    {
-        NUM_MODIFIER_BITS = 4,
-        POINTER_LENGTH = 6,
-        REPORT_LENGTH = 8
-    };
+    static constexpr int NUM_MODIFIER_BITS = 4;
+    static constexpr int KEY_REPORT_LENGTH = 8;
+    static constexpr int PTR_REPORT_LENGTH = 5;
 
-    /* @brief Keyboard HID identifier byte */
-    static const char keyboardID;
-    /* @brief Pointer HID identifier byte */
-    static const char pointerID;
     /* @brief HID modifier bits mapped to shift and control key codes */
-    static const char shiftCtrlMap[NUM_MODIFIER_BITS];
+    static constexpr uint8_t shiftCtrlMap[NUM_MODIFIER_BITS] = {
+        0x02, // left shift
+        0x20, // right shift
+        0x01, // left control
+        0x10  // right control
+    };
     /* @brief HID modifier bits mapped to meta and alt key codes */
-    static const char metaAltMap[NUM_MODIFIER_BITS];
-
+    static constexpr uint8_t metaAltMap[NUM_MODIFIER_BITS] = {
+        0x08, // left meta
+        0x80, // right meta
+        0x04, // left alt
+        0x40  // right alt
+    };
     /*
      * @brief Translates a RFB-specific key code to HID modifier bit
      *
      * @param[in] key - key code
      */
-    static char keyToMod(rfbKeySym key);
+    static uint8_t keyToMod(rfbKeySym key);
     /*
      * @brief Translates a RFB-specific key code to HID scancode
      *
      * @param[in] key - key code
      */
-    static char keyToScancode(rfbKeySym key);
+    static uint8_t keyToScancode(rfbKeySym key);
 
     /* @brief Indicates whether or not to send a keyboard report */
     bool sendKeyboard;
     /* @brief Indicates whether or not to send a pointer report */
     bool sendPointer;
-    /* @brief File descriptor for the USB input device */
-    int fd;
+    /* @brief File descriptor for the USB keyboard device */
+    int keyboardFd;
+    /* @brief File descriptor for the USB mouse device */
+    int pointerFd;
     /* @brief Data for keyboard report */
-    char keyboardReport[REPORT_LENGTH];
+    uint8_t keyboardReport[KEY_REPORT_LENGTH];
     /* @brief Data for pointer report */
-    char pointerReport[REPORT_LENGTH];
-    /* @brief Path to the USB input device */
-    std::string path;
+    uint8_t pointerReport[PTR_REPORT_LENGTH];
+    /* @brief Path to the USB keyboard device */
+    std::string keyboardPath;
+    /* @brief Path to the USB mouse device */
+    std::string pointerPath;
     /*
      * @brief Mapping of RFB key code to report data index to keep track
      *        of which keys are down

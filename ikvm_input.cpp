@@ -14,7 +14,7 @@
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Common/File/error.hpp>
 
-#include "scancodes.h"
+#include "scancodes.hpp"
 
 namespace ikvm
 {
@@ -22,45 +22,50 @@ namespace ikvm
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
-const char Input::keyboardID = 1;
-const char Input::pointerID = 2;
-
-const char Input::shiftCtrlMap[NUM_MODIFIER_BITS] = {
-    0x02, // left shift
-    0x20, // right shift
-    0x01, // left control
-    0x10  // right control
-};
-
-const char Input::metaAltMap[NUM_MODIFIER_BITS] = {
-    0x08,       // left meta
-    (char)0x80, // right meta
-    0x04,       // left alt
-    0x40        // right alt
-};
-
-Input::Input(const std::string& p) :
-    keyboardReport{0}, pointerReport{0}, path(p)
+Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
+    keyboardFd(-1), pointerFd(-1), keyboardReport{0}, pointerReport{0},
+    keyboardPath(kbdPath), pointerPath(ptrPath)
 {
-    fd = open(path.c_str(), O_RDWR);
-    if (fd < 0)
+    if (!keyboardPath.empty())
     {
-        log<level::ERR>("Failed to open input device",
-                        entry("PATH=%s", path.c_str()),
-                        entry("ERROR=%s", strerror(errno)));
-        elog<Open>(
-            xyz::openbmc_project::Common::File::Open::ERRNO(errno),
-            xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
+        keyboardFd = open(keyboardPath.c_str(), O_RDWR | O_CLOEXEC);
+        if (keyboardFd < 0)
+        {
+            log<level::ERR>("Failed to open input device",
+                            entry("PATH=%s", keyboardPath.c_str()),
+                            entry("ERROR=%s", strerror(errno)));
+            elog<Open>(xyz::openbmc_project::Common::File::Open::ERRNO(errno),
+                       xyz::openbmc_project::Common::File::Open::PATH(
+                           keyboardPath.c_str()));
+        }
     }
 
-    // set the HID identifier byte because device is combined pointer/keyboard
-    keyboardReport[0] = keyboardID;
-    pointerReport[0] = pointerID;
+    if (!pointerPath.empty())
+    {
+        pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC);
+        if (pointerFd < 0)
+        {
+            log<level::ERR>("Failed to open input device",
+                            entry("PATH=%s", pointerPath.c_str()),
+                            entry("ERROR=%s", strerror(errno)));
+            elog<Open>(xyz::openbmc_project::Common::File::Open::ERRNO(errno),
+                       xyz::openbmc_project::Common::File::Open::PATH(
+                           pointerPath.c_str()));
+        }
+    }
 }
 
 Input::~Input()
 {
-    close(fd);
+    if (keyboardFd >= 0)
+    {
+        close(keyboardFd);
+    }
+
+    if (pointerFd >= 0)
+    {
+        close(pointerFd);
+    }
 }
 
 void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
@@ -70,13 +75,13 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
 
     if (down)
     {
-        char sc = keyToScancode(key);
+        uint8_t sc = keyToScancode(key);
 
         if (sc)
         {
             if (input->keysDown.find(key) == input->keysDown.end())
             {
-                for (unsigned int i = 3; i < REPORT_LENGTH; ++i)
+                for (unsigned int i = 2; i < KEY_REPORT_LENGTH; ++i)
                 {
                     if (!input->keyboardReport[i])
                     {
@@ -90,11 +95,11 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
         }
         else
         {
-            char mod = keyToMod(key);
+            uint8_t mod = keyToMod(key);
 
             if (mod)
             {
-                input->keyboardReport[1] |= mod;
+                input->keyboardReport[0] |= mod;
                 input->sendKeyboard = true;
             }
         }
@@ -111,11 +116,11 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
         }
         else
         {
-            char mod = keyToMod(key);
+            uint8_t mod = keyToMod(key);
 
             if (mod)
             {
-                input->keyboardReport[1] &= ~mod;
+                input->keyboardReport[0] &= ~mod;
                 input->sendKeyboard = true;
             }
         }
@@ -129,29 +134,40 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
     Server* server = (Server*)cl->screen->screenData;
     const Video& video = server->getVideo();
 
-    input->pointerReport[1] = buttonMask & 0xFF;
+    input->pointerReport[0] = buttonMask & 0xFF;
 
     if (x >= 0 && (unsigned int)x < video.getWidth())
     {
-        unsigned short xx = x * ((SHRT_MAX + 1) / video.getWidth());
+        uint16_t xx = x * ((SHRT_MAX + 1) / video.getWidth());
 
-        memcpy(&input->pointerReport[2], &xx, 2);
+        memcpy(&input->pointerReport[1], &xx, 2);
     }
 
     if (y >= 0 && (unsigned int)y < video.getHeight())
     {
-        unsigned short yy = y * ((SHRT_MAX + 1) / video.getHeight());
+        uint16_t yy = y * ((SHRT_MAX + 1) / video.getHeight());
 
-        memcpy(&input->pointerReport[4], &yy, 2);
+        memcpy(&input->pointerReport[3], &yy, 2);
     }
 
     input->sendPointer = true;
     rfbDefaultPtrAddEvent(buttonMask, x, y, cl);
 }
 
-void Input::sendRaw(char* data, int size)
+void Input::sendWakeupPacket()
 {
-    if (write(fd, data, size) != size)
+    uint8_t wakeupReport[PTR_REPORT_LENGTH] = {0};
+    uint16_t xy = SHRT_MAX / 2;
+
+    if (pointerFd < 0)
+    {
+        return;
+    }
+
+    memcpy(&wakeupReport[1], &xy, 2);
+    memcpy(&wakeupReport[3], &xy, 2);
+
+    if (write(pointerFd, wakeupReport, PTR_REPORT_LENGTH) != PTR_REPORT_LENGTH)
     {
         log<level::ERR>("Failed to write report",
                         entry("ERROR=%s", strerror(errno)));
@@ -160,9 +176,10 @@ void Input::sendRaw(char* data, int size)
 
 void Input::sendReport()
 {
-    if (sendKeyboard)
+    if (sendKeyboard && keyboardFd >= 0)
     {
-        if (write(fd, keyboardReport, REPORT_LENGTH) != REPORT_LENGTH)
+        if (write(keyboardFd, keyboardReport, KEY_REPORT_LENGTH) !=
+            KEY_REPORT_LENGTH)
         {
             log<level::ERR>("Failed to write keyboard report",
                             entry("ERROR=%s", strerror(errno)));
@@ -171,9 +188,10 @@ void Input::sendReport()
         sendKeyboard = false;
     }
 
-    if (sendPointer)
+    if (sendPointer && pointerFd >= 0)
     {
-        if (write(fd, pointerReport, POINTER_LENGTH) != POINTER_LENGTH)
+        if (write(pointerFd, pointerReport, PTR_REPORT_LENGTH) !=
+            PTR_REPORT_LENGTH)
         {
             log<level::ERR>("Failed to write pointer report",
                             entry("ERROR=%s", strerror(errno)));
@@ -183,9 +201,9 @@ void Input::sendReport()
     }
 }
 
-char Input::keyToMod(rfbKeySym key)
+uint8_t Input::keyToMod(rfbKeySym key)
 {
-    char mod = 0;
+    uint8_t mod = 0;
 
     if (key >= XK_Shift_L && key <= XK_Control_R)
     {
@@ -199,9 +217,9 @@ char Input::keyToMod(rfbKeySym key)
     return mod;
 }
 
-char Input::keyToScancode(rfbKeySym key)
+uint8_t Input::keyToScancode(rfbKeySym key)
 {
-    char scancode = 0;
+    uint8_t scancode = 0;
 
     if ((key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z'))
     {
