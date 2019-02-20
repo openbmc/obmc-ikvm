@@ -156,21 +156,45 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
 
 void Input::sendWakeupPacket()
 {
-    uint8_t wakeupReport[PTR_REPORT_LENGTH] = {0};
-    uint16_t xy = SHRT_MAX / 2;
+    uint8_t wakeupReport[KEY_REPORT_LENGTH] = {0};
 
-    if (pointerFd < 0)
+    if (pointerFd >= 0)
     {
-        return;
+        uint16_t xy = SHRT_MAX / 2;
+
+        memcpy(&wakeupReport[1], &xy, 2);
+        memcpy(&wakeupReport[3], &xy, 2);
+
+        if (write(pointerFd, wakeupReport, PTR_REPORT_LENGTH) !=
+            PTR_REPORT_LENGTH)
+        {
+            log<level::ERR>("Failed to write pointer report",
+                            entry("ERROR=%s", strerror(errno)));
+        }
     }
 
-    memcpy(&wakeupReport[1], &xy, 2);
-    memcpy(&wakeupReport[3], &xy, 2);
-
-    if (write(pointerFd, wakeupReport, PTR_REPORT_LENGTH) != PTR_REPORT_LENGTH)
+    if (keyboardFd >= 0)
     {
-        log<level::ERR>("Failed to write report",
-                        entry("ERROR=%s", strerror(errno)));
+        memset(&wakeupReport[0], 0, KEY_REPORT_LENGTH);
+
+        wakeupReport[0] = keyToMod(XK_Shift_L);
+
+        if (write(keyboardFd, wakeupReport, KEY_REPORT_LENGTH) !=
+            KEY_REPORT_LENGTH)
+        {
+            log<level::ERR>("Failed to write keyboard report",
+                            entry("ERROR=%s", strerror(errno)));
+            return;
+        }
+
+        wakeupReport[0] = 0;
+
+        if (write(keyboardFd, wakeupReport, KEY_REPORT_LENGTH) !=
+            KEY_REPORT_LENGTH)
+        {
+            log<level::ERR>("Failed to write keyboard report",
+                            entry("ERROR=%s", strerror(errno)));
+        }
     }
 }
 
