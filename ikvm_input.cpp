@@ -138,14 +138,14 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
 
     if (x >= 0 && (unsigned int)x < video.getWidth())
     {
-        uint16_t xx = x * ((SHRT_MAX + 1) / video.getWidth());
+        uint16_t xx = (uint16_t)(x * (SHRT_MAX + 1) / video.getWidth());
 
         memcpy(&input->pointerReport[1], &xx, 2);
     }
 
     if (y >= 0 && (unsigned int)y < video.getHeight())
     {
-        uint16_t yy = y * ((SHRT_MAX + 1) / video.getHeight());
+        uint16_t yy = (uint16_t)(y * (SHRT_MAX + 1) / video.getHeight());
 
         memcpy(&input->pointerReport[3], &yy, 2);
     }
