@@ -154,6 +154,7 @@ void Server::clientGone(rfbClientPtr cl)
     Server* server = (Server*)cl->screen->screenData;
 
     delete (ClientData*)cl->clientData;
+    cl->clientData = nullptr;
 
     if (server->numClients-- == 1)
     {
@@ -173,7 +174,6 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
     {
         server->pendingResize = false;
         server->frameCounter = 0;
-        server->video.start();
     }
 
     return RFB_CLIENT_ACCEPT;
