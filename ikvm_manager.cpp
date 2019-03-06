@@ -21,6 +21,7 @@ void Manager::run()
     {
         if (server.wantsFrame())
         {
+            video.start();
             video.getFrame();
             server.sendFrame();
         }
