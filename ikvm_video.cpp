@@ -155,6 +155,7 @@ bool Video::needsResize()
     {
         log<level::ERR>("Failed to query timings",
                         entry("ERROR=%s", strerror(errno)));
+        restart();
         return false;
     }
 
