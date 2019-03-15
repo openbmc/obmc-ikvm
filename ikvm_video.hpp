@@ -50,6 +50,12 @@ class Video
     void start();
     /* @brief Stops streaming from the video device */
     void stop();
+    /* @brief Restarts streaming from the video device */
+    void restart()
+    {
+        stop();
+        start();
+    }
 
     /*
      * @brief Gets the desired video frame rate in frames per second

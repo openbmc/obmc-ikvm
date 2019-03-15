@@ -155,6 +155,7 @@ bool Video::needsResize()
     {
         log<level::ERR>("Failed to query timings",
                         entry("ERROR=%s", strerror(errno)));
+        restart();
         return false;
     }
 
@@ -265,17 +266,19 @@ void Video::resize()
                 xyz::openbmc_project::Common::Device::ReadFailure::
                     CALLOUT_DEVICE_PATH(path.c_str()));
         }
-
-        rc = ioctl(fd, VIDIOC_S_DV_TIMINGS, &timings);
-        if (rc < 0)
+        else
         {
-            log<level::ERR>("Failed to set timings",
-                            entry("ERROR=%s", strerror(errno)));
-            elog<ReadFailure>(
-                xyz::openbmc_project::Common::Device::ReadFailure::
-                    CALLOUT_ERRNO(errno),
-                xyz::openbmc_project::Common::Device::ReadFailure::
-                    CALLOUT_DEVICE_PATH(path.c_str()));
+            rc = ioctl(fd, VIDIOC_S_DV_TIMINGS, &timings);
+            if (rc < 0)
+            {
+                log<level::ERR>("Failed to set timings",
+                                entry("ERROR=%s", strerror(errno)));
+                elog<ReadFailure>(
+                    xyz::openbmc_project::Common::Device::ReadFailure::
+                        CALLOUT_ERRNO(errno),
+                    xyz::openbmc_project::Common::Device::ReadFailure::
+                        CALLOUT_DEVICE_PATH(path.c_str()));
+            }
         }
 
         buffers.clear();
