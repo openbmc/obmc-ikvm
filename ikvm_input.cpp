@@ -134,7 +134,8 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
     Server* server = (Server*)cl->screen->screenData;
     const Video& video = server->getVideo();
 
-    input->pointerReport[0] = buttonMask & 0xFF;
+    input->pointerReport[0] = ((buttonMask & 0x4) >> 1) |
+                              ((buttonMask & 0x2) << 1) | (buttonMask & 0x1);
 
     if (x >= 0 && (unsigned int)x < video.getWidth())
     {
