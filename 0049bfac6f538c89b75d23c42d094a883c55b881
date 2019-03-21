@@ -1,0 +1,9 @@
+Ok-To-Test+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Verified+1: Jenkins <openbmc-ci-admin@ozlabs.org>
+Code-Review+1: Vernon Mauery <vernon.mauery@linux.intel.com>
+Code-Review+2: Edward A. James <eajames@us.ibm.com>
+Submitted-by: Edward A. James <eajames@us.ibm.com>
+Submitted-at: Thu, 21 Mar 2019 19:19:12 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/obmc-ikvm/+/19392
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
