@@ -28,3 +28,13 @@ executable(
     ],
     install: true
 )
+
+configure_file(
+    input: 'start-ipkvm.service',
+    output: 'start-ipkvm.service',
+    copy: true,
+    install_dir:
+        dependency('systemd').get_pkgconfig_variable(
+            'systemdsystemunitdir',
+            define_variable: ['prefix', get_option('prefix')])
+)
