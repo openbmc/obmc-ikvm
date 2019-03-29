@@ -24,7 +24,18 @@ executable(
         dependency('phosphor-logging'),
         dependency('phosphor-dbus-interfaces'),
         dependency('sdbusplus'),
+        dependency('systemd'),
         dependency('threads'),
     ],
     install: true
 )
+
+systemd_system_unit_dir = dependency('systemd').get_pkgconfig_variable(
+    'systemdsystemunitdir',
+    define_variable: ['prefix', get_option('prefix')])
+
+configure_file(
+    input: 'start-ipkvm.service',
+    output: 'start-ipkvm.service',
+    copy: true,
+    install_dir: systemd_system_unit_dir)
