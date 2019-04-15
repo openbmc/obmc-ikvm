@@ -378,21 +378,17 @@ void Video::start()
         return;
     }
 
+    input.sendWakeupPacket();
+
     fd = open(path.c_str(), O_RDWR);
     if (fd < 0)
     {
-        input.sendWakeupPacket();
-
-        fd = open(path.c_str(), O_RDWR);
-        if (fd < 0)
-        {
-            log<level::ERR>("Failed to open video device",
-                            entry("PATH=%s", path.c_str()),
-                            entry("ERROR=%s", strerror(errno)));
-            elog<Open>(
-                xyz::openbmc_project::Common::File::Open::ERRNO(errno),
-                xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
-        }
+        log<level::ERR>("Failed to open video device",
+                        entry("PATH=%s", path.c_str()),
+                        entry("ERROR=%s", strerror(errno)));
+        elog<Open>(
+            xyz::openbmc_project::Common::File::Open::ERRNO(errno),
+            xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
     }
 
     memset(&cap, 0, sizeof(v4l2_capability));
