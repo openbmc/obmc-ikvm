@@ -172,6 +172,20 @@ void Input::sendWakeupPacket()
             log<level::ERR>("Failed to write pointer report",
                             entry("ERROR=%s", strerror(errno)));
         }
+        else
+        {
+            xy--;
+
+            memcpy(&wakeupReport[1], &xy, 2);
+            memcpy(&wakeupReport[3], &xy, 2);
+
+            if (write(pointerFd, wakeupReport, PTR_REPORT_LENGTH) !=
+                PTR_REPORT_LENGTH)
+            {
+                log<level::ERR>("Failed to write pointer report",
+                                entry("ERROR=%s", strerror(errno)));
+            }
+        }
     }
 
     if (keyboardFd >= 0)
