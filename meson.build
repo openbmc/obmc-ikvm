@@ -9,6 +9,12 @@ project(
     ],
 )
 
+install_data(
+    'create_usbhid.sh',
+    install_mode: 'rwxr-xr-x',
+    install_dir: get_option('bindir')
+)
+
 executable(
     'obmc-ikvm',
     [
