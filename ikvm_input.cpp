@@ -42,7 +42,7 @@ Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
 
     if (!pointerPath.empty())
     {
-        pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC);
+        pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (pointerFd < 0)
         {
             log<level::ERR>("Failed to open input device",
