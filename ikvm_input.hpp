@@ -85,6 +85,8 @@ class Input
      */
     static uint8_t keyToScancode(rfbKeySym key);
 
+    /* @brief Indicates whether or not a pointer report error has occurred */
+    bool pointerError;
     /* @brief Indicates whether or not to send a keyboard report */
     bool sendKeyboard;
     /* @brief Indicates whether or not to send a pointer report */

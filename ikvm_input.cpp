@@ -23,6 +23,7 @@ using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
 Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
+    pointerError(false), sendKeyboard(false), sendPointer(false),
     keyboardFd(-1), pointerFd(-1), keyboardReport{0}, pointerReport{0},
     keyboardPath(kbdPath), pointerPath(ptrPath)
 {
@@ -42,7 +43,7 @@ Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
 
     if (!pointerPath.empty())
     {
-        pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC);
+        pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (pointerFd < 0)
         {
             log<level::ERR>("Failed to open input device",
@@ -218,8 +219,12 @@ void Input::sendReport()
         if (write(pointerFd, pointerReport, PTR_REPORT_LENGTH) !=
             PTR_REPORT_LENGTH)
         {
-            log<level::ERR>("Failed to write pointer report",
-                            entry("ERROR=%s", strerror(errno)));
+            if (!pointerError)
+            {
+                log<level::ERR>("Failed to write pointer report",
+                                entry("ERROR=%s", strerror(errno)));
+                pointerError = true;
+            }
         }
 
         sendPointer = false;
