@@ -79,7 +79,10 @@ void Server::run()
 
     if (server->clientHead)
     {
-        input.sendReport();
+        if (video.timingsAreValid())
+        {
+            input.sendReport();
+        }
 
         frameCounter++;
         if (pendingResize && frameCounter > video.getFrameRate())

@@ -31,8 +31,8 @@ using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 
 Video::Video(const std::string& p, Input& input, int fr) :
-    resizeAfterOpen(false), fd(-1), frameRate(fr), lastFrameIndex(-1),
-    height(600), width(800), input(input), path(p)
+    resizeAfterOpen(false), validTimings(false), fd(-1), frameRate(fr),
+    lastFrameIndex(-1), height(600), width(800), input(input), path(p)
 {
 }
 
@@ -153,11 +153,11 @@ bool Video::needsResize()
     rc = ioctl(fd, VIDIOC_QUERY_DV_TIMINGS, &timings);
     if (rc < 0)
     {
-        log<level::ERR>("Failed to query timings",
-                        entry("ERROR=%s", strerror(errno)));
-        restart();
+        validTimings = false;
         return false;
     }
+
+    validTimings = true;
 
     if (timings.bt.width != width || timings.bt.height != height)
     {

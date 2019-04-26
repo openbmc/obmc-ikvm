@@ -50,12 +50,6 @@ class Video
     void start();
     /* @brief Stops streaming from the video device */
     void stop();
-    /* @brief Restarts streaming from the video device */
-    void restart()
-    {
-        stop();
-        start();
-    }
 
     /*
      * @brief Gets the desired video frame rate in frames per second
@@ -94,6 +88,11 @@ class Video
         return width;
     }
 
+    inline bool timingsAreValid() const
+    {
+        return validTimings;
+    }
+
     /* @brief Number of bits per component of a pixel */
     static const int bitsPerSample;
     /* @brief Number of bytes of storage for a pixel */
@@ -129,6 +128,8 @@ class Video
      *        the open operation
      */
     bool resizeAfterOpen;
+    /* @brief Boolean to indicate whether the last frame had valid timings */
+    bool validTimings;
     /* @brief File descriptor for the V4L2 video device */
     int fd;
     /* @brief Desired frame rate of video stream in frames per second */
