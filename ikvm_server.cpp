@@ -119,6 +119,12 @@ void Server::sendFrame()
             continue;
         }
 
+        if (!cd->needUpdate)
+        {
+            continue;
+        }
+        cd->needUpdate = false;
+
         if (cl->enableLastRectEncoding)
         {
             fu->nRects = 0xFFFF;
@@ -149,6 +155,18 @@ void Server::sendFrame()
     rfbReleaseClientIterator(it);
 }
 
+void Server::clientFramebufferUpdateRequest(
+    rfbClientPtr cl, rfbFramebufferUpdateRequestMsg *furMsg)
+{
+    ClientData *cd = (ClientData *)cl->clientData;
+
+    if (!cd)
+        return;
+
+    // Ignore the furMsg info. This service uses full frame update always.
+    cd->needUpdate = true;
+}
+
 void Server::clientGone(rfbClientPtr cl)
 {
     Server* server = (Server*)cl->screen->screenData;
@@ -170,6 +188,7 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
     cl->clientData =
         new ClientData(server->video.getFrameRate(), &server->input);
     cl->clientGoneHook = clientGone;
+    cl->clientFramebufferUpdateRequestHook = clientFramebufferUpdateRequest;
     if (!server->numClients++)
     {
         server->pendingResize = false;
