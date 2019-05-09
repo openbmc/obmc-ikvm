@@ -32,6 +32,7 @@ class Server
          */
         ClientData(int s, Input* i) : skipFrame(s), input(i)
         {
+            needUpdate = false;
         }
         ~ClientData() = default;
         ClientData(const ClientData&) = default;
@@ -41,6 +42,7 @@ class Server
 
         int skipFrame;
         Input* input;
+        bool needUpdate;
     };
 
     /*
@@ -84,6 +86,14 @@ class Server
     }
 
   private:
+    /*
+     * @brief Handler for a client frame update message
+     *
+     * @param[in] cl - Handle to the client object
+     * @param[in] region - Pointer of the update requested region info
+     */
+    static void clientFramebufferUpdateRequest(rfbClientPtr cl,
+                                               sraRegionPtr region);
     /*
      * @brief Handler for a client disconnecting
      *
