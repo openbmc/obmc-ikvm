@@ -156,6 +156,36 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
     rfbDefaultPtrAddEvent(buttonMask, x, y, cl);
 }
 
+void Input::restart()
+{
+    if (!keyboardPath.empty() && keyboardFd < 0)
+    {
+        keyboardFd = open(keyboardPath.c_str(), O_RDWR | O_CLOEXEC);
+        if (keyboardFd < 0)
+        {
+            log<level::ERR>("Failed to open input device",
+                            entry("PATH=%s", keyboardPath.c_str()),
+                            entry("ERROR=%s", strerror(errno)));
+        }
+
+        sendKeyboard = false;
+    }
+
+    if (!pointerPath.empty() && pointerFd < 0)
+    {
+        pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
+        if (pointerFd < 0)
+        {
+            log<level::ERR>("Failed to open input device",
+                            entry("PATH=%s", pointerPath.c_str()),
+                            entry("ERROR=%s", strerror(errno)));
+        }
+
+        pointerError = false;
+        sendPointer = false;
+    }
+}
+
 void Input::sendWakeupPacket()
 {
     uint8_t wakeupReport[KEY_REPORT_LENGTH] = {0};
@@ -209,6 +239,12 @@ void Input::sendReport()
         {
             log<level::ERR>("Failed to write keyboard report",
                             entry("ERROR=%s", strerror(errno)));
+
+            if (errno == ESHUTDOWN)
+            {
+                close(keyboardFd);
+                keyboardFd = -1;
+            }
         }
 
         sendKeyboard = false;
@@ -225,6 +261,16 @@ void Input::sendReport()
                                 entry("ERROR=%s", strerror(errno)));
                 pointerError = true;
             }
+
+            if (errno == ESHUTDOWN)
+            {
+                close(pointerFd);
+                pointerFd = -1;
+            }
+        }
+        else
+        {
+            pointerError = false;
         }
 
         sendPointer = false;

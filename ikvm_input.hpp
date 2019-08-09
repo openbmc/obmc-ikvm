@@ -48,6 +48,8 @@ class Input
      */
     static void pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl);
 
+    /* @brief Re-opens USB device in case the endpoint shutdown */
+    void restart();
     /* @brief Sends a wakeup data packet to the USB input device */
     void sendWakeupPacket();
     /* @brief Sends an HID report to the USB input device */

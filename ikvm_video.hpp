@@ -129,6 +129,8 @@ class Video
      *        the open operation
      */
     bool resizeAfterOpen;
+    /* @brief Indicates whether or not timings query was last sucessful */
+    bool timingsError;
     /* @brief File descriptor for the V4L2 video device */
     int fd;
     /* @brief Desired frame rate of video stream in frames per second */
