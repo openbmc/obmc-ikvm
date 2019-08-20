@@ -309,6 +309,14 @@ uint8_t Input::keyToScancode(rfbKeySym key)
     {
         scancode = USBHID_KEY_F1 + (key - XK_F1);
     }
+    else if (key >= XK_KP_F1 && key <= XK_KP_F4)
+    {
+        scancode = USBHID_KEY_F1 + (key - XK_KP_F1);
+    }
+    else if (key >= XK_KP_1 && key <= XK_KP_9)
+    {
+        scancode = USBHID_KEY_KP_1 + (key - XK_KP_1);
+    }
     else
     {
         switch (key)
@@ -354,9 +362,11 @@ uint8_t Input::keyToScancode(rfbKeySym key)
                 scancode = USBHID_KEY_BACKSPACE;
                 break;
             case XK_Tab:
+            case XK_KP_Tab:
                 scancode = USBHID_KEY_TAB;
                 break;
             case XK_space:
+            case XK_KP_Space:
                 scancode = USBHID_KEY_SPACE;
                 break;
             case XK_minus:
@@ -416,37 +426,71 @@ uint8_t Input::keyToScancode(rfbKeySym key)
                 scancode = USBHID_KEY_PAUSE;
                 break;
             case XK_Insert:
+            case XK_KP_Insert:
                 scancode = USBHID_KEY_INSERT;
                 break;
             case XK_Home:
+            case XK_KP_Home:
                 scancode = USBHID_KEY_HOME;
                 break;
             case XK_Page_Up:
+            case XK_KP_Page_Up:
                 scancode = USBHID_KEY_PAGEUP;
                 break;
             case XK_Delete:
+            case XK_KP_Delete:
                 scancode = USBHID_KEY_DELETE;
                 break;
             case XK_End:
+            case XK_KP_End:
                 scancode = USBHID_KEY_END;
                 break;
             case XK_Page_Down:
+            case XK_KP_Page_Down:
                 scancode = USBHID_KEY_PAGEDOWN;
                 break;
             case XK_Right:
+            case XK_KP_Right:
                 scancode = USBHID_KEY_RIGHT;
                 break;
             case XK_Left:
+            case XK_KP_Left:
                 scancode = USBHID_KEY_LEFT;
                 break;
             case XK_Down:
+            case XK_KP_Down:
                 scancode = USBHID_KEY_DOWN;
                 break;
             case XK_Up:
+            case XK_KP_Up:
                 scancode = USBHID_KEY_UP;
                 break;
             case XK_Num_Lock:
                 scancode = USBHID_KEY_NUMLOCK;
+                break;
+            case XK_KP_Enter:
+                scancode = USBHID_KEY_KP_ENTER;
+                break;
+            case XK_KP_Equal:
+                scancode = USBHID_KEY_KP_EQUAL;
+                break;
+            case XK_KP_Multiply:
+                scancode = USBHID_KEY_KP_MULTIPLY;
+                break;
+            case XK_KP_Add:
+                scancode = USBHID_KEY_KP_ADD;
+                break;
+            case XK_KP_Subtract:
+                scancode = USBHID_KEY_KP_SUBTRACT;
+                break;
+            case XK_KP_Decimal:
+                scancode = USBHID_KEY_KP_DECIMAL;
+                break;
+            case XK_KP_Divide:
+                scancode = USBHID_KEY_KP_DIVIDE;
+                break;
+            case XK_KP_0:
+                scancode = USBHID_KEY_KP_0;
                 break;
         }
     }
