@@ -48,8 +48,6 @@ class Input
      */
     static void pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl);
 
-    /* @brief Re-opens USB device in case the endpoint shutdown */
-    void restart();
     /* @brief Sends a wakeup data packet to the USB input device */
     void sendWakeupPacket();
     /* @brief Sends an HID report to the USB input device */
@@ -90,8 +88,6 @@ class Input
     bool writeKeyboard(const uint8_t *report);
     void writePointer(const uint8_t *report);
 
-    /* @brief Indicates whether or not a pointer report error has occurred */
-    bool pointerError;
     /* @brief Indicates whether or not to send a keyboard report */
     bool sendKeyboard;
     /* @brief Indicates whether or not to send a pointer report */

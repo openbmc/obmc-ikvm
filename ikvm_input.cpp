@@ -23,9 +23,9 @@ using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
 Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
-    pointerError(false), sendKeyboard(false), sendPointer(false),
-    keyboardFd(-1), pointerFd(-1), keyboardReport{0}, pointerReport{0},
-    keyboardPath(kbdPath), pointerPath(ptrPath)
+    sendKeyboard(false), sendPointer(false), keyboardFd(-1), pointerFd(-1),
+    keyboardReport{0}, pointerReport{0}, keyboardPath(kbdPath),
+    pointerPath(ptrPath)
 {
     if (!keyboardPath.empty())
     {
@@ -154,36 +154,6 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
 
     input->sendPointer = true;
     rfbDefaultPtrAddEvent(buttonMask, x, y, cl);
-}
-
-void Input::restart()
-{
-    if (!keyboardPath.empty() && keyboardFd < 0)
-    {
-        keyboardFd = open(keyboardPath.c_str(), O_RDWR | O_CLOEXEC);
-        if (keyboardFd < 0)
-        {
-            log<level::ERR>("Failed to open input device",
-                            entry("PATH=%s", keyboardPath.c_str()),
-                            entry("ERROR=%s", strerror(errno)));
-        }
-
-        sendKeyboard = false;
-    }
-
-    if (!pointerPath.empty() && pointerFd < 0)
-    {
-        pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
-        if (pointerFd < 0)
-        {
-            log<level::ERR>("Failed to open input device",
-                            entry("PATH=%s", pointerPath.c_str()),
-                            entry("ERROR=%s", strerror(errno)));
-        }
-
-        pointerError = false;
-        sendPointer = false;
-    }
 }
 
 void Input::sendWakeupPacket()
@@ -459,13 +429,10 @@ bool Input::writeKeyboard(const uint8_t *report)
 {
     if (write(keyboardFd, report, KEY_REPORT_LENGTH) != KEY_REPORT_LENGTH)
     {
-        log<level::ERR>("Failed to write keyboard report",
-                        entry("ERROR=%s", strerror(errno)));
-
-        if (errno == ESHUTDOWN)
+        if (errno != ESHUTDOWN && errno != EAGAIN)
         {
-            close(keyboardFd);
-            keyboardFd = -1;
+            log<level::ERR>("Failed to write keyboard report",
+                            entry("ERROR=%s", strerror(errno)));
         }
 
         return false;
@@ -478,22 +445,11 @@ void Input::writePointer(const uint8_t *report)
 {
     if (write(pointerFd, report, PTR_REPORT_LENGTH) != PTR_REPORT_LENGTH)
     {
-        if (!pointerError)
+        if (errno != ESHUTDOWN && errno != EAGAIN)
         {
             log<level::ERR>("Failed to write pointer report",
                             entry("ERROR=%s", strerror(errno)));
-            pointerError = true;
         }
-
-        if (errno == ESHUTDOWN)
-        {
-            close(pointerFd);
-            pointerFd = -1;
-        }
-    }
-    else
-    {
-        pointerError = false;
     }
 }
 

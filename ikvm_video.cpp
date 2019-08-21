@@ -163,10 +163,9 @@ bool Video::needsResize()
         restart();
         return false;
     }
-    else if (timingsError)
+    else
     {
         timingsError = false;
-        input.restart();
     }
 
     if (timings.bt.width != width || timings.bt.height != height)
