@@ -4,7 +4,7 @@ Description=OpenBMC ipKVM daemon
 [Service]
 Restart=always
 ExecStartPre=/usr/bin/create_usbhid.sh
-ExecStart=/usr/bin/obmc-ikvm -v /dev/video0 -k /dev/hidg0 -p /dev/hidg1 -f 16
+ExecStart=/usr/bin/obmc-ikvm -v /dev/video0 -k /dev/hidg0 -p /dev/hidg1
 
 [Install]
 WantedBy=multi-user.target
