@@ -87,6 +87,9 @@ class Input
      */
     static uint8_t keyToScancode(rfbKeySym key);
 
+    bool writeKeyboard(const uint8_t *report);
+    void writePointer(const uint8_t *report);
+
     /* @brief Indicates whether or not a pointer report error has occurred */
     bool pointerError;
     /* @brief Indicates whether or not to send a keyboard report */

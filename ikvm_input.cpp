@@ -197,12 +197,7 @@ void Input::sendWakeupPacket()
         memcpy(&wakeupReport[1], &xy, 2);
         memcpy(&wakeupReport[3], &xy, 2);
 
-        if (write(pointerFd, wakeupReport, PTR_REPORT_LENGTH) !=
-            PTR_REPORT_LENGTH)
-        {
-            log<level::ERR>("Failed to write pointer report",
-                            entry("ERROR=%s", strerror(errno)));
-        }
+        writePointer(wakeupReport);
     }
 
     if (keyboardFd >= 0)
@@ -211,22 +206,14 @@ void Input::sendWakeupPacket()
 
         wakeupReport[0] = keyToMod(XK_Shift_L);
 
-        if (write(keyboardFd, wakeupReport, KEY_REPORT_LENGTH) !=
-            KEY_REPORT_LENGTH)
+        if (!writeKeyboard(wakeupReport))
         {
-            log<level::ERR>("Failed to write keyboard report",
-                            entry("ERROR=%s", strerror(errno)));
             return;
         }
 
         wakeupReport[0] = 0;
 
-        if (write(keyboardFd, wakeupReport, KEY_REPORT_LENGTH) !=
-            KEY_REPORT_LENGTH)
-        {
-            log<level::ERR>("Failed to write keyboard report",
-                            entry("ERROR=%s", strerror(errno)));
-        }
+        writeKeyboard(wakeupReport);
     }
 }
 
@@ -234,44 +221,14 @@ void Input::sendReport()
 {
     if (sendKeyboard && keyboardFd >= 0)
     {
-        if (write(keyboardFd, keyboardReport, KEY_REPORT_LENGTH) !=
-            KEY_REPORT_LENGTH)
-        {
-            log<level::ERR>("Failed to write keyboard report",
-                            entry("ERROR=%s", strerror(errno)));
-
-            if (errno == ESHUTDOWN)
-            {
-                close(keyboardFd);
-                keyboardFd = -1;
-            }
-        }
+        writeKeyboard(keyboardReport);
 
         sendKeyboard = false;
     }
 
     if (sendPointer && pointerFd >= 0)
     {
-        if (write(pointerFd, pointerReport, PTR_REPORT_LENGTH) !=
-            PTR_REPORT_LENGTH)
-        {
-            if (!pointerError)
-            {
-                log<level::ERR>("Failed to write pointer report",
-                                entry("ERROR=%s", strerror(errno)));
-                pointerError = true;
-            }
-
-            if (errno == ESHUTDOWN)
-            {
-                close(pointerFd);
-                pointerFd = -1;
-            }
-        }
-        else
-        {
-            pointerError = false;
-        }
+        writePointer(pointerReport);
 
         sendPointer = false;
     }
@@ -496,6 +453,48 @@ uint8_t Input::keyToScancode(rfbKeySym key)
     }
 
     return scancode;
+}
+
+bool Input::writeKeyboard(const uint8_t *report)
+{
+    if (write(keyboardFd, report, KEY_REPORT_LENGTH) != KEY_REPORT_LENGTH)
+    {
+        log<level::ERR>("Failed to write keyboard report",
+                        entry("ERROR=%s", strerror(errno)));
+
+        if (errno == ESHUTDOWN)
+        {
+            close(keyboardFd);
+            keyboardFd = -1;
+        }
+
+        return false;
+    }
+
+    return true;
+}
+
+void Input::writePointer(const uint8_t *report)
+{
+    if (write(pointerFd, report, PTR_REPORT_LENGTH) != PTR_REPORT_LENGTH)
+    {
+        if (!pointerError)
+        {
+            log<level::ERR>("Failed to write pointer report",
+                            entry("ERROR=%s", strerror(errno)));
+            pointerError = true;
+        }
+
+        if (errno == ESHUTDOWN)
+        {
+            close(pointerFd);
+            pointerFd = -1;
+        }
+    }
+    else
+    {
+        pointerError = false;
+    }
 }
 
 } // namespace ikvm
