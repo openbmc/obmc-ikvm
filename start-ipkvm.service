@@ -1,5 +1,6 @@
 [Unit]
 Description=OpenBMC ipKVM daemon
+ConditionPathIsMountPoint=/sys/kernel/config
 
 [Service]
 Restart=always
