@@ -16,6 +16,8 @@
 
 #include "scancodes.hpp"
 
+namespace fs = std::filesystem;
+
 namespace ikvm
 {
 
@@ -27,6 +29,54 @@ Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
     keyboardReport{0}, pointerReport{0}, keyboardPath(kbdPath),
     pointerPath(ptrPath)
 {
+    hidUdcStream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+    hidUdcStream.open(hidUdcPath, std::ios::out | std::ios::app);
+}
+
+Input::~Input()
+{
+    if (keyboardFd >= 0)
+    {
+        close(keyboardFd);
+    }
+
+    if (pointerFd >= 0)
+    {
+        close(pointerFd);
+    }
+
+    disconnect();
+    hidUdcStream.close();
+}
+
+void Input::connect()
+{
+    try
+    {
+        for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
+        {
+            if (fs::is_directory(port) && !fs::is_symlink(port) &&
+                !fs::exists(port.path() / "gadget/suspended"))
+            {
+                const std::string portId = port.path().filename();
+                hidUdcStream << portId << std::endl;
+                break;
+            }
+        }
+    }
+    catch (fs::filesystem_error& e)
+    {
+        log<level::ERR>("Failed to search USB virtual hub port",
+                        entry("ERROR=%s", e.what()));
+        return;
+    }
+    catch (std::ofstream::failure& e)
+    {
+        log<level::ERR>("Failed to connect HID gadget",
+                        entry("ERROR=%s", e.what()));
+        return;
+    }
+
     if (!keyboardPath.empty())
     {
         keyboardFd = open(keyboardPath.c_str(), O_RDWR | O_CLOEXEC);
@@ -56,16 +106,28 @@ Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
     }
 }
 
-Input::~Input()
+void Input::disconnect()
 {
     if (keyboardFd >= 0)
     {
         close(keyboardFd);
+        keyboardFd = -1;
     }
 
     if (pointerFd >= 0)
     {
         close(pointerFd);
+        pointerFd = -1;
+    }
+
+    try
+    {
+        hidUdcStream << "" << std::endl;
+    }
+    catch (std::ofstream::failure& e)
+    {
+        log<level::ERR>("Failed to disconnect HID gadget",
+                        entry("ERROR=%s", e.what()));
     }
 }
 

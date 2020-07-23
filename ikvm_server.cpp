@@ -178,6 +178,7 @@ void Server::clientGone(rfbClientPtr cl)
 
     if (server->numClients-- == 1)
     {
+        server->input.disconnect();
         rfbMarkRectAsModified(server->server, 0, 0, server->video.getWidth(),
                               server->video.getHeight());
     }
@@ -193,6 +194,7 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
     cl->clientFramebufferUpdateRequestHook = clientFramebufferUpdateRequest;
     if (!server->numClients++)
     {
+        server->input.connect();
         server->pendingResize = false;
         server->frameCounter = 0;
     }

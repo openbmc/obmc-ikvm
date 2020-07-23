@@ -2,6 +2,8 @@
 
 #include <rfb/rfb.h>
 
+#include <filesystem>
+#include <fstream>
 #include <map>
 #include <string>
 
@@ -29,6 +31,10 @@ class Input
     Input(Input&&) = default;
     Input& operator=(Input&&) = default;
 
+    /* @brief Connects HID gadget to host */
+    void connect();
+    /* @brief Disconnects HID gadget from host */
+    void disconnect();
     /*
      * @brief RFB client key event handler
      *
@@ -72,6 +78,12 @@ class Input
         0x04, // left alt
         0x40  // right alt
     };
+    /* @brief Path to the HID gadget UDC */
+    static constexpr const char* hidUdcPath =
+        "/sys/kernel/config/usb_gadget/obmc_hid/UDC";
+    /* @brief Path to the USB virtual hub */
+    static constexpr const char* usbVirtualHubPath =
+        "/sys/bus/platform/devices/1e6a0000.usb-vhub";
     /*
      * @brief Translates a RFB-specific key code to HID modifier bit
      *
@@ -109,6 +121,8 @@ class Input
      *        of which keys are down
      */
     std::map<int, int> keysDown;
+    /* @brief Handle of the HID gadget UDC */
+    std::ofstream hidUdcStream;
 };
 
 } // namespace ikvm
