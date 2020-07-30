@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <fstream>
 #include <map>
+#include <mutex>
 #include <string>
 
 namespace ikvm
@@ -56,8 +57,6 @@ class Input
 
     /* @brief Sends a wakeup data packet to the USB input device */
     void sendWakeupPacket();
-    /* @brief Sends an HID report to the USB input device */
-    void sendReport();
 
   private:
     static constexpr int NUM_MODIFIER_BITS = 4;
@@ -84,6 +83,8 @@ class Input
     /* @brief Path to the USB virtual hub */
     static constexpr const char* usbVirtualHubPath =
         "/sys/bus/platform/devices/1e6a0000.usb-vhub";
+    /* @brief Retry limit for writing an HID report */
+    static constexpr int HID_REPORT_RETRY_MAX = 5;
     /*
      * @brief Translates a RFB-specific key code to HID modifier bit
      *
@@ -100,10 +101,6 @@ class Input
     bool writeKeyboard(const uint8_t *report);
     void writePointer(const uint8_t *report);
 
-    /* @brief Indicates whether or not to send a keyboard report */
-    bool sendKeyboard;
-    /* @brief Indicates whether or not to send a pointer report */
-    bool sendPointer;
     /* @brief File descriptor for the USB keyboard device */
     int keyboardFd;
     /* @brief File descriptor for the USB mouse device */
@@ -123,6 +120,10 @@ class Input
     std::map<int, int> keysDown;
     /* @brief Handle of the HID gadget UDC */
     std::ofstream hidUdcStream;
+    /* @brief Mutex for sending keyboard reports */
+    std::mutex keyMutex;
+    /* @brief Mutex for sending pointer reports */
+    std::mutex ptrMutex;
 };
 
 } // namespace ikvm

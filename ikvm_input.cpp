@@ -25,9 +25,8 @@ using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
 Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
-    sendKeyboard(false), sendPointer(false), keyboardFd(-1), pointerFd(-1),
-    keyboardReport{0}, pointerReport{0}, keyboardPath(kbdPath),
-    pointerPath(ptrPath)
+    keyboardFd(-1), pointerFd(-1), keyboardReport{0}, pointerReport{0},
+    keyboardPath(kbdPath), pointerPath(ptrPath)
 {
     hidUdcStream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
     hidUdcStream.open(hidUdcPath, std::ios::out | std::ios::app);
@@ -79,7 +78,8 @@ void Input::connect()
 
     if (!keyboardPath.empty())
     {
-        keyboardFd = open(keyboardPath.c_str(), O_RDWR | O_CLOEXEC);
+        keyboardFd = open(keyboardPath.c_str(),
+                          O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (keyboardFd < 0)
         {
             log<level::ERR>("Failed to open input device",
@@ -135,6 +135,12 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
 {
     Server::ClientData* cd = (Server::ClientData*)cl->clientData;
     Input* input = cd->input;
+    bool sendKeyboard = false;
+
+    if (input->keyboardFd < 0)
+    {
+        return;
+    }
 
     if (down)
     {
@@ -150,7 +156,7 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
                     {
                         input->keyboardReport[i] = sc;
                         input->keysDown.insert(std::make_pair(key, i));
-                        input->sendKeyboard = true;
+                        sendKeyboard = true;
                         break;
                     }
                 }
@@ -163,7 +169,7 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
             if (mod)
             {
                 input->keyboardReport[0] |= mod;
-                input->sendKeyboard = true;
+                sendKeyboard = true;
             }
         }
     }
@@ -175,7 +181,7 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
         {
             input->keyboardReport[it->second] = 0;
             input->keysDown.erase(it);
-            input->sendKeyboard = true;
+            sendKeyboard = true;
         }
         else
         {
@@ -184,9 +190,14 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
             if (mod)
             {
                 input->keyboardReport[0] &= ~mod;
-                input->sendKeyboard = true;
+                sendKeyboard = true;
             }
         }
+    }
+
+    if (sendKeyboard)
+    {
+        input->writeKeyboard(input->keyboardReport);
     }
 }
 
@@ -196,6 +207,11 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
     Input* input = cd->input;
     Server* server = (Server*)cl->screen->screenData;
     const Video& video = server->getVideo();
+
+    if (input->pointerFd < 0)
+    {
+        return;
+    }
 
     input->pointerReport[0] = ((buttonMask & 0x4) >> 1) |
                               ((buttonMask & 0x2) << 1) | (buttonMask & 0x1);
@@ -214,8 +230,8 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
         memcpy(&input->pointerReport[3], &yy, 2);
     }
 
-    input->sendPointer = true;
     rfbDefaultPtrAddEvent(buttonMask, x, y, cl);
+    input->writePointer(input->pointerReport);
 }
 
 void Input::sendWakeupPacket()
@@ -246,23 +262,6 @@ void Input::sendWakeupPacket()
         wakeupReport[0] = 0;
 
         writeKeyboard(wakeupReport);
-    }
-}
-
-void Input::sendReport()
-{
-    if (sendKeyboard && keyboardFd >= 0)
-    {
-        writeKeyboard(keyboardReport);
-
-        sendKeyboard = false;
-    }
-
-    if (sendPointer && pointerFd >= 0)
-    {
-        writePointer(pointerReport);
-
-        sendPointer = false;
     }
 }
 
@@ -489,14 +488,35 @@ uint8_t Input::keyToScancode(rfbKeySym key)
 
 bool Input::writeKeyboard(const uint8_t *report)
 {
-    if (write(keyboardFd, report, KEY_REPORT_LENGTH) != KEY_REPORT_LENGTH)
+    std::unique_lock<std::mutex> lk(keyMutex);
+    uint retryCount = HID_REPORT_RETRY_MAX;
+
+    while (retryCount > 0)
     {
-        if (errno != ESHUTDOWN && errno != EAGAIN)
+        if (write(keyboardFd, report, KEY_REPORT_LENGTH) == KEY_REPORT_LENGTH)
         {
-            log<level::ERR>("Failed to write keyboard report",
-                            entry("ERROR=%s", strerror(errno)));
+            break;
         }
 
+        if (errno != EAGAIN)
+        {
+            if (errno != ESHUTDOWN)
+            {
+                log<level::ERR>("Failed to write keyboard report",
+                                entry("ERROR=%s", strerror(errno)));
+            }
+
+            break;
+        }
+
+        lk.unlock();
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        lk.lock();
+        retryCount--;
+    }
+
+    if (!retryCount || errno)
+    {
         return false;
     }
 
@@ -505,13 +525,31 @@ bool Input::writeKeyboard(const uint8_t *report)
 
 void Input::writePointer(const uint8_t *report)
 {
-    if (write(pointerFd, report, PTR_REPORT_LENGTH) != PTR_REPORT_LENGTH)
+    std::unique_lock<std::mutex> lk(ptrMutex);
+    uint retryCount = HID_REPORT_RETRY_MAX;
+
+    while (retryCount > 0)
     {
-        if (errno != ESHUTDOWN && errno != EAGAIN)
+        if (write(pointerFd, report, PTR_REPORT_LENGTH) == PTR_REPORT_LENGTH)
         {
-            log<level::ERR>("Failed to write pointer report",
-                            entry("ERROR=%s", strerror(errno)));
+            break;
         }
+
+        if (errno != EAGAIN)
+        {
+            if (errno != ESHUTDOWN)
+            {
+                log<level::ERR>("Failed to write pointer report",
+                                entry("ERROR=%s", strerror(errno)));
+            }
+
+            break;
+        }
+
+        lk.unlock();
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        lk.lock();
+        retryCount--;
     }
 }
 
