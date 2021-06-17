@@ -495,7 +495,7 @@ bool Input::writeKeyboard(const uint8_t *report)
     {
         if (write(keyboardFd, report, KEY_REPORT_LENGTH) == KEY_REPORT_LENGTH)
         {
-            break;
+            return true;
         }
 
         if (errno != EAGAIN)
@@ -515,12 +515,7 @@ bool Input::writeKeyboard(const uint8_t *report)
         retryCount--;
     }
 
-    if (!retryCount || errno)
-    {
-        return false;
-    }
-
-    return true;
+    return false;
 }
 
 void Input::writePointer(const uint8_t *report)
