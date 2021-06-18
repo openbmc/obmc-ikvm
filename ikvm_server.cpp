@@ -7,6 +7,8 @@
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
+#include <boost/crc.hpp>
+
 namespace ikvm
 {
 
@@ -54,6 +56,8 @@ Server::Server(const Args& args, Input& i, Video& v) :
     server->ptrAddEvent = Input::pointerEvent;
 
     processTime = (1000000 / video.getFrameRate()) - 100;
+
+    calcFrameCRC = args.getCalcFrameCRC();
 }
 
 Server::~Server()
@@ -93,6 +97,7 @@ void Server::sendFrame()
     char* data = video.getData();
     rfbClientIteratorPtr it;
     rfbClientPtr cl;
+    int64_t frame_crc = -1;
 
     if (!data || pendingResize)
     {
@@ -121,6 +126,26 @@ void Server::sendFrame()
         {
             continue;
         }
+
+        if (calcFrameCRC)
+        {
+            if (frame_crc == -1)
+            {
+                /* JFIF header contains some varying data so skip it for
+                 * checksum calculation */
+                frame_crc = boost::crc<32, 0x04C11DB7, 0xFFFFFFFF, 0xFFFFFFFF,
+                                       true, true>(data + 0x30,
+                                                   video.getFrameSize() - 0x30);
+            }
+
+            if (cd->last_crc == frame_crc)
+            {
+                continue;
+            }
+
+            cd->last_crc = frame_crc;
+        }
+
         cd->needUpdate = false;
 
         if (cl->enableLastRectEncoding)
