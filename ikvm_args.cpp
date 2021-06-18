@@ -8,15 +8,17 @@
 namespace ikvm
 {
 
-Args::Args(int argc, char* argv[]) : frameRate(30), commandLine(argc, argv)
+Args::Args(int argc, char* argv[]) : frameRate(30), commandLine(argc, argv),
+                                     calcFrameCRC{false}
 {
     int option;
-    const char* opts = "f:h:k:p:v:";
+    const char* opts = "f:h:k:p:v:c";
     struct option lopts[] = {{"frameRate", 1, 0, 'f'},
                              {"help", 0, 0, 'h'},
                              {"keyboard", 1, 0, 'k'},
                              {"mouse", 1, 0, 'p'},
                              {"videoDevice", 1, 0, 'v'},
+                             {"calcCRC", 0, 0, 'c'},
                              {0, 0, 0, 0}};
 
     while ((option = getopt_long(argc, argv, opts, lopts, NULL)) != -1)
@@ -40,6 +42,9 @@ Args::Args(int argc, char* argv[]) : frameRate(30), commandLine(argc, argv)
             case 'v':
                 videoPath = std::string(optarg);
                 break;
+            case 'c':
+                calcFrameCRC = true;
+                break;
         }
     }
 }
@@ -54,6 +59,7 @@ void Args::printUsage()
     fprintf(stderr, "-k device              HID keyboard gadget device\n");
     fprintf(stderr, "-p device              HID mouse gadget device\n");
     fprintf(stderr, "-v device              V4L2 device\n");
+    fprintf(stderr, "-c, --calcCRC          Calculate CRC for each frame to save bandwidth\n");
     rfbUsage();
 }
 
