@@ -101,6 +101,16 @@ class Args
         return videoPath;
     }
 
+    /*
+     * @brief Get the identical frames detection setting
+     *
+     * @return True if identical frames detection is enabled
+     */
+    inline bool getCalcFrameCRC() const
+    {
+        return calcFrameCRC;
+    }
+
   private:
     /* @brief Prints the application usage to stderr */
     void printUsage();
@@ -116,6 +126,8 @@ class Args
     std::string pointerPath;
     /* @brief Path to the V4L2 video device */
     std::string videoPath;
+    /* @brief Identical frames detection */
+    bool calcFrameCRC;
     /* @brief Original command line arguments passed to the application */
     CommandLine commandLine;
 };

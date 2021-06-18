@@ -30,7 +30,7 @@ class Server
          * @param[in] s - Number of frames to skip when client connects
          * @param[in] i - Pointer to Input object
          */
-        ClientData(int s, Input* i) : skipFrame(s), input(i)
+        ClientData(int s, Input* i) : skipFrame(s), input(i), last_crc{-1}
         {
             needUpdate = false;
         }
@@ -43,6 +43,7 @@ class Server
         int skipFrame;
         Input* input;
         bool needUpdate;
+        int64_t last_crc;
     };
 
     /*
@@ -127,6 +128,8 @@ class Server
     Video& video;
     /* @brief Default framebuffer storage */
     std::vector<char> framebuffer;
+    /* @brief Identical frames detection */
+    bool calcFrameCRC;
     /* @brief Cursor bitmap width */
     static constexpr int cursorWidth = 20;
     /* @brief Cursor bitmap height */
