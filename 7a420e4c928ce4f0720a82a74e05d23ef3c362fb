@@ -1,0 +1,9 @@
+Ok-To-Test+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Code-Review+2: Edward A. James <eajames@us.ibm.com>
+Submitted-by: Bruce Mitchell <bruce.mitchell@linux.vnet.ibm.com>
+Submitted-at: Wed, 30 Jun 2021 18:55:48 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/obmc-ikvm/+/44411
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
