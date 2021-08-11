@@ -509,10 +509,13 @@ bool Input::writeKeyboard(const uint8_t *report)
             break;
         }
 
+        retryCount--;
+        if (retryCount == 0)
+            break;
+
         lk.unlock();
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         lk.lock();
-        retryCount--;
     }
 
     return false;
@@ -541,10 +544,13 @@ void Input::writePointer(const uint8_t *report)
             break;
         }
 
+        retryCount--;
+        if (retryCount == 0)
+            break;
+
         lk.unlock();
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         lk.lock();
-        retryCount--;
     }
 }
 
