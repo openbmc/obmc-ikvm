@@ -55,6 +55,7 @@ void Input::connect()
         for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
         {
             if (fs::is_directory(port) && !fs::is_symlink(port) &&
+                fs::exists(port.path() / "gadget") &&
                 !fs::exists(port.path() / "gadget/suspended"))
             {
                 const std::string portId = port.path().filename();
