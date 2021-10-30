@@ -1,0 +1,9 @@
+Ok-To-Test+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Brad Bishop <bradleyb@fuzziesquirrel.com>
+Code-Review+2: Edward A. James <eajames@us.ibm.com>
+Submitted-by: ManojKiran Eda <manojkiran.eda@gmail.com>
+Submitted-at: Sat, 30 Oct 2021 01:00:23 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/obmc-ikvm/+/48110
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
