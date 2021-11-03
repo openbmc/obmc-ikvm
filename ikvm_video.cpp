@@ -267,13 +267,10 @@ void Video::resize()
         rc = ioctl(fd, VIDIOC_QUERY_DV_TIMINGS, &timings);
         if (rc < 0)
         {
-            log<level::ERR>("Failed to query timings",
+            log<level::ERR>("Failed to query timings, restart",
                             entry("ERROR=%s", strerror(errno)));
-            elog<ReadFailure>(
-                xyz::openbmc_project::Common::Device::ReadFailure::
-                    CALLOUT_ERRNO(errno),
-                xyz::openbmc_project::Common::Device::ReadFailure::
-                    CALLOUT_DEVICE_PATH(path.c_str()));
+            restart();
+            return;
         }
 
         rc = ioctl(fd, VIDIOC_S_DV_TIMINGS, &timings);
