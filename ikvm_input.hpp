@@ -61,7 +61,7 @@ class Input
   private:
     static constexpr int NUM_MODIFIER_BITS = 4;
     static constexpr int KEY_REPORT_LENGTH = 8;
-    static constexpr int PTR_REPORT_LENGTH = 5;
+    static constexpr int PTR_REPORT_LENGTH = 6;
 
     /* @brief HID modifier bits mapped to shift and control key codes */
     static constexpr uint8_t shiftCtrlMap[NUM_MODIFIER_BITS] = {
