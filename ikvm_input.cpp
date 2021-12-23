@@ -213,8 +213,24 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
         return;
     }
 
-    input->pointerReport[0] = ((buttonMask & 0x4) >> 1) |
-                              ((buttonMask & 0x2) << 1) | (buttonMask & 0x1);
+    if (buttonMask > 4)
+    {
+        input->pointerReport[0] = 0;
+        if (buttonMask == 8)
+        {
+            input->pointerReport[5] = 1;
+        }
+        else if (buttonMask == 16)
+        {
+            input->pointerReport[5] = 0xff;
+        }
+    }
+    else
+    {
+        input->pointerReport[0] = ((buttonMask & 0x4) >> 1) |
+                                  ((buttonMask & 0x2) << 1) | (buttonMask & 0x1);
+        input->pointerReport[5] = 0;
+    }
 
     if (x >= 0 && (unsigned int)x < video.getWidth())
     {

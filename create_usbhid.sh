@@ -67,7 +67,7 @@ create_hid() {
     mkdir functions/hid.1
 
     echo 2 > functions/hid.1/protocol	# 2: mouse
-    echo 5 > functions/hid.1/report_length
+    echo 6 > functions/hid.1/report_length
     echo 1 > functions/hid.1/subclass
 
     # Binary HID mouse descriptor (absolute coordinate)
@@ -99,9 +99,17 @@ create_hid() {
     #  0x75, 0x10,       //     REPORT_SIZE (16)
     #  0x95, 0x02,       //     REPORT_COUNT (2)
     #  0x81, 0x02,       //     INPUT (Data,Var,Abs)
+    #  0x09, 0x38,       //     Usage (Wheel)
+    #  0x15, 0xff,       //     LOGICAL_MINIMUM (-1)
+    #  0x25, 0x01,       //     LOGICAL_MAXIMUM (1)
+    #  0x35, 0x00,       //     PHYSICAL_MINIMUM (-127)
+    #  0x45, 0x00,       //     PHYSICAL_MAXIMUM (127)
+    #  0x75, 0x08,       //     REPORT_SIZE (8)
+    #  0x95, 0x01,       //     REPORT_COUNT (1)
+    #  0x81, 0x06,       //     INPUT (Data,Var,Rel)
     #  0xc0,             //   END_COLLECTION
     #  0xc0              // END_COLLECTION
-    echo -ne '\x05\x01\x09\x02\xa1\x01\x09\x01\xa1\x00\x05\x09\x19\x01\x29\x03\x15\x00\x25\x01\x95\x03\x75\x01\x81\x02\x95\x01\x75\x05\x81\x03\x05\x01\x09\x30\x09\x31\x35\x00\x46\xff\x7f\x15\x00\x26\xff\x7f\x65\x11\x55\x00\x75\x10\x95\x02\x81\x02\xc0\xc0' > functions/hid.1/report_desc
+    echo -ne '\x05\x01\x09\x02\xa1\x01\x09\x01\xa1\x00\x05\x09\x19\x01\x29\x03\x15\x00\x25\x01\x95\x03\x75\x01\x81\x02\x95\x01\x75\x05\x81\x03\x05\x01\x09\x30\x09\x31\x35\x00\x46\xff\x7f\x15\x00\x26\xff\x7f\x65\x11\x55\x00\x75\x10\x95\x02\x81\x02\x09\x38\x15\xff\x25\x01\x35\x00\x45\x00\x75\x08\x95\x01\x81\x06\xc0\xc0' > functions/hid.1/report_desc
 
     # Create configuration
     mkdir configs/c.1
