@@ -107,7 +107,7 @@ create_hid() {
     mkdir configs/c.1
     mkdir configs/c.1/strings/0x409
 
-    echo 0x80 > configs/c.1/bmAttributes
+    echo 0xe0 > configs/c.1/bmAttributes
     echo 200 > configs/c.1/MaxPower
     echo "" > configs/c.1/strings/0x409/configuration
 
