@@ -8,12 +8,13 @@
 namespace ikvm
 {
 
-Args::Args(int argc, char* argv[]) : frameRate(30), calcFrameCRC{false},
+Args::Args(int argc, char* argv[]) : frameRate(30), subsampling(0), calcFrameCRC{false},
                                      commandLine(argc, argv)
 {
     int option;
-    const char* opts = "f:h:k:p:v:c";
+    const char* opts = "f:s:h:k:p:v:c";
     struct option lopts[] = {{"frameRate", 1, 0, 'f'},
+                             {"subsampling", 1, 0, 's'},
                              {"help", 0, 0, 'h'},
                              {"keyboard", 1, 0, 'k'},
                              {"mouse", 1, 0, 'p'},
@@ -29,6 +30,11 @@ Args::Args(int argc, char* argv[]) : frameRate(30), calcFrameCRC{false},
                 frameRate = (int)strtol(optarg, NULL, 0);
                 if (frameRate < 0 || frameRate > 60)
                     frameRate = 30;
+                break;
+            case 's':
+                subsampling = (int)strtol(optarg, NULL, 0);
+                if (subsampling < 0 || subsampling > 1)
+                    subsampling = 0;
                 break;
             case 'h':
                 printUsage();
@@ -55,6 +61,7 @@ void Args::printUsage()
     fprintf(stderr, "OpenBMC IKVM daemon\n");
     fprintf(stderr, "Usage: obmc-ikvm [options]\n");
     fprintf(stderr, "-f frame rate          try this frame rate\n");
+    fprintf(stderr, "-s subsampling         try this subsampling\n");
     fprintf(stderr, "-h, --help             show this message and exit\n");
     fprintf(stderr, "-k device              HID keyboard gadget device\n");
     fprintf(stderr, "-p device              HID mouse gadget device\n");

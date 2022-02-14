@@ -72,6 +72,16 @@ class Args
     }
 
     /*
+     * @brief Get the video subsampling
+     *
+     * @return Value of the video subsampling
+     */
+    inline int getSubsampling() const
+    {
+        return subsampling;
+    }
+
+    /*
      * @brief Get the path to the USB keyboard device
      *
      * @return Reference to the string storing the path to the keyboard device
@@ -120,6 +130,8 @@ class Args
      *        stream
      */
     int frameRate;
+    /* @brief Desired subsampling (0: 444, 1: 420) */
+    int subsampling;
     /* @brief Path to the USB keyboard device */
     std::string keyboardPath;
     /* @brief Path to the USB mouse device */
