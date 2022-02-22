@@ -16,6 +16,23 @@
       "message": "Fix this in patch 2.",
       "revId": "a4f63b38f1e72a3c34c54e275803d945b949483b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58af306e_027bba8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000272
+      },
+      "writtenOn": "2022-02-22T03:51:38Z",
+      "side": 1,
+      "message": "LGTM.",
+      "revId": "a4f63b38f1e72a3c34c54e275803d945b949483b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
