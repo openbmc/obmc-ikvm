@@ -1,0 +1,9 @@
+Code-Review+1: Troy Lee <troy_lee@aspeedtech.com>
+Code-Review+2: Edward A. James <eajames@us.ibm.com>
+Ok-To-Test+1: Edward A. James <eajames@us.ibm.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: Jammy Huang <jammy_huang@aspeedtech.com>
+Submitted-at: Wed, 23 Feb 2022 02:19:41 +0000
+Reviewed-on: https://gerrit.openbmc-project.xyz/c/openbmc/obmc-ikvm/+/51244
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
