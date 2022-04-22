@@ -33,6 +33,24 @@
       "message": "Looks good to me. Can you please refine the indentation? Existing code uses 4 spaces.",
       "revId": "0a02ec387564187d9a6663f26845ed4ca18e148f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d47b9b34_33b66306",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-04-22T09:37:02Z",
+      "side": 1,
+      "message": "I am also following same indentation which the existing code uses as 4 spaces.\nShould I change it to different number of spaces? if Yes, then how many I can add?",
+      "parentUuid": "d556a438_30362e23",
+      "revId": "0a02ec387564187d9a6663f26845ed4ca18e148f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
