@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3465d649_f6f70ccc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-05-02T19:22:13Z",
+      "side": 1,
+      "message": "Did this come from some old version of shellcheck, or with some particular non-default settings?  I ran v0.8.0 on this script and it produced a fairly different set of recommendations than what\u0027s in this patch.",
+      "revId": "52b204f6f97c8d707518eae3361b6118378f15c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
