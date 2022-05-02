@@ -125,13 +125,13 @@ create_hid() {
 }
 
 connect_hid() {
-    if ! [[ `cat UDC` =~ "${dev_name}:p" ]]; then
+    if ! grep -q "${dev_name}:p" UDC; then
         i=0
         num_ports=5
         base_usb_dir="/sys/bus/platform/devices/${dev_name}/${dev_name}:p"
-        while [ $i -lt $num_ports ]; do
-            port=$(($i + 1))
-            i=$port
+        while [ "${i}" -lt "${num_ports}" ]; do
+            port=$(("${i}" + 1))
+            i="${port}"
             if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
                 break
             fi
@@ -141,7 +141,7 @@ connect_hid() {
 }
 
 disconnect_hid() {
-    if [[ `cat UDC` =~ "${dev_name}:p" ]]; then
+    if grep -q "${dev_name}:p" UDC; then
         echo "" > UDC
     fi
 }
