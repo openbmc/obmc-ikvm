@@ -16,6 +16,24 @@
       "message": "Did this come from some old version of shellcheck, or with some particular non-default settings?  I ran v0.8.0 on this script and it produced a fairly different set of recommendations than what\u0027s in this patch.",
       "revId": "52b204f6f97c8d707518eae3361b6118378f15c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43a91c03_311e4fe2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-05-02T20:07:04Z",
+      "side": 1,
+      "message": "My shell check version is v0.7.0 and this change doesn\u0027t address all of warnings. It mainly focus on these two critical warnings that are marked in red color.\n\nIn create_usbhid.sh line 128:\n    if ! [[ `cat UDC` \u003d~ \"${dev_name}:p\" ]]; then\n         ^-- SC2039: In POSIX sh, [[ ]] is undefined.\n            ^-------^ SC2006: Use $(...) notation instead of legacy backticked `...`.\n                         ^-------------^ SC2076: Don\u0027t quote right-hand side of \u003d~, it\u0027ll match literally rather than as a regex.\n\nIn create_usbhid.sh line 144:\n    if [[ `cat UDC` \u003d~ \"${dev_name}:p\" ]]; then\n       ^-- SC2039: In POSIX sh, [[ ]] is undefined.\n          ^-------^ SC2006: Use $(...) notation instead of legacy backticked `...`.\n                       ^-------------^ SC2076: Don\u0027t quote right-hand side of \u003d~, it\u0027ll match literally rather than as a regex.",
+      "parentUuid": "3465d649_f6f70ccc",
+      "revId": "52b204f6f97c8d707518eae3361b6118378f15c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
