@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "416f9a54_859d3273",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-05-03T20:57:45Z",
+      "side": 1,
+      "message": "`cd` will issue an error message of its own on failure; I don\u0027t think we need to duplicate it manually -- `cd \"${hid_conf_directory} || return` should be fine.",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20fd8981_28979ea5",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-05-03T20:57:45Z",
+      "side": 1,
+      "message": "Likewise with the redundant error-reporting here (just `cd \"${hid_conf_directory}\" || exit`).",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a267ce6_d313052d",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-05-03T20:57:45Z",
+      "side": 1,
+      "message": "While we\u0027re at it with minor cleanups to this script, this should probably be more like:\n\n```\nelse\n    echo \u003e\u00262 \"...\"\n    exit 1\nfi\n```\n\ni.e. send the error message to stderr rather than stdout, and report the failure so that whatever invoked it doesn\u0027t mistakenly think it succeeded.",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b20beda1_4d6e6297",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-05-03T20:57:45Z",
+      "side": 1,
+      "message": "Considering the script doesn\u0027t do anything after this anyway (and it\u0027s written to be executed as its own process, not sourced from someone\u0027s interactive shell or something), I\u0027d actually be in favor of just removing this `cd` entirely.",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
