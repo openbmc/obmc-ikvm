@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7e2c2df_3be996b4",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-05-03T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "416f9a54_859d3273",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20fd8981_28979ea5",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-05-03T20:57:45Z",
       "side": 1,
       "message": "Likewise with the redundant error-reporting here (just `cd \"${hid_conf_directory}\" || exit`).",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db27d150_b2e73ef5",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-05-03T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20fd8981_28979ea5",
       "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -52,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "965c8e54_cefcd8d1",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-05-03T21:10:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a267ce6_d313052d",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b20beda1_4d6e6297",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-05-03T20:57:45Z",
       "side": 1,
       "message": "Considering the script doesn\u0027t do anything after this anyway (and it\u0027s written to be executed as its own process, not sourced from someone\u0027s interactive shell or something), I\u0027d actually be in favor of just removing this `cd` entirely.",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62f4047c_9afbbf95",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-05-03T21:10:17Z",
+      "side": 1,
+      "message": "I\u0027d keep the cd for a case if this script is called individually, not from a service. Also, I\u0027ll keep the \u0027|| exit\u0027 to avoid shellcheck warning which is cheap and doesn\u0027t break the flow.",
+      "parentUuid": "b20beda1_4d6e6297",
       "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
