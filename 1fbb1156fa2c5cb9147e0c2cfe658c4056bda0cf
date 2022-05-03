@@ -139,6 +139,24 @@
       "parentUuid": "b20beda1_4d6e6297",
       "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a4a413_26f269d8",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-05-03T21:25:24Z",
+      "side": 1,
+      "message": "What do you mean by \"called individually\"?  If you mean just manually invoked from a shell, like:\n\n```\nroot@bmc:~# /usr/bin/create_usbhid.sh connect\n```\n\nthen the lack of the final `cd` still won\u0027t affect anything, since the script will only have changed its own working directory, which won\u0027t affect the parent shell process.\n\nThe only way I can see it having any effect at all is if someone goes out of their way to source it instead of executing it normally, like:\n\n```\nroot@bmc:~# source /usr/bin/create_usbhid.sh connect\n```\n\nbut I\u0027m having a pretty hard time imaging any reason why anyone would want to do that, and it doesn\u0027t seem like something this script should aim to support.\n\nAs it is it just seems like an unnecessary point of potential failure -- if the final `cd` _does_ fail for whatever weird reason, the script will report an error and make its caller think it failed, even if it actually carried out its \"real\" intended work without any problems.",
+      "parentUuid": "62f4047c_9afbbf95",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
