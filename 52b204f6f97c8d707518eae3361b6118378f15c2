@@ -34,6 +34,24 @@
       "parentUuid": "3465d649_f6f70ccc",
       "revId": "52b204f6f97c8d707518eae3361b6118378f15c2",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d1a44d2_e74fb22d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-05-03T17:56:14Z",
+      "side": 1,
+      "message": "Fixed all warnings.",
+      "parentUuid": "43a91c03_311e4fe2",
+      "revId": "52b204f6f97c8d707518eae3361b6118378f15c2",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
