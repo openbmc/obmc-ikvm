@@ -157,6 +157,24 @@
       "parentUuid": "62f4047c_9afbbf95",
       "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df2f7abd_88c10385",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2022-05-03T21:33:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a4a413_26f269d8",
+      "revId": "1fbb1156fa2c5cb9147e0c2cfe658c4056bda0cf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
