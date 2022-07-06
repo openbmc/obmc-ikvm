@@ -8,19 +8,16 @@
 namespace ikvm
 {
 
-Args::Args(int argc, char* argv[]) : frameRate(30), subsampling(0), calcFrameCRC{false},
-                                     commandLine(argc, argv)
+Args::Args(int argc, char* argv[]) :
+    frameRate(30), subsampling(0), calcFrameCRC{false}, commandLine(argc, argv)
 {
     int option;
     const char* opts = "f:s:h:k:p:v:c";
-    struct option lopts[] = {{"frameRate", 1, 0, 'f'},
-                             {"subsampling", 1, 0, 's'},
-                             {"help", 0, 0, 'h'},
-                             {"keyboard", 1, 0, 'k'},
-                             {"mouse", 1, 0, 'p'},
-                             {"videoDevice", 1, 0, 'v'},
-                             {"calcCRC", 0, 0, 'c'},
-                             {0, 0, 0, 0}};
+    struct option lopts[] = {
+        {"frameRate", 1, 0, 'f'}, {"subsampling", 1, 0, 's'},
+        {"help", 0, 0, 'h'},      {"keyboard", 1, 0, 'k'},
+        {"mouse", 1, 0, 'p'},     {"videoDevice", 1, 0, 'v'},
+        {"calcCRC", 0, 0, 'c'},   {0, 0, 0, 0}};
 
     while ((option = getopt_long(argc, argv, opts, lopts, NULL)) != -1)
     {
@@ -66,7 +63,9 @@ void Args::printUsage()
     fprintf(stderr, "-k device              HID keyboard gadget device\n");
     fprintf(stderr, "-p device              HID mouse gadget device\n");
     fprintf(stderr, "-v device              V4L2 device\n");
-    fprintf(stderr, "-c, --calcCRC          Calculate CRC for each frame to save bandwidth\n");
+    fprintf(
+        stderr,
+        "-c, --calcCRC          Calculate CRC for each frame to save bandwidth\n");
     rfbUsage();
 }
 

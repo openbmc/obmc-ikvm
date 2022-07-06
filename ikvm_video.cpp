@@ -32,10 +32,9 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 
 Video::Video(const std::string& p, Input& input, int fr, int sub) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
-    lastFrameIndex(-1), height(600), width(800), subSampling(sub),
-	input(input), path(p)
-{
-}
+    lastFrameIndex(-1), height(600), width(800), subSampling(sub), input(input),
+    path(p)
+{}
 
 Video::~Video()
 {
@@ -447,8 +446,8 @@ void Video::start()
     }
 
     ctrl.id = V4L2_CID_JPEG_CHROMA_SUBSAMPLING;
-    ctrl.value = subSampling
-	       ? V4L2_JPEG_CHROMA_SUBSAMPLING_420 : V4L2_JPEG_CHROMA_SUBSAMPLING_444;
+    ctrl.value = subSampling ? V4L2_JPEG_CHROMA_SUBSAMPLING_420
+                             : V4L2_JPEG_CHROMA_SUBSAMPLING_444;
     rc = ioctl(fd, VIDIOC_S_CTRL, &ctrl);
     if (rc < 0)
     {

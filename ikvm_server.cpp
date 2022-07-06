@@ -2,12 +2,11 @@
 
 #include <rfb/rfbproto.h>
 
+#include <boost/crc.hpp>
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
-
-#include <boost/crc.hpp>
 
 namespace ikvm
 {
@@ -133,9 +132,9 @@ void Server::sendFrame()
             {
                 /* JFIF header contains some varying data so skip it for
                  * checksum calculation */
-                frame_crc = boost::crc<32, 0x04C11DB7, 0xFFFFFFFF, 0xFFFFFFFF,
-                                       true, true>(data + 0x30,
-                                                   video.getFrameSize() - 0x30);
+                frame_crc =
+                    boost::crc<32, 0x04C11DB7, 0xFFFFFFFF, 0xFFFFFFFF, true,
+                               true>(data + 0x30, video.getFrameSize() - 0x30);
             }
 
             if (cd->last_crc == frame_crc)
@@ -179,9 +178,9 @@ void Server::sendFrame()
 }
 
 void Server::clientFramebufferUpdateRequest(
-    rfbClientPtr cl, rfbFramebufferUpdateRequestMsg *furMsg)
+    rfbClientPtr cl, rfbFramebufferUpdateRequestMsg* furMsg)
 {
-    ClientData *cd = (ClientData *)cl->clientData;
+    ClientData* cd = (ClientData*)cl->clientData;
 
     if (!cd)
         return;

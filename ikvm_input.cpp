@@ -1,6 +1,7 @@
 #include "ikvm_input.hpp"
 
 #include "ikvm_server.hpp"
+#include "scancodes.hpp"
 
 #include <err.h>
 #include <errno.h>
@@ -13,8 +14,6 @@
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Common/File/error.hpp>
-
-#include "scancodes.hpp"
 
 namespace fs = std::filesystem;
 
@@ -78,8 +77,8 @@ void Input::connect()
 
     if (!keyboardPath.empty())
     {
-        keyboardFd = open(keyboardPath.c_str(),
-                          O_RDWR | O_CLOEXEC | O_NONBLOCK);
+        keyboardFd =
+            open(keyboardPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (keyboardFd < 0)
         {
             log<level::ERR>("Failed to open input device",
@@ -228,7 +227,8 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
     else
     {
         input->pointerReport[0] = ((buttonMask & 0x4) >> 1) |
-                                  ((buttonMask & 0x2) << 1) | (buttonMask & 0x1);
+                                  ((buttonMask & 0x2) << 1) |
+                                  (buttonMask & 0x1);
         input->pointerReport[5] = 0;
     }
 
@@ -502,7 +502,7 @@ uint8_t Input::keyToScancode(rfbKeySym key)
     return scancode;
 }
 
-bool Input::writeKeyboard(const uint8_t *report)
+bool Input::writeKeyboard(const uint8_t* report)
 {
     std::unique_lock<std::mutex> lk(keyMutex);
     uint retryCount = HID_REPORT_RETRY_MAX;
@@ -534,7 +534,7 @@ bool Input::writeKeyboard(const uint8_t *report)
     return false;
 }
 
-void Input::writePointer(const uint8_t *report)
+void Input::writePointer(const uint8_t* report)
 {
     std::unique_lock<std::mutex> lk(ptrMutex);
     uint retryCount = HID_REPORT_RETRY_MAX;
