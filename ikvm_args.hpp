@@ -25,8 +25,7 @@ class Args
          * @param[in] v - Array of arguments
          */
         CommandLine(int c, char** v) : argc(c), argv(v)
-        {
-        }
+        {}
         ~CommandLine() = default;
         CommandLine(const CommandLine&) = default;
         CommandLine& operator=(const CommandLine&) = default;

@@ -10,8 +10,7 @@ Manager::Manager(const Args& args) :
     input(args.getKeyboardPath(), args.getPointerPath()),
     video(args.getVideoPath(), input, args.getFrameRate()),
     server(args, input, video)
-{
-}
+{}
 
 void Manager::run()
 {

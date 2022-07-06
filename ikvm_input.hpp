@@ -98,8 +98,8 @@ class Input
      */
     static uint8_t keyToScancode(rfbKeySym key);
 
-    bool writeKeyboard(const uint8_t *report);
-    void writePointer(const uint8_t *report);
+    bool writeKeyboard(const uint8_t* report);
+    void writePointer(const uint8_t* report);
 
     /* @brief File descriptor for the USB keyboard device */
     int keyboardFd;

@@ -12,12 +12,9 @@ Args::Args(int argc, char* argv[]) : frameRate(30), commandLine(argc, argv)
 {
     int option;
     const char* opts = "f:h:k:p:v:";
-    struct option lopts[] = {{"frameRate", 1, 0, 'f'},
-                             {"help", 0, 0, 'h'},
-                             {"keyboard", 1, 0, 'k'},
-                             {"mouse", 1, 0, 'p'},
-                             {"videoDevice", 1, 0, 'v'},
-                             {0, 0, 0, 0}};
+    struct option lopts[] = {{"frameRate", 1, 0, 'f'},   {"help", 0, 0, 'h'},
+                             {"keyboard", 1, 0, 'k'},    {"mouse", 1, 0, 'p'},
+                             {"videoDevice", 1, 0, 'v'}, {0, 0, 0, 0}};
 
     while ((option = getopt_long(argc, argv, opts, lopts, NULL)) != -1)
     {
