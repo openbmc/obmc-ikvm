@@ -179,9 +179,9 @@ void Server::sendFrame()
 }
 
 void Server::clientFramebufferUpdateRequest(
-    rfbClientPtr cl, rfbFramebufferUpdateRequestMsg *furMsg)
+    rfbClientPtr cl, rfbFramebufferUpdateRequestMsg* furMsg)
 {
-    ClientData *cd = (ClientData *)cl->clientData;
+    ClientData* cd = (ClientData*)cl->clientData;
 
     if (!cd)
         return;
