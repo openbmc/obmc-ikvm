@@ -16,36 +16,11 @@ Manager::Manager(const Args& args) :
 void Manager::run()
 {
     std::thread run(serverThread, this);
-
-    while (continueExecuting)
-    {
-        if (server.wantsFrame())
-        {
-            video.start();
-            video.getFrame();
-            server.sendFrame();
-        }
-        else
-        {
-            video.stop();
-        }
-
-        if (video.needsResize())
-        {
-            videoDone = false;
-            waitServer();
-            video.resize();
-            server.resize();
-            setVideoDone();
-        }
-        else
-        {
-            setVideoDone();
-            waitServer();
-        }
-    }
-
+    std::thread runStatus(statusThread, this);
+    
+    io.run();
     run.join();
+    runStatus.join();
 }
 
 void Manager::serverThread(Manager* manager)
@@ -55,6 +30,49 @@ void Manager::serverThread(Manager* manager)
         manager->server.run();
         manager->setServerDone();
         manager->waitVideo();
+    }
+}
+
+void Manager::statusThread(Manager* manager)
+{
+    while (manager->continueExecuting)
+    {
+        if (manager->server.wantsFrame() || manager->shotFlag.load())
+        {
+            manager->video.start();
+            manager->video.getFrame();
+
+            if (manager->server.wantsFrame())
+            {
+                manager->server.sendFrame();
+            }
+            
+            if (manager->shotFlag.load())
+            {
+                manager->video.writeFile(manager->shotPath);
+                manager->shotFlag.store(false);
+            }
+        }
+        else
+        {
+            manager->video.stop();
+        }
+
+        if (manager->video.needsResize())
+        {
+            manager->videoDone = false;
+            manager->waitServer();
+
+            manager->video.resize();
+
+            manager->server.resize();
+            manager->setVideoDone();
+        }
+        else
+        {
+            manager->setVideoDone();
+            manager->waitServer();
+        }
     }
 }
 
