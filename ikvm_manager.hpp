@@ -5,6 +5,8 @@
 #include "ikvm_server.hpp"
 #include "ikvm_video.hpp"
 
+#include <boost/asio.hpp>
+
 #include <condition_variable>
 #include <mutex>
 
@@ -32,7 +34,11 @@ class Manager
     Manager& operator=(Manager&&) = default;
 
     /* @brief Begins operation of the VNC server */
+    boost::asio::io_context io;
     void run();
+
+    std::atomic<bool> shotFlag;
+    std::string shotPath;
 
   private:
     /*
@@ -41,6 +47,7 @@ class Manager
      * @param[in] manager - Pointer to the Manager object
      */
     static void serverThread(Manager* manager);
+    static void statusThread(Manager* manager);
 
     /* @brief Notifies thread waiters that RFB operations are complete */
     void setServerDone();

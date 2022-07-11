@@ -51,6 +51,23 @@ char* Video::getData()
     return nullptr;
 }
 
+void Video::writeFile(const std::string& filePath)
+{
+    if (lastFrameIndex < 0)
+    {
+        return;
+    }
+
+    FILE* fileFd = fopen(filePath.c_str(), "w");
+    if (fileFd != NULL)
+    {
+        fwrite(buffers[lastFrameIndex].data, buffers[lastFrameIndex].size, 1,
+               fileFd);
+        fclose(fileFd);
+        fileFd = NULL;
+    }
+}
+
 void Video::getFrame()
 {
     int rc(0);

@@ -57,6 +57,8 @@ class Video
         start();
     }
 
+    void writeFile(const std::string& filePath);
+
     /*
      * @brief Gets the desired video frame rate in frames per second
      *
