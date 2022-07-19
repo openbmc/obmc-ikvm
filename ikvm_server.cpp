@@ -1,5 +1,6 @@
 #include "ikvm_server.hpp"
 
+#include <linux/videodev2.h>
 #include <rfb/rfbproto.h>
 
 #include <boost/crc.hpp>
@@ -7,6 +8,7 @@
 #include <phosphor-logging/elog.hpp>
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
+#include <linux/videodev2.h>
 
 namespace ikvm
 {
@@ -156,22 +158,36 @@ void Server::sendFrame()
             fu->nRects = Swap16IfLE(1);
         }
 
-        fu->type = rfbFramebufferUpdate;
-        cl->ublen = sz_rfbFramebufferUpdateMsg;
-        rfbSendUpdateBuf(cl);
-
-        cl->tightEncoding = rfbEncodingTight;
-        rfbSendTightHeader(cl, 0, 0, video.getWidth(), video.getHeight());
-
-        cl->updateBuf[cl->ublen++] = (char)(rfbTightJpeg << 4);
-        rfbSendCompressedDataTight(cl, data, video.getFrameSize());
-
-        if (cl->enableLastRectEncoding)
+        switch (video.getPixelformat())
         {
-            rfbSendLastRectMarker(cl);
-        }
+            case V4L2_PIX_FMT_RGB24:
+                framebuffer.assign(data, data + video.getFrameSize());
+                rfbMarkRectAsModified(server, 0, 0, video.getWidth(),
+                                      video.getHeight());
+                break;
 
-        rfbSendUpdateBuf(cl);
+            case V4L2_PIX_FMT_JPEG:
+                fu->type = rfbFramebufferUpdate;
+                cl->ublen = sz_rfbFramebufferUpdateMsg;
+                rfbSendUpdateBuf(cl);
+                cl->tightEncoding = rfbEncodingTight;
+                rfbSendTightHeader(cl, 0, 0, video.getWidth(),
+                                   video.getHeight());
+                cl->updateBuf[cl->ublen++] = (char)(rfbTightJpeg << 4);
+                rfbSendCompressedDataTight(cl, data, video.getFrameSize());
+                if (cl->enableLastRectEncoding)
+                {
+                    rfbSendLastRectMarker(cl);
+                }
+                rfbSendUpdateBuf(cl);
+                break;
+
+            default:
+                log<level::ERR>(
+                    "Pixel Format not supported",
+                    entry("PIXELFORMAT=%d", video.getPixelformat()));
+                break;
+        }
     }
 
     rfbReleaseClientIterator(it);
