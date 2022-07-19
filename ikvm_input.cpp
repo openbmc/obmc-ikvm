@@ -50,6 +50,7 @@ Input::~Input()
 
 void Input::connect()
 {
+#if 0
     try
     {
         for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
@@ -75,6 +76,7 @@ void Input::connect()
                         entry("ERROR=%s", e.what()));
         return;
     }
+#endif
 
     if (!keyboardPath.empty())
     {
@@ -120,6 +122,7 @@ void Input::disconnect()
         pointerFd = -1;
     }
 
+#if 0
     try
     {
         hidUdcStream << "" << std::endl;
@@ -129,6 +132,7 @@ void Input::disconnect()
         log<level::ERR>("Failed to disconnect HID gadget",
                         entry("ERROR=%s", e.what()));
     }
+#endif
 }
 
 void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)

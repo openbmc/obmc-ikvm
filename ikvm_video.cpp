@@ -35,6 +35,7 @@ Video::Video(const std::string& p, Input& input, int fr, int sub) :
     lastFrameIndex(-1), height(600), width(800), subSampling(sub),
 	input(input), path(p)
 {
+    fbmmap = NULL;
 }
 
 Video::~Video()
@@ -44,12 +45,7 @@ Video::~Video()
 
 char* Video::getData()
 {
-    if (lastFrameIndex >= 0)
-    {
-        return (char*)buffers[lastFrameIndex].data;
-    }
-
-    return nullptr;
+    return fbmmap? fbmmap : nullptr;
 }
 
 void Video::getFrame()
@@ -386,9 +382,7 @@ void Video::start()
         return;
     }
 
-    input.sendWakeupPacket();
-
-    fd = open(path.c_str(), O_RDWR);
+    fd = open(path.c_str(), O_RDONLY);
     if (fd < 0)
     {
         log<level::ERR>("Failed to open video device",
@@ -469,32 +463,13 @@ void Video::start()
 
 void Video::stop()
 {
-    int rc;
-    unsigned int i;
-    v4l2_buf_type type(V4L2_BUF_TYPE_VIDEO_CAPTURE);
-
     if (fd < 0)
     {
         return;
     }
-
-    lastFrameIndex = -1;
-
-    rc = ioctl(fd, VIDIOC_STREAMOFF, &type);
-    if (rc)
+    if (fbmmap)
     {
-        log<level::ERR>("Failed to stop streaming",
-                        entry("ERROR=%s", strerror(errno)));
-    }
-
-    for (i = 0; i < buffers.size(); ++i)
-    {
-        if (buffers[i].data)
-        {
-            munmap(buffers[i].data, buffers[i].size);
-            buffers[i].data = nullptr;
-            buffers[i].queued = false;
-        }
+        munmap(fbmmap, height * width * bytesPerPixel);
     }
 
     close(fd);

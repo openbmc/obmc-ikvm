@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include <linux/fb.h>
+
 namespace ikvm
 {
 
@@ -73,7 +75,7 @@ class Video
      */
     inline size_t getFrameSize() const
     {
-        return buffers[lastFrameIndex].payload;
+        return width * height * bytesPerPixel;
     }
     /*
      * @brief Gets the height of the video frame
@@ -110,6 +112,13 @@ class Video
     inline void setSubsampling(int _sub)
     {
         subSampling = _sub;
+    }
+
+    /*
+     * @return display information
+     */
+    inline fb_var_screeninfo getScreenInfo() {
+        return scrinfo;
     }
 
     /* @brief Number of bits per component of a pixel */
@@ -167,6 +176,10 @@ class Video
     const std::string path;
     /* @brief Streaming buffer storage */
     std::vector<Buffer> buffers;
+    /* @brief Screen info storage */
+    fb_var_screeninfo scrinfo;
+    /* @brief Frame buffer storage */
+    char *fbmmap;
 };
 
 } // namespace ikvm

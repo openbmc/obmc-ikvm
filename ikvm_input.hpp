@@ -82,7 +82,7 @@ class Input
         "/sys/kernel/config/usb_gadget/obmc_hid/UDC";
     /* @brief Path to the USB virtual hub */
     static constexpr const char* usbVirtualHubPath =
-        "/sys/bus/platform/devices/1e6a0000.usb-vhub";
+        "/sys/bus/platform/devices/80401000.udc";
     /* @brief Retry limit for writing an HID report */
     static constexpr int HID_REPORT_RETRY_MAX = 5;
     /*

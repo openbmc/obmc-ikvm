@@ -4,8 +4,8 @@ ConditionPathIsMountPoint=/sys/kernel/config
 
 [Service]
 Restart=always
-ExecStartPre=/usr/bin/create_usbhid.sh disconnect
-ExecStart=/usr/bin/obmc-ikvm -v /dev/video0 -k /dev/hidg0 -p /dev/hidg1
+ExecStartPre=/usr/bin/create_usbhid.sh connect
+ExecStart=/usr/bin/obmc-ikvm -v /dev/fb0 -k /dev/hidg0 -p /dev/hidg1
 
 [Install]
 WantedBy=multi-user.target

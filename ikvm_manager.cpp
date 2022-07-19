@@ -22,24 +22,11 @@ void Manager::run()
         if (server.wantsFrame())
         {
             video.start();
-            video.getFrame();
             server.sendFrame();
         }
         else
         {
             video.stop();
-        }
-
-        if (video.needsResize())
-        {
-            videoDone = false;
-            waitServer();
-            video.resize();
-            server.resize();
-            setVideoDone();
-        }
-        else
-        {
             setVideoDone();
             waitServer();
         }

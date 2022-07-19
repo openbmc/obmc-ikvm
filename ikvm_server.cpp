@@ -109,7 +109,6 @@ void Server::sendFrame()
     while ((cl = rfbClientIteratorNext(it)))
     {
         ClientData* cd = (ClientData*)cl->clientData;
-        rfbFramebufferUpdateMsg* fu = (rfbFramebufferUpdateMsg*)cl->updateBuf;
 
         if (!cd)
         {
@@ -148,31 +147,8 @@ void Server::sendFrame()
 
         cd->needUpdate = false;
 
-        if (cl->enableLastRectEncoding)
-        {
-            fu->nRects = 0xFFFF;
-        }
-        else
-        {
-            fu->nRects = Swap16IfLE(1);
-        }
-
-        fu->type = rfbFramebufferUpdate;
-        cl->ublen = sz_rfbFramebufferUpdateMsg;
-        rfbSendUpdateBuf(cl);
-
-        cl->tightEncoding = rfbEncodingTight;
-        rfbSendTightHeader(cl, 0, 0, video.getWidth(), video.getHeight());
-
-        cl->updateBuf[cl->ublen++] = (char)(rfbTightJpeg << 4);
-        rfbSendCompressedDataTight(cl, data, video.getFrameSize());
-
-        if (cl->enableLastRectEncoding)
-        {
-            rfbSendLastRectMarker(cl);
-        }
-
-        rfbSendUpdateBuf(cl);
+        server->frameBuffer = data;
+        rfbMarkRectAsModified(server, 0, 0, video.getHeight(), video.getWidth());
     }
 
     rfbReleaseClientIterator(it);
