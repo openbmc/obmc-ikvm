@@ -1,0 +1,8 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Patrick Williams <patrick@stwcx.xyz>
+Code-Review+2: Edward A. James <eajames@us.ibm.com>
+Submitted-by: George Liu <liuxiwei@inspur.com>
+Submitted-at: Tue, 19 Jul 2022 00:24:37 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/55116
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
