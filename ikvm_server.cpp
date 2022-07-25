@@ -69,6 +69,7 @@ void Server::resize()
     if (frameCounter > video.getFrameRate())
     {
         doResize();
+        pendingResize = false;
     }
     else
     {
@@ -217,7 +218,6 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
     if (!server->numClients++)
     {
         server->input.connect();
-        server->pendingResize = false;
         server->frameCounter = 0;
     }
 
