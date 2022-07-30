@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2031dce9_b400d46f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-30T04:11:35Z",
+      "side": 1,
+      "message": "It would be good to have a more detailed description of your approach here.  This patch is making some non-trivial structural changes (adding a new thread); please provide some high-level description of how it all works in the commit message.",
+      "revId": "e070395829efc8367c4ade1bafc92a0a70b62f5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e0cba6e_8e59bb7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-30T04:11:35Z",
+      "side": 1,
+      "message": "Typo -- \"screeShot\" missing an \"n\" (twice).",
+      "revId": "e070395829efc8367c4ade1bafc92a0a70b62f5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "263740a1_3225673b",
+        "filename": "ikvm_manager.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-30T04:11:35Z",
+      "side": 1,
+      "message": "It\u0027d be nice not to insert this in between the existing `run()` method and the comment describing it -- maybe put it with the bool and string below?",
+      "revId": "e070395829efc8367c4ade1bafc92a0a70b62f5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67a739d1_44cd72b2",
+        "filename": "ikvm_manager.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-30T04:11:35Z",
+      "side": 1,
+      "message": "`shot` seems like a slightly cryptic name prefix to me; `screenshot` would be significantly clearer IMO.  Also, it would be nice if the name of the flag member reflected more about what its meaning is -- as it stands the only thing you can tell about it is that it has something to do with the screenshot mechanism, but that\u0027s it (from its usage it looks like it\u0027s a \"busy\" flag).  Continuing with the existing pattern of having a comment describing each member could also help with that.",
+      "revId": "e070395829efc8367c4ade1bafc92a0a70b62f5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f10bee6_4c1263e3",
+        "filename": "obmc-ikvm.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-30T04:11:35Z",
+      "side": 1,
+      "message": "Having a single hard-coded path for this file doesn\u0027t seem like a good design -- if two clients request screenshots one after the other, the second one is going to clobber the first one\u0027s data.",
+      "revId": "e070395829efc8367c4ade1bafc92a0a70b62f5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee665639_cf492db6",
+        "filename": "obmc-ikvm.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-30T04:11:35Z",
+      "side": 1,
+      "message": "Is this interface described in phosphor-dbus-interfaces?  I\u0027m guessing not, since it doesn\u0027t seem to follow existing naming conventions.",
+      "revId": "e070395829efc8367c4ade1bafc92a0a70b62f5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce70809_f3017b0d",
+        "filename": "obmc-ikvm.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-07-30T04:11:35Z",
+      "side": 1,
+      "message": "This doesn\u0027t look like a great API design -- there\u0027s no good way to distinguish the \"busy\" error case from a successful return (it\u0027s a string either way; hard-coding clients to check for \"Screenshot busy\" is ugly).\n\nRather than returning the path of a screenshot file as a string, I think it would be a lot nicer to create a temporary file via O_TMPFILE and return a file descriptor to the client instead (which I\u0027m pretty sure dbus allows).",
+      "revId": "e070395829efc8367c4ade1bafc92a0a70b62f5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
