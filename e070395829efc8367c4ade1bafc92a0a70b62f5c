@@ -105,6 +105,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b32f7d2_cf041d17",
+        "filename": "obmc-ikvm.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-08-03T22:05:16Z",
+      "side": 1,
+      "message": "PDI patch now in review here: https://gerrit.openbmc.org/c/openbmc/phosphor-dbus-interfaces/+/56073",
+      "parentUuid": "ee665639_cf492db6",
+      "revId": "e070395829efc8367c4ade1bafc92a0a70b62f5c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bce70809_f3017b0d",
         "filename": "obmc-ikvm.cpp",
         "patchSetId": 2
