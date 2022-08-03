@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c7ef3b6_39a0f00f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-08-03T06:16:39Z",
+      "side": 1,
+      "message": "This patch may be fine, but the commit message needs improvement before we can consider merging it.\n\nI think I roughly understand the description of the problem (there are race conditions depending on the timing of when the user opens and closes the KVM display), but a clearer description of it with more detail would be good.\n\nYou should also explain why/how the patch fixes the problem.\n\nAnd in terms of formatting, commit messages should be line-wrapped at 72 characters please, not all on a single long line like this.",
+      "revId": "9febc78124c7eb8702934970eb58842526a1ff3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "474f32e1_0795b784",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-08-03T06:16:39Z",
+      "side": 1,
+      "message": "Since the description of the original problem sounds like a race condition which might not always be 100% reproducible, doing a single test (as this seems to be describing) doesn\u0027t sound like a very reliable way to check if it\u0027s fixed -- it would be good to provide some info on (a) how often the problem would occur in practice before the patch (one in five times?  every time?), and (b) how many times you tested it with the patch without the problem occurring.",
+      "revId": "9febc78124c7eb8702934970eb58842526a1ff3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
