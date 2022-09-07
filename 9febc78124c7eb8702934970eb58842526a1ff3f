@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c9a61c9_6d5e7d04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001372
+      },
+      "writtenOn": "2022-09-07T08:49:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c7ef3b6_39a0f00f",
+      "revId": "9febc78124c7eb8702934970eb58842526a1ff3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "474f32e1_0795b784",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-03T06:16:39Z",
       "side": 1,
       "message": "Since the description of the original problem sounds like a race condition which might not always be 100% reproducible, doing a single test (as this seems to be describing) doesn\u0027t sound like a very reliable way to check if it\u0027s fixed -- it would be good to provide some info on (a) how often the problem would occur in practice before the patch (one in five times?  every time?), and (b) how many times you tested it with the patch without the problem occurring.",
+      "revId": "9febc78124c7eb8702934970eb58842526a1ff3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43887ad9_9229fe11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1001372
+      },
+      "writtenOn": "2022-09-07T08:49:32Z",
+      "side": 1,
+      "message": "If closing the KVM quickly (before \"frameCounter\" reaches the value of \"frameRate\"),the error will occurre every time",
+      "parentUuid": "474f32e1_0795b784",
       "revId": "9febc78124c7eb8702934970eb58842526a1ff3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
