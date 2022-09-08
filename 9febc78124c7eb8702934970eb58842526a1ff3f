@@ -69,6 +69,24 @@
       "parentUuid": "474f32e1_0795b784",
       "revId": "9febc78124c7eb8702934970eb58842526a1ff3f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b946e2fa_448113ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-09-08T23:18:14Z",
+      "side": 1,
+      "message": "Okay, but that still sounds like a race condition, and hence timing dependent (as you\u0027ve described).  To a casual reader it may not be immediately obvious what the timescale involved is, so someone else trying to replicate your testing may not know how fast they have to do things to match your description of \"quickly\".  (From some further reading the source code, it looks like the threshold would be one second, but it would be good to mention that explicitly.)\n\nAlso, upon another reading I realize the description of the testing also seems like it must be missing some important steps.  If I open a KVM display and immediately close it as described in step 1, what am I supposed to look at in step 2 to verify that it still looks normal?  It sounds like there must be at least one other KVM client involved, but that\u0027s not described anywhere.  Please clarify.",
+      "parentUuid": "43887ad9_9229fe11",
+      "revId": "9febc78124c7eb8702934970eb58842526a1ff3f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac250912_59bfaeaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-09-08T23:18:14Z",
+      "side": 1,
+      "message": "The \"obmc-ikvm:\" prefix doesn\u0027t serve much purpose here, as it\u0027s just the name of the whole repository.\n\nAlso, the summary doesn\u0027t provide much information about what the patch does other than that it has something to do with resizing.  How about something a bit more descriptive like \"Fix screen resizing race condition\"?",
+      "revId": "5cd1716bb9ce9af0850ad78ed46e774832865396",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
