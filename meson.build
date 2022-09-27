@@ -44,3 +44,12 @@ configure_file(
         dependency('systemd').get_pkgconfig_variable(
             'systemdsystemunitdir')
 )
+
+configure_file(
+    input: 'start-ipkvm.socket',
+    output: 'start-ipkvm.socket',
+    copy: true,
+    install_dir:
+        dependency('systemd').get_pkgconfig_variable(
+            'systemdsystemunitdir')
+)
