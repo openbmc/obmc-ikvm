@@ -22,6 +22,30 @@
       },
       "revId": "a17bcd269d58a3b13548d8676431da1bbbfdc66a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "082dad98_f7390750",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000153
+      },
+      "writtenOn": "2022-10-05T02:00:03Z",
+      "side": 1,
+      "message": "+1.  I\u0027m assuming this meant to point at the upstream equivalent?",
+      "parentUuid": "1ec38178_b4a130c8",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 73
+      },
+      "revId": "a17bcd269d58a3b13548d8676431da1bbbfdc66a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
