@@ -141,6 +141,30 @@
       },
       "revId": "d3b8294f01016e02ec6cb9f094558111eef98914",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76046bfb_66e4e7f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2022-10-05T20:24:35Z",
+      "side": 1,
+      "message": "\u003e I thought it was RFB compliant\n\nA while back I was playing around with a toy client I wrote and ran into problems with negotiating the framebuffer update format/encoding...since it was a very dumb, simple client I had it sending a SetEncodings message specifying only the raw format, and the server appeared to accept that, but then carried on sending TightJPEG encoded updates instead -- I think that stems from some of the hard-coding going on here: https://github.com/openbmc/obmc-ikvm/blob/9d545472be11795239a6cdf736d44a50dde9289a/ikvm_server.cpp#L163-L166 (And that in turn I think is likely a side-effect of it being the format provided by the Aspeed video hardware.)\n\nFor clients that support that encoding and send it in their SetEncodings message (which might be fairly common) that part at least should work without a problem, but I also have some vague recollection of running into problems trying various existing (\"real\") VNC clients against obmc-ikvm (via an SSH port forward), though I don\u0027t recall the details...",
+      "parentUuid": "f42173ca_b8d9387d",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 5
+      },
+      "revId": "d3b8294f01016e02ec6cb9f094558111eef98914",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
