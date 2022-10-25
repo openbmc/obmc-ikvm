@@ -23,9 +23,10 @@ namespace ikvm
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
-Input::Input(const std::string& kbdPath, const std::string& ptrPath) :
+Input::Input(const std::string& kbdPath, const std::string& ptrPath,
+             const std::string& udc) :
     keyboardFd(-1), pointerFd(-1), keyboardReport{0}, pointerReport{0},
-    keyboardPath(kbdPath), pointerPath(ptrPath)
+    keyboardPath(kbdPath), pointerPath(ptrPath), udcName(udc)
 {
     hidUdcStream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
     hidUdcStream.open(hidUdcPath, std::ios::out | std::ios::app);
@@ -51,15 +52,22 @@ void Input::connect()
 {
     try
     {
-        for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
+        if(udcName.empty())
         {
-            if (fs::is_directory(port) && !fs::is_symlink(port) &&
-                !fs::exists(port.path() / "gadget/suspended"))
+            for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
             {
-                const std::string portId = port.path().filename();
-                hidUdcStream << portId << std::endl;
-                break;
+                if (fs::is_directory(port) && !fs::is_symlink(port) &&
+                    !fs::exists(port.path() / "gadget/suspended"))
+                {
+                    const std::string portId = port.path().filename();
+                    hidUdcStream << portId << std::endl;
+                    break;
+                }
             }
+        }
+        else // If UDC has been specified by '-u' parameter, connect to it.
+        {
+            hidUdcStream << udcName.c_str() << std::endl;
         }
     }
     catch (fs::filesystem_error& e)
