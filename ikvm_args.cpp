@@ -12,12 +12,13 @@ Args::Args(int argc, char* argv[]) :
     frameRate(30), subsampling(0), calcFrameCRC{false}, commandLine(argc, argv)
 {
     int option;
-    const char* opts = "f:s:h:k:p:v:c";
+    const char* opts = "f:s:h:k:p:u:v:c";
     struct option lopts[] = {
-        {"frameRate", 1, 0, 'f'}, {"subsampling", 1, 0, 's'},
-        {"help", 0, 0, 'h'},      {"keyboard", 1, 0, 'k'},
-        {"mouse", 1, 0, 'p'},     {"videoDevice", 1, 0, 'v'},
-        {"calcCRC", 0, 0, 'c'},   {0, 0, 0, 0}};
+        {"frameRate", 1, 0, 'f'},   {"subsampling", 1, 0, 's'},
+        {"help", 0, 0, 'h'},        {"keyboard", 1, 0, 'k'},
+        {"mouse", 1, 0, 'p'},       {"udcName", 1, 0, 'u'},
+        {"videoDevice", 1, 0, 'v'}, {"calcCRC", 0, 0, 'c'},
+        {0, 0, 0, 0}};
 
     while ((option = getopt_long(argc, argv, opts, lopts, NULL)) != -1)
     {
@@ -42,6 +43,9 @@ Args::Args(int argc, char* argv[]) :
             case 'p':
                 pointerPath = std::string(optarg);
                 break;
+            case 'u':
+                udcName = std::string(optarg);
+                break;
             case 'v':
                 videoPath = std::string(optarg);
                 break;
@@ -62,6 +66,7 @@ void Args::printUsage()
     fprintf(stderr, "-h, --help             show this message and exit\n");
     fprintf(stderr, "-k device              HID keyboard gadget device\n");
     fprintf(stderr, "-p device              HID mouse gadget device\n");
+    fprintf(stderr, "-u udc name            UDC that HID gadget will connect to\n");
     fprintf(stderr, "-v device              V4L2 device\n");
     fprintf(
         stderr,
