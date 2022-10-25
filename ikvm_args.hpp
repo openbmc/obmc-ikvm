@@ -101,6 +101,16 @@ class Args
     }
 
     /*
+     * @brief Get the name of UDC
+     *
+     * @return Reference to the string storing the name of UDC
+     */
+    inline const std::string& getUdcName() const
+    {
+        return udcName;
+    }
+
+    /*
      * @brief Get the path to the V4L2 video device
      *
      * @return Reference to the string storing the path to the video device
@@ -135,6 +145,8 @@ class Args
     std::string keyboardPath;
     /* @brief Path to the USB mouse device */
     std::string pointerPath;
+    /* @brief Name of UDC */
+    std::string udcName;
     /* @brief Path to the V4L2 video device */
     std::string videoPath;
     /* @brief Identical frames detection */

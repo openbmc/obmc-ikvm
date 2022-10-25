@@ -24,8 +24,10 @@ class Input
      *
      * @param[in] kbdPath - Path to the USB keyboard device
      * @param[in] ptrPath - Path to the USB mouse device
+     * @param[in] udc - Name of UDC
      */
-    Input(const std::string& kbdPath, const std::string& ptrPath);
+    Input(const std::string& kbdPath, const std::string& ptrPath,
+          const std::string& udc);
     ~Input();
     Input(const Input&) = default;
     Input& operator=(const Input&) = default;
@@ -113,6 +115,8 @@ class Input
     std::string keyboardPath;
     /* @brief Path to the USB mouse device */
     std::string pointerPath;
+    /* @brief Name of UDC */
+    std::string udcName;
     /*
      * @brief Mapping of RFB key code to report data index to keep track
      *        of which keys are down
