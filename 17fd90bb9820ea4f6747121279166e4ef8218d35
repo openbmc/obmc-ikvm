@@ -16,6 +16,24 @@
       "message": "Is the `.c_str()` necessary here for some reason?",
       "revId": "17fd90bb9820ea4f6747121279166e4ef8218d35",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4563690_0d07bbc4",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001635
+      },
+      "writtenOn": "2022-10-31T03:30:40Z",
+      "side": 1,
+      "message": "It\u0027s unnecessary. Thanks for the review.",
+      "parentUuid": "e7bc85f1_030d7813",
+      "revId": "17fd90bb9820ea4f6747121279166e4ef8218d35",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
