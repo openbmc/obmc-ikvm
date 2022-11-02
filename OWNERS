@@ -36,6 +36,7 @@ owners:
 - jae.hyun.yoo@linux.intel.com
 
 reviewers:
+- zev@bewilderbeest.net
 
 matchers:
 
@@ -46,3 +47,6 @@ openbmc:
 - name: Jae Hyun Yoo
   email: jae.hyun.yoo@linux.intel.com
   discord: jae
+- name: Zev Weiss
+  email: zev@bewilderbeest.net
+  discord: zevweiss
