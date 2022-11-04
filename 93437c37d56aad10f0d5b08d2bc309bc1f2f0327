@@ -16,6 +16,23 @@
       "message": "Hi @Edward @Jae,\ncould you please review this commit? Thanks.",
       "revId": "93437c37d56aad10f0d5b08d2bc309bc1f2f0327",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb2417f_d909c740",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001635
+      },
+      "writtenOn": "2022-11-04T00:53:06Z",
+      "side": 1,
+      "message": "Thanks Edward for the review. Could you advise me how to get the \"Verified\" label?",
+      "revId": "93437c37d56aad10f0d5b08d2bc309bc1f2f0327",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
