@@ -33,6 +33,23 @@
       "message": "Thanks Edward for the review. Could you advise me how to get the \"Verified\" label?",
       "revId": "93437c37d56aad10f0d5b08d2bc309bc1f2f0327",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92629c0e_0abccde5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000025
+      },
+      "writtenOn": "2022-11-04T13:59:44Z",
+      "side": 1,
+      "message": "Whoops, I need to set \"Ok-To-Test\" for you I guess.",
+      "revId": "93437c37d56aad10f0d5b08d2bc309bc1f2f0327",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
