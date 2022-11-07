@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a2b9d34_a6991138",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001635
+      },
+      "writtenOn": "2022-11-07T06:21:10Z",
+      "side": 1,
+      "message": "Hi @Edward, sorry that I missed the clang-format checking. Could you please approve \"Ok-To-Test\" again? Thanks.",
+      "revId": "90c98356f2c3e6453706ec7be058549ec1d22c3e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
