@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -e
 
 hid_conf_directory="/sys/kernel/config/usb_gadget/obmc_hid"
 dev_name="1e6a0000.usb-vhub"
@@ -125,12 +127,13 @@ create_hid() {
 }
 
 connect_hid() {
-    if ! [[ `cat UDC` =~ "${dev_name}:p" ]]; then
+    # shellcheck disable=SC2076
+    if ! [[ $(cat UDC) =~ "${dev_name}:p" ]]; then
         i=0
         num_ports=5
         base_usb_dir="/sys/bus/platform/devices/${dev_name}/${dev_name}:p"
         while [ $i -lt $num_ports ]; do
-            port=$(($i + 1))
+            port=$((i + 1))
             i=$port
             if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
                 break
@@ -141,7 +144,8 @@ connect_hid() {
 }
 
 disconnect_hid() {
-    if [[ `cat UDC` =~ "${dev_name}:p" ]]; then
+    # shellcheck disable=SC2076
+    if [[ $(cat UDC) =~ "${dev_name}:p" ]]; then
         echo "" > UDC
     fi
 }
