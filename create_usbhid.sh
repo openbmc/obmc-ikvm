@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 hid_conf_directory="/sys/kernel/config/usb_gadget/obmc_hid"
 dev_name="1e6a0000.usb-vhub"
@@ -6,7 +6,7 @@ dev_name="1e6a0000.usb-vhub"
 create_hid() {
     # create gadget
     mkdir "${hid_conf_directory}"
-    cd "${hid_conf_directory}"
+    cd "${hid_conf_directory}" || exit 1
 
     # add basic information
     echo 0x0100 > bcdDevice
@@ -125,12 +125,12 @@ create_hid() {
 }
 
 connect_hid() {
-    if ! [[ `cat UDC` =~ "${dev_name}:p" ]]; then
+    if ! [[ $(< UDC) = *"${dev_name}:p"* ]]; then
         i=0
         num_ports=5
         base_usb_dir="/sys/bus/platform/devices/${dev_name}/${dev_name}:p"
         while [ $i -lt $num_ports ]; do
-            port=$(($i + 1))
+            port=$((i + 1))
             i=$port
             if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
                 break
@@ -141,7 +141,7 @@ connect_hid() {
 }
 
 disconnect_hid() {
-    if [[ `cat UDC` =~ "${dev_name}:p" ]]; then
+    if [[ $(< UDC) = *"${dev_name}:p"* ]]; then
         echo "" > UDC
     fi
 }
@@ -151,7 +151,7 @@ original_directory="$(pwd)"
 if [ ! -e "${hid_conf_directory}" ]; then
     create_hid
 else
-    cd "${hid_conf_directory}"
+    cd "${hid_conf_directory}" || exit 1
 fi
 
 if [ "$1" = "connect" ]; then
@@ -162,4 +162,4 @@ else
     echo "Invalid option: $1. Use 'connect' or 'disconnect'."
 fi
 
-cd "${original_directory}"
+cd "${original_directory}" || exit 1
