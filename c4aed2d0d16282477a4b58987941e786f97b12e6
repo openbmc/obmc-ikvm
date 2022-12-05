@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5a0673d_81e7fcd9",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-05T00:11:56Z",
+      "side": 1,
+      "message": "I didn’t. I’m not sure I have hardware to test this on, so I’d appreciate support. I can try to run it on my system and see if it does anything. \n\nI added this because there were a number of shellcheck warnings about chained commands ending up with failures ignored and this seemed safer.",
+      "parentUuid": "1fcc8ef2_367a2428",
+      "revId": "c4aed2d0d16282477a4b58987941e786f97b12e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b4d5a33_44ea6c60",
         "filename": "create_usbhid.sh",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2022-12-04T23:26:49Z",
       "side": 1,
       "message": "If we\u0027re changing the shebang to explicitly run bash, might as well use `$(\u003c...)` instead of `$(cat ...)` IMO.\n\nAlso, instead of disabling SC2076, maybe change `[[ ... \u003d~ \"...\" ]]` to `[[ ... \u003d\u003d *\"...\"* ]]` instead?  (c.f. https://www.shellcheck.net/wiki/SC2076)  If I\u0027m understanding the intent of the existing code correctly, I think that\u0027d be a closer semantic match anyway.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 50
+      },
+      "revId": "c4aed2d0d16282477a4b58987941e786f97b12e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5167567d_80b10f7f",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-05T00:11:56Z",
+      "side": 1,
+      "message": "Will do.  I’ll be honest that I partially just didn’t know the bash incantation to do the needful.  Thanks.",
+      "parentUuid": "9b4d5a33_44ea6c60",
       "range": {
         "startLine": 130,
         "startChar": 0,
