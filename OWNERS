@@ -34,9 +34,9 @@
 owners:
 - eajames@linux.ibm.com
 - jae.hyun.yoo@linux.intel.com
+- zev@bewilderbeest.net
 
 reviewers:
-- zev@bewilderbeest.net
 
 matchers:
 
