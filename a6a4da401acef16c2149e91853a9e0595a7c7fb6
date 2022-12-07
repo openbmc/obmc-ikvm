@@ -1,0 +1,6 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+1: Edward A. James <eajames@us.ibm.com>
+Code-Review+2: Zev Weiss <zev@bewilderbeest.net>
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/59255
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
