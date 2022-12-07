@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec8ca47b_7899aae5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T11:43:03Z",
+      "side": 1,
+      "message": "The only thing left of mine after the rebase are some stronger exits on `cd` failures.  I think these are appropriate so I\u0027m going to leave it around.",
+      "revId": "67a9bd4b7ef160723dc5e8699f61a7860b49edef",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
