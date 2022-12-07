@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e665885_c9c46bdd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T11:38:57Z",
+      "side": 1,
+      "message": "This looks like a commit by one of the maintainers that fixes most of the shellcheck errors.  I\u0027m going to merge this and rebase my commit on top of it.  Not sure why it has sat around since May.",
+      "revId": "f51921a97c0cb5cb5d768d10bcce0dd5f61595ea",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
