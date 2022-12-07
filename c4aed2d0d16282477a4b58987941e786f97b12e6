@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0db07909_8de43fa1",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T11:35:55Z",
+      "side": 1,
+      "message": "Removed the `set -e` and fixed the newly reported issues differently.  It looks like primarily shellcheck doesn\u0027t like an unchecked-cd, so I made them all `exit 1` if they fail.",
+      "parentUuid": "d5a0673d_81e7fcd9",
+      "revId": "c4aed2d0d16282477a4b58987941e786f97b12e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b4d5a33_44ea6c60",
@@ -83,6 +101,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97d36cf5_f3c6658f",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T11:35:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5167567d_80b10f7f",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 50
+      },
+      "revId": "c4aed2d0d16282477a4b58987941e786f97b12e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd0433d6_8a5a5ec4",
@@ -96,6 +138,30 @@
       "writtenOn": "2022-12-04T23:26:49Z",
       "side": 1,
       "message": "...and likewise on both counts here as well, of course.",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 48
+      },
+      "revId": "c4aed2d0d16282477a4b58987941e786f97b12e6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccff7ad2_883b6b98",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-07T11:35:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd0433d6_8a5a5ec4",
       "range": {
         "startLine": 147,
         "startChar": 0,
