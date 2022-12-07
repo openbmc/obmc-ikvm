@@ -10,7 +10,6 @@
 
 namespace ikvm
 {
-
 /*
  * @class Input
  * @brief Receives events from RFB clients and sends reports to the USB input

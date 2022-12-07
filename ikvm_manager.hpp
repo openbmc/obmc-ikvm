@@ -10,7 +10,6 @@
 
 namespace ikvm
 {
-
 /*
  * @class Manager
  * @brief Manages the VNC server by executing threaded loops of RFB operations

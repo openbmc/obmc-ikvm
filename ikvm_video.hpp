@@ -8,7 +8,6 @@
 
 namespace ikvm
 {
-
 /*
  * @class Video
  * @brief Sets up the V4L2 video device and performs read operations
@@ -166,6 +165,9 @@ class Video
     const std::string path;
     /* @brief Streaming buffer storage */
     std::vector<Buffer> buffers;
+
+    /* @brief Pixel Format  */
+    size_t pixelformat;
 };
 
 } // namespace ikvm

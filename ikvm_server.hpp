@@ -10,7 +10,6 @@
 
 namespace ikvm
 {
-
 /*
  * @class Server
  * @brief Manages the RFB server connection and updates
