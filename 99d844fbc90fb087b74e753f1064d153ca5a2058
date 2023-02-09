@@ -68,6 +68,24 @@
       "parentUuid": "af188909_ced7fbbd",
       "revId": "99d844fbc90fb087b74e753f1064d153ca5a2058",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aded344d_945fb3b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000272
+      },
+      "writtenOn": "2023-02-09T10:08:40Z",
+      "side": 1,
+      "message": "This issue still exist. And the folder name is also changed in latest kernel 6.0.\n\n`gadget` -\u003e `gadget.N`\n\n```\nroot@evb-ast2500:/sys/bus/platform/devices/1e6a0000.usb-vhub# ls 1e6a0000.usb-vhub\\:p1/\ngadget.0  udc       uevent\nroot@evb-ast2500:/sys/bus/platform/devices/1e6a0000.usb-vhub# ls 1e6a0000.usb-vhub\\:p4/gadget.3/\ndriver     of_node    subsystem  suspended  uevent\n```",
+      "parentUuid": "dbbf3d23_21a3833a",
+      "revId": "99d844fbc90fb087b74e753f1064d153ca5a2058",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
