@@ -55,15 +55,35 @@ void Input::connect()
     {
         if (udcName.empty())
         {
+            bool found = false;
             for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
             {
-                if (fs::is_directory(port) && !fs::is_symlink(port) &&
-                    !fs::exists(port.path() / "gadget/suspended"))
+                // /sys/bus/platform/devices/1e6a0000.usb-vhub/1e6a0000.usb-vhub:pX
+                if (fs::is_directory(port) && !fs::is_symlink(port))
                 {
-                    const std::string portId = port.path().filename();
-                    hidUdcStream << portId << std::endl;
-                    break;
+                    for (const auto& gadget :
+                         fs::directory_iterator(port.path()))
+                    {
+                        /*
+                        Kernel 6.0:
+                        /sys/.../1e6a0000.usb-vhub:pX/gadget.Y/suspended
+                        Kernel 5.15:
+                        /sys/.../1e6a0000.usb-vhub:pX/gadget/suspended
+                        */
+                        if (fs::is_directory(gadget) &&
+                            gadget.path().string().find("gadget") !=
+                                std::string::npos &&
+                            !fs::exists(gadget.path() / "suspended"))
+                        {
+                            const std::string portId = gadget.path().filename();
+                            hidUdcStream << portId << std::endl;
+                            found = true;
+                            break;
+                        }
+                    }
                 }
+                if (found)
+                    break;
             }
         }
         else // If UDC has been specified by '-u' parameter, connect to it.
