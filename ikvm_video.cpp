@@ -21,7 +21,6 @@
 
 namespace ikvm
 {
-
 const int Video::bitsPerSample(8);
 const int Video::bytesPerPixel(4);
 const int Video::samplesPerPixel(3);
@@ -33,7 +32,7 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 Video::Video(const std::string& p, Input& input, int fr, int sub) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
     lastFrameIndex(-1), height(600), width(800), subSampling(sub), input(input),
-    path(p)
+    path(p), pixelformat(V4L2_PIX_FMT_JPEG)
 {}
 
 Video::~Video()
