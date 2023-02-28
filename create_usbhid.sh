@@ -2,6 +2,7 @@
 
 hid_conf_directory="/sys/kernel/config/usb_gadget/obmc_hid"
 dev_name="1e6a0000.usb-vhub"
+arch="ASPEED"
 
 create_hid() {
     # create gadget
@@ -122,28 +123,62 @@ create_hid() {
     # Link HID functions to configuration
     ln -s functions/hid.0 configs/c.1
     ln -s functions/hid.1 configs/c.1
+
+    # Check for GXP processor
+    if grep -q "GXP" /sys/firmware/devicetree/base/model; then
+        dev_name="80401000.udc"
+        arch="GXP"
+    fi
 }
 
 connect_hid() {
-    if ! grep -q "${dev_name}:p" UDC; then
-        i=0
-        num_ports=5
-        base_usb_dir="/sys/bus/platform/devices/${dev_name}/${dev_name}:p"
-        while [ "${i}" -lt "${num_ports}" ]; do
-            port=$(("${i}" + 1))
-            i="${port}"
-            if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
-                break
+    case $arch in
+        ASPEED)
+            if ! grep -q "${dev_name}:p" UDC; then
+                i=0
+                num_ports=5
+                base_usb_dir="/sys/bus/platform/devices/${dev_name}/${dev_name}:p"
+                while [ "${i}" -lt "${num_ports}" ]; do
+                    port=$(("${i}" + 1))
+                    i="${port}"
+                    if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
+                        break
+                    fi
+                done
+                echo "${dev_name}:p${port}" > UDC
             fi
-        done
-        echo "${dev_name}:p${port}" > UDC
-    fi
+            ;;
+
+        GXP)
+            if ! grep -q "${dev_name}" UDC; then
+                echo "${dev_name}" > UDC
+            fi
+            ;;
+
+        *)
+            echo >&2 "Invalid architecture: $arch, GXP and ASPEED supported"
+            ;;
+    esac
 }
 
 disconnect_hid() {
-    if grep -q "${dev_name}:p" UDC; then
-        echo "" > UDC
-    fi
+    case $arch in
+        ASPEED)
+            if grep -q "${dev_name}:p" UDC; then
+                echo "" > UDC
+            fi
+            ;;
+
+        GXP)
+            if grep -q "${dev_name}" UDC; then
+                echo "" > UDC
+            fi
+            ;;
+
+        *)
+            echo >&2 "Invalid architecture: $arch, GXP and ASPEED supported"
+            ;;
+    esac
 }
 
 if [ ! -e "${hid_conf_directory}" ]; then
