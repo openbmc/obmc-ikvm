@@ -16,6 +16,24 @@
       "message": "Looks like there was some mistake in what patch got uploaded here?",
       "revId": "c1dde420ca0924e89265498f8e134fe97c1ece08",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45fee1a4_8525e089",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001528
+      },
+      "writtenOn": "2023-03-01T03:00:52Z",
+      "side": 1,
+      "message": "The patchset accidently dropped key changes to the ikvm_server.cpp and ikvm_video.cpp files.  I have fixed the omission.",
+      "parentUuid": "c3afa3e8_cf747c65",
+      "revId": "c1dde420ca0924e89265498f8e134fe97c1ece08",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
