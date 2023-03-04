@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a67fe0e2_345a79c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-03-04T03:47:59Z",
+      "side": 1,
+      "message": "A slightly more descriptive commit message would be good -- it looks like a small structural change to allow using pixel formats other than the JPEG format we had previously been assuming/hardcoding, but then appears to only actually add support for one other format (RGB24), whereas this description makes it sound broader than that (to me at least).",
+      "revId": "9248278b3450f9208027646854df74c7adc3f85b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "569c813f_c383e532",
         "filename": "ikvm_server.cpp",
         "patchSetId": 4
