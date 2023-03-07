@@ -21,7 +21,6 @@
 
 namespace ikvm
 {
-
 const int Video::bitsPerSample(8);
 const int Video::bytesPerPixel(4);
 const int Video::samplesPerPixel(3);
@@ -33,7 +32,7 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 Video::Video(const std::string& p, Input& input, int fr, int sub) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
     lastFrameIndex(-1), height(600), width(800), subSampling(sub), input(input),
-    path(p)
+    path(p), pixelformat(V4L2_PIX_FMT_JPEG)
 {}
 
 Video::~Video()
@@ -457,6 +456,13 @@ void Video::start()
 
     height = fmt.fmt.pix.height;
     width = fmt.fmt.pix.width;
+    pixelformat = fmt.fmt.pix.pixelformat;
+
+    if (pixelformat != V4L2_PIX_FMT_RGB24 && pixelformat != V4L2_PIX_FMT_JPEG)
+    {
+        log<level::ERR>("Pixel Format not supported",
+                        entry("PIXELFORMAT=%d", pixelformat));
+    }
 
     resize();
 
