@@ -7,7 +7,6 @@
 
 namespace ikvm
 {
-
 Args::Args(int argc, char* argv[]) :
     frameRate(30), subsampling(0), calcFrameCRC{false}, commandLine(argc, argv)
 {

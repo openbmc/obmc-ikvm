@@ -4,7 +4,6 @@
 
 namespace ikvm
 {
-
 /*
  * @class Args
  * @brief Command line argument parser and storage

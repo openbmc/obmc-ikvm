@@ -19,7 +19,6 @@ namespace fs = std::filesystem;
 
 namespace ikvm
 {
-
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
