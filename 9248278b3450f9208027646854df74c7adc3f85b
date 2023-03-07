@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b90bc654_348f0b57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001528
+      },
+      "writtenOn": "2023-03-07T21:39:00Z",
+      "side": 1,
+      "message": "agreed, description updated.",
+      "parentUuid": "a67fe0e2_345a79c6",
+      "revId": "9248278b3450f9208027646854df74c7adc3f85b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "569c813f_c383e532",
@@ -41,6 +59,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a4bc243_61e4da93",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1001528
+      },
+      "writtenOn": "2023-03-07T21:39:00Z",
+      "side": 1,
+      "message": "I have updated the change to address this by placing a check for pixel format compatibility in the Video::start member function.  An removed the compatibility check in the Server::sendFrame member function.  On failure during sendFrame no update is sent.",
+      "parentUuid": "569c813f_c383e532",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 69
+      },
+      "revId": "9248278b3450f9208027646854df74c7adc3f85b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94ac8ce1_76816c67",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-03-04T03:44:58Z",
       "side": 1,
       "message": "size_t seems like an odd choice for this; might uint32_t be slightly more appropriate?",
+      "revId": "9248278b3450f9208027646854df74c7adc3f85b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64385738_a48d919d",
+        "filename": "ikvm_video.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1001528
+      },
+      "writtenOn": "2023-03-07T21:39:00Z",
+      "side": 1,
+      "message": "I agree uint32_t is a more appropriate choice.  I have used unsigned as per the CPP style guidelines @ https://github.com/openbmc/docs/blob/master/cpp-style-and-conventions.md",
+      "parentUuid": "94ac8ce1_76816c67",
       "revId": "9248278b3450f9208027646854df74c7adc3f85b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
