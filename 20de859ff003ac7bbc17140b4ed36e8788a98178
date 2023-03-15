@@ -68,6 +68,24 @@
       "parentUuid": "e4d801e2_918ac27e",
       "revId": "20de859ff003ac7bbc17140b4ed36e8788a98178",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc7058d_dd125ae4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000272
+      },
+      "writtenOn": "2023-03-15T08:44:07Z",
+      "side": 1,
+      "message": "I pushed a fix for this issue. Please help to review.\nhttps://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/61664",
+      "parentUuid": "4a982399_5360e979",
+      "revId": "20de859ff003ac7bbc17140b4ed36e8788a98178",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ],
   "submitRequirementResults": []
