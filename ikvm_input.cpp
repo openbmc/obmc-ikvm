@@ -72,7 +72,7 @@ void Input::connect()
                                 std::string::npos &&
                             !fs::exists(gadget.path() / "suspended"))
                         {
-                            const std::string portId = gadget.path().filename();
+                            const std::string portId = port.path().filename();
                             hidUdcStream << portId << std::endl;
                             found = true;
                             break;
