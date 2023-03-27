@@ -116,6 +116,24 @@
       "parentUuid": "94ac8ce1_76816c67",
       "revId": "9248278b3450f9208027646854df74c7adc3f85b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccb90c8e_1461806a",
+        "filename": "ikvm_video.hpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-03-27T21:19:26Z",
+      "side": 1,
+      "message": "Ah, yes I see -- in this case though I think the fact that the ioctl interface itself is defined in terms of an explicitly-sized type (https://www.kernel.org/doc/html/latest/userspace-api/media/v4l/pixfmt-v4l2.html#c.v4l2_pix_format) would be sufficient reason to use one here as well to match it.  (I\u0027ve submitted a docs patch to clarify that here: https://gerrit.openbmc.org/c/openbmc/docs/+/61962)",
+      "parentUuid": "64385738_a48d919d",
+      "revId": "9248278b3450f9208027646854df74c7adc3f85b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
