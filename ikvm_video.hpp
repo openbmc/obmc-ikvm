@@ -8,7 +8,6 @@
 
 namespace ikvm
 {
-
 /*
  * @class Video
  * @brief Sets up the V4L2 video device and performs read operations
@@ -83,6 +82,14 @@ class Video
     inline size_t getHeight() const
     {
         return height;
+    }
+    /*
+     * @brief Gets the pixel format  of the video frame
+     *
+     * @return Value of the pixel format of video frame */
+    inline uint32_t getPixelformat() const
+    {
+        return pixelformat;
     }
     /*
      * @brief Gets the width of the video frame
@@ -166,6 +173,9 @@ class Video
     const std::string path;
     /* @brief Streaming buffer storage */
     std::vector<Buffer> buffers;
+
+    /* @brief Pixel Format  */
+    uint32_t pixelformat;
 };
 
 } // namespace ikvm
