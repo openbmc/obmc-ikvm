@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a760ff9_224952c4",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-03-29T09:31:41Z",
+      "side": 0,
+      "message": "Not sure why I didn\u0027t see this on the previous revision(s), but I\u0027d prefer to avoid mixing in unrelated whitespace change.  At least in my environment clang-format (via format-code.sh) doesn\u0027t seem to be adding this, so I\u0027d expect CI should be fine with just putting the empty line back in.",
+      "revId": "4148d0c60a8c078e2e57cc16724d02278efb74a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f59c3cd_49e0847c",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-03-29T09:31:41Z",
+      "side": 0,
+      "message": "...and here.",
+      "revId": "4148d0c60a8c078e2e57cc16724d02278efb74a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813fc5a9_ec75afe9",
+        "filename": "ikvm_video.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-03-29T09:31:41Z",
+      "side": 0,
+      "message": "Likewise here...",
+      "revId": "4148d0c60a8c078e2e57cc16724d02278efb74a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
