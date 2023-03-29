@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d97881a3_70cf3fb6",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001528
+      },
+      "writtenOn": "2023-03-29T21:21:20Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "6a760ff9_224952c4",
+      "revId": "4148d0c60a8c078e2e57cc16724d02278efb74a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f59c3cd_49e0847c",
@@ -35,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9102b52e_79f49a22",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001528
+      },
+      "writtenOn": "2023-03-29T21:21:20Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "8f59c3cd_49e0847c",
+      "revId": "4148d0c60a8c078e2e57cc16724d02278efb74a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "813fc5a9_ec75afe9",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-03-29T09:31:41Z",
       "side": 0,
       "message": "Likewise here...",
+      "revId": "4148d0c60a8c078e2e57cc16724d02278efb74a7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8954def_4decd4ea",
+        "filename": "ikvm_video.hpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1001528
+      },
+      "writtenOn": "2023-03-29T21:21:20Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "813fc5a9_ec75afe9",
       "revId": "4148d0c60a8c078e2e57cc16724d02278efb74a7",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
