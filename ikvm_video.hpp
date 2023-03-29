@@ -85,6 +85,14 @@ class Video
         return height;
     }
     /*
+     * @brief Gets the pixel format  of the video frame
+     *
+     * @return Value of the pixel format of video frame */
+    inline uint32_t getPixelformat() const
+    {
+        return pixelformat;
+    }
+    /*
      * @brief Gets the width of the video frame
      *
      * @return Value of the width of video frame in pixels
@@ -166,6 +174,9 @@ class Video
     const std::string path;
     /* @brief Streaming buffer storage */
     std::vector<Buffer> buffers;
+
+    /* @brief Pixel Format  */
+    uint32_t pixelformat;
 };
 
 } // namespace ikvm
