@@ -7,7 +7,7 @@ project(
         'cpp_std=c++20',
         'werror=true',
     ],
-    meson_version: '>=0.57.0',
+    meson_version: '>=0.58.0',
 )
 
 install_data(
@@ -41,6 +41,6 @@ configure_file(
     output: 'start-ipkvm.service',
     copy: true,
     install_dir:
-        dependency('systemd').get_pkgconfig_variable(
+        dependency('systemd').get_variable(
             'systemdsystemunitdir')
 )
