@@ -105,8 +105,8 @@ void Input::connect()
 
     if (!keyboardPath.empty())
     {
-        keyboardFd =
-            open(keyboardPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
+        keyboardFd = open(keyboardPath.c_str(),
+                          O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (keyboardFd < 0)
         {
             log<level::ERR>("Failed to open input device",

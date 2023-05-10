@@ -135,8 +135,7 @@ class Video
      */
     struct Buffer
     {
-        Buffer() : data(nullptr), queued(false), payload(0), size(0)
-        {}
+        Buffer() : data(nullptr), queued(false), payload(0), size(0) {}
         ~Buffer() = default;
         Buffer(const Buffer&) = default;
         Buffer& operator=(const Buffer&) = default;
