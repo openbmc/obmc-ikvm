@@ -30,11 +30,23 @@ using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 
-Video::Video(const std::string& p, Input& input, int fr, int sub) :
+Video::Video(const std::string& p, Input& input, int fr, int sub, int fmt) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
     lastFrameIndex(-1), height(600), width(800), subSampling(sub), input(input),
     path(p), pixelformat(V4L2_PIX_FMT_JPEG)
-{}
+{
+    switch (fmt)
+    {
+        case 1:
+            pixelformat = V4L2_PIX_FMT_RGB24;
+            break;
+
+        case 0:
+        default:
+            pixelformat = V4L2_PIX_FMT_JPEG;
+            break;
+    }
+}
 
 Video::~Video()
 {
@@ -426,6 +438,19 @@ void Video::start()
     if (rc < 0)
     {
         log<level::ERR>("Failed to query video device format",
+                        entry("ERROR=%s", strerror(errno)));
+        elog<ReadFailure>(
+            xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
+                errno),
+            xyz::openbmc_project::Common::Device::ReadFailure::
+                CALLOUT_DEVICE_PATH(path.c_str()));
+    }
+
+    fmt.fmt.pix.pixelformat = pixelformat;
+    rc = ioctl(fd, VIDIOC_S_FMT, &fmt);
+    if (rc < 0)
+    {
+        log<level::ERR>("Failed to set video device format",
                         entry("ERROR=%s", strerror(errno)));
         elog<ReadFailure>(
             xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(

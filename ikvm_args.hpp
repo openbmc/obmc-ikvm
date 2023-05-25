@@ -78,6 +78,11 @@ class Args
         return subsampling;
     }
 
+    inline int getFormat() const
+    {
+        return format;
+    }
+
     /*
      * @brief Get the path to the USB keyboard device
      *
@@ -139,6 +144,8 @@ class Args
     int frameRate;
     /* @brief Desired subsampling (0: 444, 1: 420) */
     int subsampling;
+    /* @brief Desired format (0: jpeg, 1: rgb24) */
+    int format;
     /* @brief Path to the USB keyboard device */
     std::string keyboardPath;
     /* @brief Path to the USB mouse device */
