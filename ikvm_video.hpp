@@ -22,8 +22,11 @@ class Video
      * @param[in] p     - Path to the V4L2 video device
      * @param[in] input - Reference to the Input object
      * @param[in] fr    - desired frame rate of the video
+     * @param[in] sub   - desired subsampling of the video
+     * @param[in] fmt   - desired pixel format of the video
      */
-    Video(const std::string& p, Input& input, int fr = 30, int sub = 0);
+    Video(const std::string& p, Input& input, int fr = 30, int sub = 0,
+          int fmt = 0);
     ~Video();
     Video(const Video&) = default;
     Video& operator=(const Video&) = default;

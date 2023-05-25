@@ -79,6 +79,16 @@ class Args
     }
 
     /*
+     * @brief Get the video format
+     *
+     * @return Value of the video pixel format
+     */
+    inline int getPixelFormat() const
+    {
+        return pixelformat;
+    }
+
+    /*
      * @brief Get the path to the USB keyboard device
      *
      * @return Reference to the string storing the path to the keyboard device
@@ -139,6 +149,8 @@ class Args
     int frameRate;
     /* @brief Desired subsampling (0: 444, 1: 420) */
     int subsampling;
+    /* @brief Desired pixel format (0: jpeg, 1: rgb24) */
+    int pixelformat;
     /* @brief Path to the USB keyboard device */
     std::string keyboardPath;
     /* @brief Path to the USB mouse device */
