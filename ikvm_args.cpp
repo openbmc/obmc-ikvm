@@ -8,19 +8,17 @@
 namespace ikvm
 {
 Args::Args(int argc, char* argv[]) :
-    frameRate(30), subsampling(0), calcFrameCRC{false}, commandLine(argc, argv)
+    frameRate(30), subsampling(0), format(0), calcFrameCRC{false},
+    commandLine(argc, argv)
 {
     int option;
-    const char* opts = "f:s:h:k:p:u:v:c";
-    struct option lopts[] = {{"frameRate", 1, 0, 'f'},
-                             {"subsampling", 1, 0, 's'},
-                             {"help", 0, 0, 'h'},
-                             {"keyboard", 1, 0, 'k'},
-                             {"mouse", 1, 0, 'p'},
-                             {"udcName", 1, 0, 'u'},
-                             {"videoDevice", 1, 0, 'v'},
-                             {"calcCRC", 0, 0, 'c'},
-                             {0, 0, 0, 0}};
+    const char* opts = "f:s:m:hk:p:u:v:c";
+    struct option lopts[] = {
+        {"frameRate", 1, 0, 'f'}, {"subsampling", 1, 0, 's'},
+        {"format", 1, 0, 'm'},    {"help", 0, 0, 'h'},
+        {"keyboard", 1, 0, 'k'},  {"mouse", 1, 0, 'p'},
+        {"udcName", 1, 0, 'u'},   {"videoDevice", 1, 0, 'v'},
+        {"calcCRC", 0, 0, 'c'},   {0, 0, 0, 0}};
 
     while ((option = getopt_long(argc, argv, opts, lopts, NULL)) != -1)
     {
@@ -35,6 +33,11 @@ Args::Args(int argc, char* argv[]) :
                 subsampling = (int)strtol(optarg, NULL, 0);
                 if (subsampling < 0 || subsampling > 1)
                     subsampling = 0;
+                break;
+            case 'm':
+                format = (int)strtol(optarg, NULL, 0);
+                if (format < 0 || format > 1)
+                    format = 0;
                 break;
             case 'h':
                 printUsage();
@@ -65,6 +68,7 @@ void Args::printUsage()
     fprintf(stderr, "Usage: obmc-ikvm [options]\n");
     fprintf(stderr, "-f frame rate          try this frame rate\n");
     fprintf(stderr, "-s subsampling         try this subsampling\n");
+    fprintf(stderr, "-m format              try this format\n");
     fprintf(stderr, "-h, --help             show this message and exit\n");
     fprintf(stderr, "-k device              HID keyboard gadget device\n");
     fprintf(stderr, "-p device              HID mouse gadget device\n");
