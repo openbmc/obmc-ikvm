@@ -18,7 +18,7 @@ create_hid() {
     mkdir strings/0x409
 
     echo "OpenBMC" > strings/0x409/manufacturer
-    echo "virtual_input" > strings/0x409/product
+    echo "Virtual Keyboard and Mouse" > strings/0x409/product
     echo "OBMC0001" > strings/0x409/serialnumber
 
     # Create HID keyboard function
