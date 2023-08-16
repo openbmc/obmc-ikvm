@@ -23,7 +23,7 @@ class Manager
      *
      * @param[in] args - Reference to Args object
      */
-    Manager(const Args& args);
+    explicit Manager(const Args& args);
     ~Manager() = default;
     Manager(const Manager&) = default;
     Manager& operator=(const Manager&) = default;
