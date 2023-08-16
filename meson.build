@@ -36,10 +36,10 @@ executable(
     install: true
 )
 
-configure_file(
-    input: 'start-ipkvm.service',
-    output: 'start-ipkvm.service',
-    copy: true,
+fs = import('fs')
+fs.copyfile(
+    'start-ipkvm.service',
+    install: true,
     install_dir:
         dependency('systemd').get_variable(
             'systemdsystemunitdir')
