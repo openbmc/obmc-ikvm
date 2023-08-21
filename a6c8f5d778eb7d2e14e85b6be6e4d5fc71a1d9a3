@@ -16,6 +16,24 @@
       "message": "This looks reasonable to me, and appears a bit more consistent with the sorts of things I see in the `product` field for other miscellaneous USB devices.\n\nI\u0027ll leave at +1 for now in case anyone else knows of any problems this might cause, but if I haven\u0027t gotten back around to this and +2\u0027d in a few days feel free to send a ping and I\u0027ll push it through.",
       "revId": "a6c8f5d778eb7d2e14e85b6be6e4d5fc71a1d9a3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e7dd22e_481e9ff8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2023-08-21T10:26:52Z",
+      "side": 1,
+      "message": "It seems there is no further review comments on this. Can you proceed with pushing this?",
+      "parentUuid": "6051e5c8_cd59b8a7",
+      "revId": "a6c8f5d778eb7d2e14e85b6be6e4d5fc71a1d9a3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
