@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f483817_0c6c93fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-08-22T23:52:01Z",
+      "side": 1,
+      "message": "Patch looks basically okay aside from a few minor details.  What else is required to make use of this though?  With the current dev-6.1 OpenBMC kernel it looks like only `V4L2_PIX_FMT_JPEG` is supported in the aspeed-video driver, though I see a patch adding `ASPEED_JPEG` support is now in the mainline kernel.  Are there patches available somewhere adding RGB support to the driver?",
+      "revId": "606631edf71b1bd635df759e17964dba4f305a92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "014428ed_96f8daa6",
+        "filename": "ikvm_args.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-08-22T23:52:01Z",
+      "side": 1,
+      "message": "Did clang-format specifically want it formatted this way?  If not, personally I\u0027d find the one-entry-per-line format preferable.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 48
+      },
+      "revId": "606631edf71b1bd635df759e17964dba4f305a92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9acd3e3_de6f5ff6",
+        "filename": "ikvm_args.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-08-22T23:52:01Z",
+      "side": 1,
+      "message": "Not that there\u0027s very much to explain that isn\u0027t obvious, but just for consistency with the rest of the nearby code it\u0027d be nice to have a doc comment on this one too.",
+      "revId": "606631edf71b1bd635df759e17964dba4f305a92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ba88ca4_44439fa9",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-08-22T23:52:01Z",
+      "side": 1,
+      "message": "0 and 1 should be the only possible values, so I\u0027d suggest the `default` case should at least log an error message or something, since if it\u0027s hit something\u0027s definitely wrong.",
+      "revId": "606631edf71b1bd635df759e17964dba4f305a92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c10b7a9_7a19e04f",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-08-22T23:52:01Z",
+      "side": 1,
+      "message": "`ReadFailure` seems a bit off here, since the operation is really more of a \"set\" than a \"get\".  `WriteFailure` might be a bit more appropriate?",
+      "range": {
+        "startLine": 455,
+        "startChar": 13,
+        "endLine": 455,
+        "endChar": 24
+      },
+      "revId": "606631edf71b1bd635df759e17964dba4f305a92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
