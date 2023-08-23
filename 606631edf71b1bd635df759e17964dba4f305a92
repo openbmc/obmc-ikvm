@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3b7b0b8_08d519cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-08-23T21:15:55Z",
+      "side": 1,
+      "message": "\u003e RGB is not supported by aspeed\u0027s IC, so we can\u0027t add RGB support to the driver.\n\nHmm, I\u0027m confused -- so in what context would this RGB code in obmc-ikvm actually be used?",
+      "parentUuid": "e4729483_e658501b",
+      "revId": "606631edf71b1bd635df759e17964dba4f305a92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "014428ed_96f8daa6",
         "filename": "ikvm_args.cpp",
         "patchSetId": 2
