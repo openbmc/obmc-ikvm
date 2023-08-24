@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ce6e729_1830861c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001247
+      },
+      "writtenOn": "2023-08-24T00:55:34Z",
+      "side": 1,
+      "message": "This is not specifically for RGB, but for format control.\nEx. ASPEED video has 3 kind of compression schemes, standard jpeg, aspeed jpeg, and partial jpeg.",
+      "parentUuid": "b3b7b0b8_08d519cd",
+      "revId": "606631edf71b1bd635df759e17964dba4f305a92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "014428ed_96f8daa6",
         "filename": "ikvm_args.cpp",
         "patchSetId": 2
