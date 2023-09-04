@@ -16,6 +16,74 @@
       "message": "1",
       "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3c36f56_4430aac1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2023-09-04T13:35:33Z",
+      "side": 1,
+      "message": "Glad to see this change coming from ASPEED SDK!!",
+      "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8958e33f_a16fdecc",
+        "filename": "ikvm_args.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2023-09-04T13:35:33Z",
+      "side": 1,
+      "message": "Can be `V4L2 Pixel Format` for better readability.",
+      "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72177b5e_6831211f",
+        "filename": "ikvm_args.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2023-09-04T13:35:33Z",
+      "side": 1,
+      "message": "Based on my understanding, `pixelformat` is used for identifying video driver configured pixel format.\n\nhttps://github.com/openbmc/obmc-ikvm/commit/8e909b757a643cbeb4975a2d2fb6f8f6878da51b\n\nThis MR seems to introduce new variable `format` which is to configure the value `pixelformat`.\n\nI think it would be better if existing variable is reused here.",
+      "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27de16f8_e44781fb",
+        "filename": "ikvm_video.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2023-09-04T13:35:33Z",
+      "side": 1,
+      "message": "If possible, I would suggest updating the comments to reflect latest/missing parameter.\n\n```cpp\n    /*\n     * @brief Constructs Video object\n     *\n     * @param[in] p     - Path to the V4L2 video device\n     * @param[in] input - Reference to the Input object\n     * @param[in] fr    - desired frame rate of the video\n     * @param[in] sub   - desired subsampling of the video\n     * @param[in] fmt   - desired pixel format of the video\n     */\n```",
+      "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
