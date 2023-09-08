@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d36758d8_c9f9a0f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2023-09-08T21:04:41Z",
+      "side": 1,
+      "message": "\u003e This is not specifically for RGB, but for format control.\n\u003e Ex. ASPEED video has 3 kind of compression schemes, standard jpeg, aspeed jpeg, and partial jpeg.\n\nSo is the intent just to add the infrastructure for supporting (and choosing between) multiple formats, with RGB just as an arbitrary other format to add?  If so, why not add one that the driver supports (or might support in the future) instead of one the hardware doesn\u0027t provide?",
+      "parentUuid": "2650f67e_004eb09c",
+      "revId": "606631edf71b1bd635df759e17964dba4f305a92",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "014428ed_96f8daa6",
         "filename": "ikvm_args.cpp",
         "patchSetId": 2
