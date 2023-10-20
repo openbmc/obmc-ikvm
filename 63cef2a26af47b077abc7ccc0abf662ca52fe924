@@ -1,0 +1,7 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Zev Weiss <zev@bewilderbeest.net>
+Submitted-by: Zev Weiss <zev@bewilderbeest.net>
+Submitted-at: Fri, 20 Oct 2023 19:34:45 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/67262
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
