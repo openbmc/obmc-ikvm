@@ -1,5 +1,6 @@
 #include "ikvm_input.hpp"
 
+#include "ikvm_gadget.hpp"
 #include "ikvm_server.hpp"
 #include "scancodes.hpp"
 
@@ -22,15 +23,14 @@ namespace ikvm
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
+static constexpr auto GADGETDIR = "/sys/kernel/config/usb_gadget/obmc_hid";
+
 Input::Input(const std::string& kbdPath, const std::string& ptrPath,
              const std::string& udc) :
     keyboardFd(-1),
     pointerFd(-1), keyboardReport{0}, pointerReport{0}, keyboardPath(kbdPath),
     pointerPath(ptrPath), udcName(udc)
-{
-    hidUdcStream.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-    hidUdcStream.open(hidUdcPath, std::ios::out | std::ios::app);
-}
+{}
 
 Input::~Input()
 {
@@ -45,49 +45,25 @@ Input::~Input()
     }
 
     disconnect();
-    hidUdcStream.close();
 }
 
 void Input::connect()
 {
     try
     {
+        destroyHid(GADGETDIR);
+        createHid(GADGETDIR);
         if (udcName.empty())
         {
-            bool found = false;
-            for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
+            auto maybePort = findFreePort("/sys");
+            if (maybePort.has_value())
             {
-                // /sys/bus/platform/devices/1e6a0000.usb-vhub/1e6a0000.usb-vhub:pX
-                if (fs::is_directory(port) && !fs::is_symlink(port))
-                {
-                    for (const auto& gadget :
-                         fs::directory_iterator(port.path()))
-                    {
-                        // Kernel 6.0:
-                        // /sys/.../1e6a0000.usb-vhub:pX/gadget.Y/suspended
-                        // Kernel 5.15:
-                        // /sys/.../1e6a0000.usb-vhub:pX/gadget/suspended
-                        if (fs::is_directory(gadget) &&
-                            gadget.path().string().find("gadget") !=
-                                std::string::npos &&
-                            !fs::exists(gadget.path() / "suspended"))
-                        {
-                            const std::string portId = port.path().filename();
-                            hidUdcStream << portId << std::endl;
-                            found = true;
-                            break;
-                        }
-                    }
-                }
-                if (found)
-                {
-                    break;
-                }
+                writeSysfsAttribute(*maybePort, "UDC", GADGETDIR);
             }
         }
         else // If UDC has been specified by '-u' parameter, connect to it.
         {
-            hidUdcStream << udcName << std::endl;
+            writeSysfsAttribute(udcName, "UDC", GADGETDIR);
         }
     }
     catch (fs::filesystem_error& e)
@@ -149,7 +125,7 @@ void Input::disconnect()
 
     try
     {
-        hidUdcStream << "" << std::endl;
+        destroyHid(GADGETDIR);
     }
     catch (std::ofstream::failure& e)
     {

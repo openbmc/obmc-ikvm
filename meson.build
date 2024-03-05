@@ -10,16 +10,11 @@ project(
     meson_version: '>=1.1.1',
 )
 
-install_data(
-    'create_usbhid.sh',
-    install_mode: 'rwxr-xr-x',
-    install_dir: get_option('bindir')
-)
-
 executable(
     'obmc-ikvm',
     [
         'ikvm_args.cpp',
+        'ikvm_gadget.cpp',
         'ikvm_input.cpp',
         'ikvm_manager.cpp',
         'ikvm_server.cpp',
