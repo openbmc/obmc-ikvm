@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "55b5e200_551bd119",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-07T12:47:36Z",
+      "side": 1,
+      "message": "no",
+      "parentUuid": "08a63b04_f41a740c",
+      "range": {
+        "startLine": 31,
+        "startChar": 24,
+        "endLine": 32,
+        "endChar": 16
+      },
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "dc35f744_3263fc18",
@@ -60,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df481632_7d3bb084",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-07T12:47:36Z",
+      "side": 1,
+      "message": "sure, will do.",
+      "parentUuid": "a810dfbb_3d5bbc5c",
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb37bd1c_dfe0b010",
         "filename": "ikvm_gadget.cpp",
         "patchSetId": 1
@@ -71,6 +113,30 @@
       "writtenOn": "2024-03-07T09:46:18Z",
       "side": 1,
       "message": "While I suppose it\u0027d technically be a teeny tiny bit less efficient, I think it might be nice to define this in terms of `writeRawSysfsAttribute()` instead of duplicating most of it (and this shouldn\u0027t be a hot enough path that constructing a `std::string` or whatever to have a span to pass to the inner function makes any real difference).\n\nOr actually I suppose if all the sysfs files we\u0027re dealing with here are implemented properly on the kernel side it should be fine to leave off the trailing `\\n`, so it wouldn\u0027t even need to do that (though I guess you\u0027d need a `strlen()` to determine the length of the span).",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1a3c2ef_f05a3e18",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-07T12:47:36Z",
+      "side": 1,
+      "message": "will do.",
+      "parentUuid": "bb37bd1c_dfe0b010",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -106,6 +172,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ea3eca9_1632245d",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-07T12:47:36Z",
+      "side": 1,
+      "message": "sure",
+      "parentUuid": "ea4f3f3d_de09536b",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 0
+      },
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4455b19c_4f41b7b5",
         "filename": "ikvm_gadget.cpp",
         "patchSetId": 1
@@ -117,6 +207,30 @@
       "writtenOn": "2024-03-07T09:46:18Z",
       "side": 1,
       "message": "While we\u0027re at it reformatting this for the language switch, how about we deduplicate the comment \u0026 code and write the bytes as hex integer literals rather than quoted chars?  (`0x01` seems simpler to read/write than `\u0027\\x01\u0027`, especially if it\u0027s all just raw binary with no text.)  So something like:\n \n```\n// Binary HID keyboard descriptor\nstd::array\u003cchar, 63\u003e kbdDesc{\n  0x05, 0x01, // USAGE_PAGE (Generic Desktop)\n  0x09, 0x06, // USAGE (Keyboard)\n  0xa1, 0x01, // Collection (Application)\n  // ...etc...\n};\n```\n\nThat way if we ever have to tweak it it\u0027s much easier to do it in one place instead of two that could drift out of sync undetected.",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 177,
+        "endChar": 80
+      },
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38dbd2d5_92bef22a",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-07T12:47:36Z",
+      "side": 1,
+      "message": "sure thing.",
+      "parentUuid": "4455b19c_4f41b7b5",
       "range": {
         "startLine": 137,
         "startChar": 1,
@@ -146,6 +260,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b76988ba_48e3ff3d",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-07T12:47:36Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "d8a242bd_192ab8f0",
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6336fced_9b226dc1",
         "filename": "ikvm_input.cpp",
         "patchSetId": 1
@@ -157,6 +289,24 @@
       "writtenOn": "2024-03-07T09:46:18Z",
       "side": 1,
       "message": "Hmm, does this cause any problems with multiple simultaneously-connected clients, like the second one booting the first one or effectively demoting it to view-only (by killing its keyboard/mouse) or something?",
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbadbe6c_21f68901",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-07T12:47:36Z",
+      "side": 1,
+      "message": "I\u0027m new to this app so I could be wrong but I don\u0027t think so - the Input::connect/disconnect methods are only called when the connected RFB client count transitions from 0-\u003e1 and 1-\u003e0.",
+      "parentUuid": "6336fced_9b226dc1",
       "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
