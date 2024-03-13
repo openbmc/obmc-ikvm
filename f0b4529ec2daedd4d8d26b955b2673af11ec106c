@@ -100,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e47775b3_3ac361ee",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-13T15:46:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df481632_7d3bb084",
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb37bd1c_dfe0b010",
@@ -137,6 +155,30 @@
       "side": 1,
       "message": "will do.",
       "parentUuid": "bb37bd1c_dfe0b010",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bee44722_a0bf6325",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-13T15:46:17Z",
+      "side": 1,
+      "message": "turns out both const char* and std::string are implicitly convertible to std::span\u003cconst char\u003e so just the one function is needed!",
+      "parentUuid": "d1a3c2ef_f05a3e18",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -194,6 +236,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9366759a_d4a346ea",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-13T15:46:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ea3eca9_1632245d",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 0
+      },
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4455b19c_4f41b7b5",
@@ -231,6 +297,30 @@
       "side": 1,
       "message": "sure thing.",
       "parentUuid": "4455b19c_4f41b7b5",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 177,
+        "endChar": 80
+      },
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b884457_9365794f",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2024-03-13T15:46:17Z",
+      "side": 1,
+      "message": "\u003e While we\u0027re at it reformatting this for the language switch, how about we deduplicate the comment \u0026 code\n\nI did this.\n\n\u003e and write the bytes as hex integer literals\n\nWhen I tried to do this, some of the bytes no longer fit in a (signed) char.  Should I change the array type to unsigned char?  That would then require casts back to signed char when using ofstream::write...given that is it still worth using integer literals?",
+      "parentUuid": "38dbd2d5_92bef22a",
       "range": {
         "startLine": 137,
         "startChar": 1,
