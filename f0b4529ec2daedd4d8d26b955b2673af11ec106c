@@ -333,6 +333,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "27fa8928_a8803f11",
+        "filename": "ikvm_gadget.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-03-19T18:59:42Z",
+      "side": 1,
+      "message": "Ah, that\u0027s unfortunate, but yeah, I see the problem...\n\nAnd yes, I guess unsigned char would be slightly more appropriate for arbitrary binary data -- perhaps a reasonably clean solution would be to have a `writeSysfsAttribute()` that takes one signedness and a tiny wrapper overload that takes the other signedness and just does a trivial conversion before calling the inner one?  (And to be pedantic maybe specify `unsigned char` and `signed char` explicitly on both, since which one a plain `char` is is technically implementation-defined.)\n\nOr if that ends up being more complicated for some reason it wouldn\u0027t be the end of the world to just stick with the character literals as it is now.",
+      "parentUuid": "5b884457_9365794f",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 177,
+        "endChar": 80
+      },
+      "revId": "f0b4529ec2daedd4d8d26b955b2673af11ec106c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8a242bd_192ab8f0",
         "filename": "ikvm_gadget.cpp",
         "patchSetId": 1
