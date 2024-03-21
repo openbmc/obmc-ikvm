@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "393e4997_f4973218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2024-03-21T05:56:48Z",
+      "side": 1,
+      "message": "I don\u0027t have further queries on this item and changes looks good for me.",
+      "revId": "620d7c1d1d632e8dbde52476f3be207fee21381e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

@@ -52,6 +52,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53885abe_7d9f8506",
+        "filename": "ikvm_args.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2024-03-21T05:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8958e33f_a16fdecc",
+      "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72177b5e_6831211f",
@@ -69,6 +87,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9061f2de_67e83746",
+        "filename": "ikvm_args.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2024-03-21T05:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72177b5e_6831211f",
+      "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27de16f8_e44781fb",
@@ -82,6 +118,24 @@
       "writtenOn": "2023-09-04T13:35:33Z",
       "side": 1,
       "message": "If possible, I would suggest updating the comments to reflect latest/missing parameter.\n\n```cpp\n    /*\n     * @brief Constructs Video object\n     *\n     * @param[in] p     - Path to the V4L2 video device\n     * @param[in] input - Reference to the Input object\n     * @param[in] fr    - desired frame rate of the video\n     * @param[in] sub   - desired subsampling of the video\n     * @param[in] fmt   - desired pixel format of the video\n     */\n```",
+      "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9c1a49_f5d1f7e0",
+        "filename": "ikvm_video.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2024-03-21T05:56:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27de16f8_e44781fb",
       "revId": "0de1b1b77f0f91fdf99d928ad749fc3d78ed9ede",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
