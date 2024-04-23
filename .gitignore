@@ -1,0 +1,5 @@
+build*/
+subprojects/*
+!subprojects/phosphor-logging.wrap
+!subprojects/boost.wrap
+!subprojects/packagefiles

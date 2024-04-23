@@ -32,6 +32,7 @@ executable(
         dependency('phosphor-dbus-interfaces'),
         dependency('sdbusplus'),
         dependency('threads'),
+        dependency('boost'),
     ],
     install: true
 )
