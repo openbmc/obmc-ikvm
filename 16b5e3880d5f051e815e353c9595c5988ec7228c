@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29758613_e6f9fadf",
+        "filename": "subprojects/boost.wrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2024-04-23T10:54:19Z",
+      "side": 1,
+      "message": "I have asked this question at the beginning of my refactoring process.\n\nPlease check out answer here https://discord.com/channels/775381525260664832/855566794994221117/1223402897224634379\n\n```\nedtanous — 30.03.2024 1:56\n\nhttps://github.com/boostorg/boost/releases/download/ - cmake enabled boost\nhttps://boostorg.jfrog.io/artifactory/main/release/ - non-cmake boost \"classic\" package (with b2)\nhttps://downloads.yoctoproject.org/mirror/sources/ - Yocto mirror of non-cmake boost (probably created back when boost was running out of bandwidth).\n\nIf the project uses any components that require a library (boost::url, boost::coroutine) use the cmake enabled one.\nIf the project doesn\u0027t use library components, you can use either cmake or non.  We could arguably standardize on the cmake version, but it\u0027s so new, and had to be included hastily and without warning, so we haven\u0027t really propagated it everywhere yet.\nyocto mirror could probably be removed for now.  We can add it back if boost runs out of bandwidth again, although if we\u0027re pulling from github, I seriously doubt Microsoft will run out of bandwidth.\n```",
+      "parentUuid": "55a1a64b_ef5929fc",
+      "revId": "16b5e3880d5f051e815e353c9595c5988ec7228c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76331812_12eed749",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-23T09:49:58Z",
       "side": 1,
       "message": "Indentation looks kind of all over the place here -- I\u0027m not sure offhand what the general formatting/style expectations for meson are, but let\u0027s at least make it vaguely consistent...",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 7
+      },
+      "revId": "16b5e3880d5f051e815e353c9595c5988ec7228c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be778561_bfec4376",
+        "filename": "subprojects/packagefiles/boost/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2024-04-23T10:54:19Z",
+      "side": 1,
+      "message": "Ooops, sorry, missed this one.\n\nFixed",
+      "parentUuid": "76331812_12eed749",
       "range": {
         "startLine": 1,
         "startChar": 0,
