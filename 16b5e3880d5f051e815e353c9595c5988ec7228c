@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55a1a64b_ef5929fc",
+        "filename": "subprojects/boost.wrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-04-23T09:49:58Z",
+      "side": 1,
+      "message": "How\u0027d we end up with this particular URL?  Other repos (E-M and dbus-sensors at least) appear to be using yoctoproject.org, which is a lot more familiar-looking, whereas I have no idea what jfrog.io is.",
+      "revId": "16b5e3880d5f051e815e353c9595c5988ec7228c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76331812_12eed749",
+        "filename": "subprojects/packagefiles/boost/meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-04-23T09:49:58Z",
+      "side": 1,
+      "message": "Indentation looks kind of all over the place here -- I\u0027m not sure offhand what the general formatting/style expectations for meson are, but let\u0027s at least make it vaguely consistent...",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 7
+      },
+      "revId": "16b5e3880d5f051e815e353c9595c5988ec7228c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
