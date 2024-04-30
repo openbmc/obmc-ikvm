@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96130e37_72ed829f",
+        "filename": "subprojects/boost.wrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2024-04-30T09:30:36Z",
+      "side": 1,
+      "message": "Also since there is no formal agreement between the preferred URL, I didn\u0027t make any patches to replace `https://downloads.yoctoproject.org/mirror/sources` for example.\n\nMy goal right now is to simply make every project build locally.",
+      "parentUuid": "99ec31b9_cc97292b",
+      "revId": "16b5e3880d5f051e815e353c9595c5988ec7228c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "76331812_12eed749",
         "filename": "subprojects/packagefiles/boost/meson.build",
         "patchSetId": 1
