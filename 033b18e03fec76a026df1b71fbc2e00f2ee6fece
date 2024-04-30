@@ -1,0 +1,9 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Zev Weiss <zev@bewilderbeest.net>
+Submitted-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+Submitted-at: Tue, 30 Apr 2024 17:23:01 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/71011
+Comments-Total: 8
+Comments-Unresolved: 1
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
