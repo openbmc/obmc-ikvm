@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99ec31b9_cc97292b",
+        "filename": "subprojects/boost.wrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000926
+      },
+      "writtenOn": "2024-04-30T09:25:50Z",
+      "side": 1,
+      "message": "The boilerplate code for the cmake variant can be quite big (example https://gerrit.openbmc.org/c/openbmc/phosphor-host-ipmid/+/70593/2/meson.build) and probably needs some manual handling for every project, that is why I\u0027ve decided to use \"classic\" boost package for the cases where it is enough.\n\nWith that approach I\u0027ve already fixed most of the OpenBMC projects (https://github.com/openbmc/openbmc/issues/3993) so I don\u0027t think it would be reasonable to change the approach now.",
+      "parentUuid": "01fcbb09_8189c652",
+      "revId": "16b5e3880d5f051e815e353c9595c5988ec7228c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "76331812_12eed749",
         "filename": "subprojects/packagefiles/boost/meson.build",
         "patchSetId": 1
