@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58e1d975_1018cc24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-06-03T22:47:18Z",
+      "side": 1,
+      "message": "Small typo here as flagged by CI",
+      "range": {
+        "startLine": 9,
+        "startChar": 53,
+        "endLine": 9,
+        "endChar": 63
+      },
+      "revId": "444fcdad3cfb75c207a1f982927f776d9a0c4ea8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ad05625_814e8806",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-06-03T22:47:18Z",
+      "side": 1,
+      "message": "I\u0027ve found myself mildly bothered by this mismatch as well recently, and would welcome the improved consistency -- however, the `start-ipkvm` name is unfortunately also hard-coded in various other OpenBMC repos, which will also need a corresponding update.  I see you\u0027ve also posted https://gerrit.openbmc.org/c/openbmc/openbmc/+/71773, but there are a number of other places that will also need a corresponding update: https://github.com/search?q\u003dorg%3Aopenbmc+start-ipkvm\u0026type\u003dcode\n\nAlso, for updating openbmc/openbmc it would be nice to do the name-change and SRCREV bump in a single commit so as to avoid the window of brokenness that will result if one part gets done before the other (ideally also in the same commit as a SRCREV bump updating the service-name strings in intel-ipmi-oem and service-config-manager...I *think* those are the only two others with an actual functional dependency involved, but it would be nice to do them all atomically).",
+      "revId": "444fcdad3cfb75c207a1f982927f776d9a0c4ea8",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
