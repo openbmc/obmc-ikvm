@@ -39,7 +39,7 @@ executable(
 
 fs = import('fs')
 fs.copyfile(
-    'start-ipkvm.service',
+    'obmc-ikvm.service',
     install: true,
     install_dir:
         dependency('systemd').get_variable(
