@@ -116,6 +116,24 @@
       "message": "Aside from the small confusion noted above, the description of the problem is very good -- thanks for writing it up so thoroughly.  However, it would be good to also include at least a brief description of why/how the change in the patch solves the problem.",
       "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08d47f2d_f15eae69",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2024-06-04T12:06:06Z",
+      "side": 1,
+      "message": "The mainThread sets videoDone to false before it executes the function waitServer, then the CPU blocks the mainThread and swithes to execute serverThread. While the serverThread is blocked for waiting videoDone to be set to true. In the case creates a deadlock.\n\nThe patch delays to set videoDone to false after the mainThread is blocked for waiting serverDone, then the value of the videoDone maintains true. So the serverThread is unblocked as the videDone is true. After the serverThread finishes executing the function setServerDone, The CPU will unblocks mainThread.",
+      "parentUuid": "f3d6fa77_95184ee7",
+      "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
