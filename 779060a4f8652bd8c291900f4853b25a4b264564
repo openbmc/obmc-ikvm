@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44e50708_eb0cf93d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2024-06-04T10:11:10Z",
+      "side": 1,
+      "message": "Yes, the line is \u0027waitVideo\u0027.",
+      "parentUuid": "0ebb6d1f_2a90ab09",
+      "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4b91e6d_0c6512a4",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
@@ -31,6 +49,30 @@
       "writtenOn": "2024-06-04T00:43:37Z",
       "side": 1,
       "message": "Nit: `s/videon done/videoDone/`",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deadc23a_51910347",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2024-06-04T10:11:10Z",
+      "side": 1,
+      "message": "Thank you for pointing it out. Revised as your suggestion.",
+      "parentUuid": "e4b91e6d_0c6512a4",
       "range": {
         "startLine": 38,
         "startChar": 7,
