@@ -170,6 +170,24 @@
       "parentUuid": "08d47f2d_f15eae69",
       "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79255ea2_cb7765e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-06-04T18:07:54Z",
+      "side": 1,
+      "message": "Thanks, that\u0027s the sort of explanation I was looking for, though I meant to add it to the commit message so it ends up included in the actual repository where people can see it more easily, not just on a gerrit review.\n\nAnd as a small nitpick on the wording of the explanation, I think the last sentence would be slightly more accurate as something like:\n\n\u003e After serverThread finishes executing setServerDone, mainThread is unblocked and continues executing.\n\n(Because it isn\u0027t really the CPU itself that blocks and unblocks threads, it\u0027s the OS kernel, and then generally only as a result of actions taken by userspace threads, such as the `sync.notify_all()` call in this case.)",
+      "parentUuid": "7df3d8d7_3528651a",
+      "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
