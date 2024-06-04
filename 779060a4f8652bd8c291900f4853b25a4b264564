@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b7c0085_01e8fd8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2024-06-04T10:41:40Z",
+      "side": 1,
+      "message": "The mainThread executes the function \u0027waitServer\u0027 before it sets \u0027videoDone\u0027 to be false, then mainThread is blocked until that serverThread set serverDone to be true. Nextly, the cpu switches to serverThread that execute the function \u0027waitVideo\u0027. Because the videoDone is true, serverThread is able to execute continuously seting serverDone to be true. Finally the mainThread will be unblocked.",
+      "parentUuid": "44e50708_eb0cf93d",
+      "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4b91e6d_0c6512a4",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
