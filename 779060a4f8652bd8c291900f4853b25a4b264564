@@ -206,6 +206,24 @@
       "parentUuid": "79255ea2_cb7765e5",
       "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9f39fd4_b2d0c32f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-06-05T10:37:46Z",
+      "side": 1,
+      "message": "No problem -- thank you for taking the time to write up a detailed explanation,  ASCII art diagram and all! 👍",
+      "parentUuid": "6be4ece2_7d750866",
+      "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
