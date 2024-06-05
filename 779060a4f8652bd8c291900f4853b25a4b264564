@@ -188,6 +188,24 @@
       "parentUuid": "7df3d8d7_3528651a",
       "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6be4ece2_7d750866",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2024-06-05T07:45:35Z",
+      "side": 1,
+      "message": "Got it. The gerrit review was appended to the commit message. Thanks a lot for the trouble you\u0027ve taken to understand and polish my comments. Forgive me for my poor English ^_^.",
+      "parentUuid": "79255ea2_cb7765e5",
+      "revId": "779060a4f8652bd8c291900f4853b25a4b264564",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
