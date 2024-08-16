@@ -92,9 +92,8 @@ class Server
      * @param[in] cl - Handle to the client object
      * @param[in] furMsg - Pointer of the FUR message
      */
-    static void
-        clientFramebufferUpdateRequest(rfbClientPtr cl,
-                                       rfbFramebufferUpdateRequestMsg* furMsg);
+    static void clientFramebufferUpdateRequest(
+        rfbClientPtr cl, rfbFramebufferUpdateRequestMsg* furMsg);
     /*
      * @brief Handler for a client disconnecting
      *
@@ -134,47 +133,49 @@ class Server
     /* @brief Cursor bitmap height */
     static constexpr int cursorHeight = 20;
     /* @brief Cursor bitmap */
-    static constexpr char cursor[] = "                    "
-                                     " x                  "
-                                     " xx                 "
-                                     " xxx                "
-                                     " xxxx               "
-                                     " xxxxx              "
-                                     " xxxxxx             "
-                                     " xxxxxxx            "
-                                     " xxxxxxxx           "
-                                     " xxxxxxxxx          "
-                                     " xxxxxxxxxx         "
-                                     " xxxxxxxxxxx        "
-                                     " xxxxxxx            "
-                                     " xxxxxxx            "
-                                     " xxx  xxx           "
-                                     " xx   xxx           "
-                                     " x     xxx          "
-                                     "       xxx          "
-                                     "        x           "
-                                     "                    ";
+    static constexpr char cursor[] =
+        "                    "
+        " x                  "
+        " xx                 "
+        " xxx                "
+        " xxxx               "
+        " xxxxx              "
+        " xxxxxx             "
+        " xxxxxxx            "
+        " xxxxxxxx           "
+        " xxxxxxxxx          "
+        " xxxxxxxxxx         "
+        " xxxxxxxxxxx        "
+        " xxxxxxx            "
+        " xxxxxxx            "
+        " xxx  xxx           "
+        " xx   xxx           "
+        " x     xxx          "
+        "       xxx          "
+        "        x           "
+        "                    ";
     /* @brief Cursor bitmap mask */
-    static constexpr char cursorMask[] = " o                  "
-                                         "oxo                 "
-                                         "oxxo                "
-                                         "oxxxo               "
-                                         "oxxxxo              "
-                                         "oxxxxxo             "
-                                         "oxxxxxxo            "
-                                         "oxxxxxxxo           "
-                                         "oxxxxxxxxo          "
-                                         "oxxxxxxxxxo         "
-                                         "oxxxxxxxxxxo        "
-                                         "oxxxxxxxxxxxo       "
-                                         "oxxxxxxxoooo        "
-                                         "oxxxxxxxo           "
-                                         "oxxxooxxxo          "
-                                         "oxxo oxxxo          "
-                                         "oxo   oxxxo         "
-                                         " o    oxxxo         "
-                                         "       oxo          "
-                                         "        o           ";
+    static constexpr char cursorMask[] =
+        " o                  "
+        "oxo                 "
+        "oxxo                "
+        "oxxxo               "
+        "oxxxxo              "
+        "oxxxxxo             "
+        "oxxxxxxo            "
+        "oxxxxxxxo           "
+        "oxxxxxxxxo          "
+        "oxxxxxxxxxo         "
+        "oxxxxxxxxxxo        "
+        "oxxxxxxxxxxxo       "
+        "oxxxxxxxoooo        "
+        "oxxxxxxxo           "
+        "oxxxooxxxo          "
+        "oxxo oxxxo          "
+        "oxo   oxxxo         "
+        " o    oxxxo         "
+        "       oxo          "
+        "        o           ";
 };
 
 } // namespace ikvm

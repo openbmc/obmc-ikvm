@@ -133,9 +133,9 @@ void Server::sendFrame()
             {
                 /* JFIF header contains some varying data so skip it for
                  * checksum calculation */
-                frame_crc = boost::crc<32, 0x04C11DB7, 0xFFFFFFFF, 0xFFFFFFFF,
-                                       true, true>(data + 0x30,
-                                                   video.getFrameSize() - 0x30);
+                frame_crc =
+                    boost::crc<32, 0x04C11DB7, 0xFFFFFFFF, 0xFFFFFFFF, true,
+                               true>(data + 0x30, video.getFrameSize() - 0x30);
             }
 
             if (cd->last_crc == frame_crc)
@@ -222,8 +222,8 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
 {
     Server* server = (Server*)cl->screen->screenData;
 
-    cl->clientData = new ClientData(server->video.getFrameRate(),
-                                    &server->input);
+    cl->clientData =
+        new ClientData(server->video.getFrameRate(), &server->input);
     cl->clientGoneHook = clientGone;
     cl->clientFramebufferUpdateRequestHook = clientFramebufferUpdateRequest;
     if (!server->numClients++)

@@ -12,15 +12,16 @@ Args::Args(int argc, char* argv[]) :
 {
     int option;
     const char* opts = "f:s:h:k:p:u:v:c";
-    struct option lopts[] = {{"frameRate", 1, 0, 'f'},
-                             {"subsampling", 1, 0, 's'},
-                             {"help", 0, 0, 'h'},
-                             {"keyboard", 1, 0, 'k'},
-                             {"mouse", 1, 0, 'p'},
-                             {"udcName", 1, 0, 'u'},
-                             {"videoDevice", 1, 0, 'v'},
-                             {"calcCRC", 0, 0, 'c'},
-                             {0, 0, 0, 0}};
+    struct option lopts[] = {
+        {"frameRate", 1, 0, 'f'},
+        {"subsampling", 1, 0, 's'},
+        {"help", 0, 0, 'h'},
+        {"keyboard", 1, 0, 'k'},
+        {"mouse", 1, 0, 'p'},
+        {"udcName", 1, 0, 'u'},
+        {"videoDevice", 1, 0, 'v'},
+        {"calcCRC", 0, 0, 'c'},
+        {0, 0, 0, 0}};
 
     while ((option = getopt_long(argc, argv, opts, lopts, NULL)) != -1)
     {
