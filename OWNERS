@@ -34,7 +34,6 @@
 owners:
 - eajames@linux.ibm.com
 - jae.hyun.yoo@linux.intel.com
-- zev@bewilderbeest.net
 
 reviewers:
 
@@ -47,6 +46,3 @@ openbmc:
 - name: Jae Hyun Yoo
   email: jae.hyun.yoo@linux.intel.com
   discord: jae
-- name: Zev Weiss
-  email: zev@bewilderbeest.net
-  discord: zevweiss
