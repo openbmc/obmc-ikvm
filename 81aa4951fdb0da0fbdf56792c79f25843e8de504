@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53d92e19_ec8ff9a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000733
+      },
+      "writtenOn": "2024-09-13T18:30:33Z",
+      "side": 1,
+      "message": "Let\u0027s see if we can get the service-config-manager \u0026 intel-ipmi-oem patches merged too and then combine SRCREV bumps for all three into https://gerrit.openbmc.org/c/openbmc/openbmc/+/71773.",
+      "revId": "81aa4951fdb0da0fbdf56792c79f25843e8de504",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
