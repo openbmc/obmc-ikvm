@@ -22,9 +22,9 @@
 namespace ikvm
 {
 
-const int Video::bitsPerSample(8);
-const int Video::bytesPerPixel(4);
-const int Video::samplesPerPixel(3);
+int Video::bitsPerSample(8);
+int Video::bytesPerPixel(4);
+int Video::samplesPerPixel(3);
 
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
@@ -33,8 +33,56 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 Video::Video(const std::string& p, Input& input, int fr, int sub) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
     lastFrameIndex(-1), height(600), width(800), subSampling(sub), input(input),
-    path(p), pixelformat(V4L2_PIX_FMT_JPEG)
-{}
+    path(p)
+{
+    int rc;
+    v4l2_format fmt;
+
+    memset(&fmt, 0, sizeof(v4l2_format));
+    fmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+    fd = open(path.c_str(), O_RDWR);
+    if (fd < 0)
+    {
+        log<level::ERR>("Failed to open video device",
+                        entry("PATH=%s", path.c_str()),
+                        entry("ERROR=%s", strerror(errno)));
+        elog<Open>(
+            xyz::openbmc_project::Common::File::Open::ERRNO(errno),
+            xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
+    }
+    rc = ioctl(fd, VIDIOC_G_FMT, &fmt);
+    if (rc < 0)
+    {
+        log<level::ERR>("Failed to query video device format",
+                        entry("ERROR=%s", strerror(errno)));
+        elog<ReadFailure>(
+            xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
+                errno),
+            xyz::openbmc_project::Common::Device::ReadFailure::
+                CALLOUT_DEVICE_PATH(path.c_str()));
+    }
+
+    pixelformat = fmt.fmt.pix.pixelformat;
+
+    if (pixelformat != V4L2_PIX_FMT_RGB24 && pixelformat != V4L2_PIX_FMT_JPEG &&
+        pixelformat != V4L2_PIX_FMT_RGB565 &&
+        pixelformat != V4L2_PIX_FMT_HEXTILE)
+    {
+        log<level::ERR>("Pixel Format not supported",
+                        entry("PIXELFORMAT=%d", pixelformat));
+    }
+
+    if (pixelformat == V4L2_PIX_FMT_RGB565 ||
+        pixelformat == V4L2_PIX_FMT_HEXTILE)
+    {
+        bitsPerSample = 5;
+        bytesPerPixel = 2;
+        samplesPerPixel = 1;
+    }
+
+    close(fd);
+    fd = -1;
+}
 
 Video::~Video()
 {
@@ -457,13 +505,6 @@ void Video::start()
 
     height = fmt.fmt.pix.height;
     width = fmt.fmt.pix.width;
-    pixelformat = fmt.fmt.pix.pixelformat;
-
-    if (pixelformat != V4L2_PIX_FMT_RGB24 && pixelformat != V4L2_PIX_FMT_JPEG)
-    {
-        log<level::ERR>("Pixel Format not supported",
-                        entry("PIXELFORMAT=%d", pixelformat));
-    }
 
     resize();
 

@@ -121,11 +121,11 @@ class Video
     }
 
     /* @brief Number of bits per component of a pixel */
-    static const int bitsPerSample;
+    static int bitsPerSample;
     /* @brief Number of bytes of storage for a pixel */
-    static const int bytesPerPixel;
+    static int bytesPerPixel;
     /* @brief Number of components in a pixel (i.e. 3 for RGB pixel) */
-    static const int samplesPerPixel;
+    static int samplesPerPixel;
 
   private:
     /*
