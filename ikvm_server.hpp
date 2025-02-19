@@ -110,6 +110,23 @@ class Server
     /* @brief Performs the resize operation on the framebuffer */
     void doResize();
 
+    /*
+     * @brief Performs the server pixel format setting
+     *
+     * @param[in] screen - Handle to the RFB server object
+     */
+    void rfbSetServerPixelFormat(rfbScreenInfoPtr screen);
+
+    /*
+     * @brief Sends hextil compressed data to the client
+     *
+     * @param[in] cl - Handle to the client object
+     * @param[in] buf - Pointer to the compressed data
+     * @param[in] compressedLen - Length of the compressed data
+     */
+    rfbBool rfbSendCompressedDataHextile(rfbClientPtr cl, char* buf,
+                                         size_t compressedLen);
+
     /* @brief Boolean to indicate if a resize operation is on-going */
     bool pendingResize;
     /* @brief Number of frames handled since a client connected */
