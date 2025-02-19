@@ -37,6 +37,8 @@ Server::Server(const Args& args, Input& i, Video& v) :
     framebuffer.resize(
         video.getHeight() * video.getWidth() * Video::bytesPerPixel, 0);
 
+    rfbSetServerPixelFormat(server);
+
     server->screenData = this;
     server->desktopName = "OpenBMC IKVM";
     server->frameBuffer = framebuffer.data();
@@ -63,6 +65,28 @@ Server::Server(const Args& args, Input& i, Video& v) :
 Server::~Server()
 {
     rfbScreenCleanup(server);
+}
+
+std::map<uint32_t, Server::RGBBits> pixelFormatMap = {
+    {V4L2_PIX_FMT_RGB565, {5, 6, 5}},
+    {V4L2_PIX_FMT_HEXTILE, {5, 6, 5}},
+};
+
+void Server::rfbSetServerPixelFormat(rfbScreenInfoPtr screen)
+{
+    rfbPixelFormat* format = &screen->serverFormat;
+    auto it = pixelFormatMap.find(video.getPixelformat());
+
+    // query the pixel format map or use the original format
+    if (it != pixelFormatMap.end())
+    {
+        format->redMax = (1 << it->second.redBits) - 1;
+        format->greenMax = (1 << it->second.greenBits) - 1;
+        format->blueMax = (1 << it->second.blueBits) - 1;
+        format->redShift = 0;
+        format->greenShift = it->second.redBits;
+        format->blueShift = it->second.redBits + it->second.greenBits;
+    }
 }
 
 void Server::resize()
@@ -160,6 +184,7 @@ void Server::sendFrame()
         switch (video.getPixelformat())
         {
             case V4L2_PIX_FMT_RGB24:
+            case V4L2_PIX_FMT_RGB565:
                 framebuffer.assign(data, data + video.getFrameSize());
                 rfbMarkRectAsModified(server, 0, 0, video.getWidth(),
                                       video.getHeight());
@@ -181,12 +206,48 @@ void Server::sendFrame()
                 rfbSendUpdateBuf(cl);
                 break;
 
+            case V4L2_PIX_FMT_HEXTILE:
+                fu->type = rfbFramebufferUpdate;
+                cl->ublen = sz_rfbFramebufferUpdateMsg;
+                rfbSendUpdateBuf(cl);
+
+                rfbSendCompressedDataHextile(cl, data, video.getFrameSize());
+
+                if (cl->enableLastRectEncoding)
+                {
+                    rfbSendLastRectMarker(cl);
+                }
+                rfbSendUpdateBuf(cl);
+                break;
+
             default:
                 break;
         }
     }
 
     rfbReleaseClientIterator(it);
+}
+
+rfbBool Server::rfbSendCompressedDataHextile(rfbClientPtr cl, char* buf,
+                                             int compressedLen)
+{
+
+    for (int i = 0, portionLen = UPDATE_BUF_SIZE; i < compressedLen; i += portionLen)
+    {
+        if (i + portionLen > compressedLen)
+        {
+            portionLen = compressedLen - i;
+        }
+        if (cl->ublen + portionLen > UPDATE_BUF_SIZE)
+        {
+            if (!rfbSendUpdateBuf(cl))
+                return FALSE;
+        }
+        memcpy(&cl->updateBuf[cl->ublen], &buf[i], portionLen);
+        cl->ublen += portionLen;
+    }
+
+    return TRUE;
 }
 
 void Server::clientFramebufferUpdateRequest(
@@ -247,6 +308,9 @@ void Server::doResize()
     rfbNewFramebuffer(server, framebuffer.data(), video.getWidth(),
                       video.getHeight(), Video::bitsPerSample,
                       Video::samplesPerPixel, Video::bytesPerPixel);
+
+    rfbSetServerPixelFormat(server);
+
     rfbMarkRectAsModified(server, 0, 0, video.getWidth(), video.getHeight());
 
     it = rfbGetClientIterator(server);
@@ -254,6 +318,9 @@ void Server::doResize()
     while ((cl = rfbClientIteratorNext(it)))
     {
         ClientData* cd = (ClientData*)cl->clientData;
+
+        // Reset Translate function when pixel format changes
+        server->setTranslateFunction(cl);
 
         if (!cd)
         {
