@@ -82,8 +82,13 @@ class Input
     static constexpr const char* hidUdcPath =
         "/sys/kernel/config/usb_gadget/obmc_hid/UDC";
     /* @brief Path to the USB virtual hub */
+#ifdef AST2700_VHUBA0
+    static constexpr const char* usbVirtualHubPath =
+        "/sys/bus/platform/devices/12060000.usb-vhub";
+#else
     static constexpr const char* usbVirtualHubPath =
         "/sys/bus/platform/devices/1e6a0000.usb-vhub";
+#endif
     /* @brief Retry limit for writing an HID report */
     static constexpr int HID_REPORT_RETRY_MAX = 5;
     /*
