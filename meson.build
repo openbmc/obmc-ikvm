@@ -7,6 +7,11 @@ project(
     meson_version: '>=1.1.1',
 )
 
+usb_vhub_path = get_option('usb-vhub-path')
+if usb_vhub_path == 'ast2700_vhuba0'
+    add_project_arguments('-DAST2700_VHUBA0', language: 'cpp')
+endif
+
 install_data(
     'create_usbhid.sh',
     install_mode: 'rwxr-xr-x',
