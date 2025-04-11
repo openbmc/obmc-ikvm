@@ -1,0 +1,1 @@
+option('usb-vhub-path', type: 'string', value:'ast2600_vhub', description: 'usb virtual hub path configuration')
