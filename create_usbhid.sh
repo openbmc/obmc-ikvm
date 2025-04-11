@@ -1,7 +1,16 @@
 #!/bin/sh
 
 hid_conf_directory="/sys/kernel/config/usb_gadget/obmc_hid"
-dev_name="1e6a0000.usb-vhub"
+SOC_FAMILY=$(cat /sys/bus/soc/devices/soc0/family)
+
+if [ "${SOC_FAMILY}" = "AST2600" ]; then
+    DEV_NAME="1e6a0000.usb-vhub"
+elif [ "${SOC_FAMILY}" = "AST2700" ] || [ "${SOC_FAMILY}" = "AST2750" ]; then
+    DEV_NAME="12060000.usb-vhub"
+else
+    echo "SOC Family is unsupported."
+    exit 1
+fi
 
 create_hid() {
     # create gadget
@@ -125,10 +134,10 @@ create_hid() {
 }
 
 connect_hid() {
-    if ! grep -q "${dev_name}:p" UDC; then
+    if ! grep -q "${DEV_NAME}:p" UDC; then
         i=0
         num_ports=5
-        base_usb_dir="/sys/bus/platform/devices/${dev_name}/${dev_name}:p"
+        base_usb_dir="/sys/bus/platform/devices/${DEV_NAME}/${DEV_NAME}:p"
         while [ "${i}" -lt "${num_ports}" ]; do
             port=$(("${i}" + 1))
             i="${port}"
@@ -136,12 +145,12 @@ connect_hid() {
                 break
             fi
         done
-        echo "${dev_name}:p${port}" > UDC
+        echo "${DEV_NAME}:p${port}" > UDC
     fi
 }
 
 disconnect_hid() {
-    if grep -q "${dev_name}:p" UDC; then
+    if grep -q "${DEV_NAME}:p" UDC; then
         echo "" > UDC
     fi
 }
