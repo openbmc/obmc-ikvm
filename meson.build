@@ -38,5 +38,5 @@ fs = import('fs')
 fs.copyfile(
     'obmc-ikvm.service',
     install: true,
-    install_dir: dependency('systemd').get_variable('systemdsystemunitdir'),
+    install_dir: dependency('systemd').get_variable('systemd_system_unit_dir'),
 )
