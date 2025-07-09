@@ -3,17 +3,14 @@ project(
     'cpp',
     version: '1.0',
     license: 'GPLv2',
-    default_options: [
-        'cpp_std=c++23',
-        'werror=true',
-    ],
+    default_options: ['cpp_std=c++23', 'werror=true'],
     meson_version: '>=1.1.1',
 )
 
 install_data(
     'create_usbhid.sh',
     install_mode: 'rwxr-xr-x',
-    install_dir: get_option('bindir')
+    install_dir: get_option('bindir'),
 )
 
 executable(
@@ -34,14 +31,12 @@ executable(
         dependency('threads'),
         dependency('boost'),
     ],
-    install: true
+    install: true,
 )
 
 fs = import('fs')
 fs.copyfile(
     'obmc-ikvm.service',
     install: true,
-    install_dir:
-        dependency('systemd').get_variable(
-            'systemdsystemunitdir')
+    install_dir: dependency('systemd').get_variable('systemd_system_unit_dir'),
 )
