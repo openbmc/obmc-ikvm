@@ -43,5 +43,5 @@ fs.copyfile(
     install: true,
     install_dir:
         dependency('systemd').get_variable(
-            'systemdsystemunitdir')
+            'systemd_system_unit_dir')
 )
