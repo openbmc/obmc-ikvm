@@ -50,6 +50,74 @@
       "message": "Looks good to me. Adding +1.",
       "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40e87868_5f1264f2",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2025-09-22T03:23:45Z",
+      "side": 1,
+      "message": "Remove lines 234 and 235; it would be more appropriate to use the following code to limit the scope of these variables.\nfor (int i \u003d 0, portionLen \u003d UPDATE_BUF_SIZE;; i \u003c compressedLen; i +\u003d portionLen)",
+      "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e51e0b4b_d3de87ce",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2025-09-22T03:23:45Z",
+      "side": 1,
+      "message": "Please use lowercase letters.\nreturn false;",
+      "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81d1f03_bcb225b4",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2025-09-22T03:23:45Z",
+      "side": 1,
+      "message": "As the above comment points out that please use lowercase letters.",
+      "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a9a0676_ddca33c3",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2025-09-22T03:23:45Z",
+      "side": 1,
+      "message": "It seems reasonable that these following operations should be performed in the original start function rather than the construct function.",
+      "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
