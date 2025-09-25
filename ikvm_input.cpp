@@ -168,6 +168,8 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
         return;
     }
 
+    std::unique_lock<std::mutex> keLock(input->keyEventMutex);
+
     if (down)
     {
         uint8_t sc = keyToScancode(key);
@@ -220,6 +222,8 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
             }
         }
     }
+
+    keLock.unlock();
 
     if (sendKeyboard)
     {
