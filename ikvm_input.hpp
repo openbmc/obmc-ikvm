@@ -127,6 +127,8 @@ class Input
     std::mutex keyMutex;
     /* @brief Mutex for sending pointer reports */
     std::mutex ptrMutex;
+    /* @brief Mutex for key events */
+    std::mutex keyEventMutex;
 };
 
 } // namespace ikvm
