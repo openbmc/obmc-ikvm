@@ -71,6 +71,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "030fc567_c081be0f",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1000025
+      },
+      "writtenOn": "2025-10-07T14:23:25Z",
+      "side": 1,
+      "message": "I\u0027m fine either way.",
+      "parentUuid": "40e87868_5f1264f2",
+      "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e51e0b4b_d3de87ce",
         "filename": "ikvm_server.cpp",
         "patchSetId": 4
@@ -82,6 +100,24 @@
       "writtenOn": "2025-09-22T03:23:45Z",
       "side": 1,
       "message": "Please use lowercase letters.\nreturn false;",
+      "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bd1f34d_04ae80b3",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000025
+      },
+      "writtenOn": "2025-10-07T14:23:25Z",
+      "side": 1,
+      "message": "This is actually cirrect for the rfbBool return type.",
+      "parentUuid": "e51e0b4b_d3de87ce",
       "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -103,6 +139,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea054dc0_1a993ad1",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1000025
+      },
+      "writtenOn": "2025-10-07T14:23:25Z",
+      "side": 1,
+      "message": "Same as above, it is correct.",
+      "parentUuid": "f81d1f03_bcb225b4",
+      "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a9a0676_ddca33c3",
@@ -116,6 +170,24 @@
       "writtenOn": "2025-09-22T03:23:45Z",
       "side": 1,
       "message": "It seems reasonable that these following operations should be performed in the original start function rather than the construct function.",
+      "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "139d2b6d_8e3fa353",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000025
+      },
+      "writtenOn": "2025-10-07T14:23:25Z",
+      "side": 1,
+      "message": "Agree, is there some reason this must be in the constructor?",
+      "parentUuid": "8a9a0676_ddca33c3",
       "revId": "5e939131675a7cc51266c6da7dd370d054b1a8bc",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
