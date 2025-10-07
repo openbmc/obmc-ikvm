@@ -16,6 +16,23 @@
       "message": "Sorry for the delay.",
       "revId": "5217be108835d784824309e0e047e97da897b18c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef679cfe_55657c6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000025
+      },
+      "writtenOn": "2025-10-07T13:54:59Z",
+      "side": 1,
+      "message": "Actually perhaps we should have the path itself be configurable, not selected between two options, and make it default to ast2600 path. That way, as more platforms are used, the config can just be updated",
+      "revId": "5217be108835d784824309e0e047e97da897b18c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
