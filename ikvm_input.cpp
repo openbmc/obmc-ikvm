@@ -15,6 +15,8 @@
 #include <phosphor-logging/log.hpp>
 #include <xyz/openbmc_project/Common/File/error.hpp>
 
+#include <filesystem>
+
 namespace fs = std::filesystem;
 
 namespace ikvm
@@ -54,7 +56,7 @@ void Input::connect()
         if (udcName.empty())
         {
             bool found = false;
-            for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
+            for (const auto& port : fs::directory_iterator(getUsbVirtualHubPath()))
             {
                 // /sys/bus/platform/devices/1e6a0000.usb-vhub/1e6a0000.usb-vhub:pX
                 if (fs::is_directory(port) && !fs::is_symlink(port))
@@ -589,6 +591,21 @@ void Input::writePointer(const uint8_t* report)
         lk.lock();
         retryCount--;
     }
+}
+
+const char* Input::getUsbVirtualHubPath()
+{
+    static const char* chosen = []() {
+        for (auto p : usbVirtualHubPaths)
+        {
+            if (std::filesystem::exists(p))
+            {
+                return p;
+            }
+        }
+        return usbVirtualHubPaths[0]; // fallback
+    }();
+    return chosen;
 }
 
 } // namespace ikvm
