@@ -1,7 +1,17 @@
 #!/bin/sh
 
 hid_conf_directory="/sys/kernel/config/usb_gadget/obmc_hid"
-dev_name="1e6a0000.usb-vhub"
+# Detect available usb-vhub device (AST2600 or AST2700)
+for cand in 1e6a0000.usb-vhub 12060000.usb-vhub; do
+    if [ -d "/sys/bus/platform/devices/$cand" ]; then
+        dev_name="$cand"
+        break
+    fi
+done
+if [ -z "$dev_name" ]; then
+    echo >&2 "No supported usb-vhub device found (tried: 1e6a0000.usb-vhub, 12060000.usb-vhub)."
+    exit 1
+fi
 
 create_hid() {
     # create gadget

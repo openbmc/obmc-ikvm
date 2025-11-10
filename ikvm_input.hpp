@@ -81,9 +81,13 @@ class Input
     /* @brief Path to the HID gadget UDC */
     static constexpr const char* hidUdcPath =
         "/sys/kernel/config/usb_gadget/obmc_hid/UDC";
-    /* @brief Path to the USB virtual hub */
-    static constexpr const char* usbVirtualHubPath =
-        "/sys/bus/platform/devices/1e6a0000.usb-vhub";
+    /* @brief Candidate paths to the USB virtual hub (pick first that exists) */
+    static constexpr const char* usbVirtualHubPaths[] = {
+        "/sys/bus/platform/devices/1e6a0000.usb-vhub", // AST2600
+        "/sys/bus/platform/devices/12060000.usb-vhub", // AST2700
+    };
+    /* @brief Returns the resolved USB virtual hub path */
+    static const char* getUsbVirtualHubPath();
     /* @brief Retry limit for writing an HID report */
     static constexpr int HID_REPORT_RETRY_MAX = 5;
     /*
