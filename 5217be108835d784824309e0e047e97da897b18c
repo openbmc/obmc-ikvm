@@ -33,6 +33,24 @@
       "message": "Actually perhaps we should have the path itself be configurable, not selected between two options, and make it default to ast2600 path. That way, as more platforms are used, the config can just be updated",
       "revId": "5217be108835d784824309e0e047e97da897b18c",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92142eac_802dc561",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2025-11-11T06:31:04Z",
+      "side": 1,
+      "message": "\u003e Actually perhaps we should have the path itself be configurable, not selected between two options, and make it default to ast2600 path. That way, as more platforms are used, the config can just be updated\n\nI also agree with this comment. We already have -u parameter available for configuring UDC. Can\u0027t we make use of it for different platforms to make it more generic?",
+      "parentUuid": "ef679cfe_55657c6a",
+      "revId": "5217be108835d784824309e0e047e97da897b18c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
