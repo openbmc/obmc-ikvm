@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd792276_e100fb55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001844
+      },
+      "writtenOn": "2025-11-11T07:10:37Z",
+      "side": 1,
+      "message": "Currently, if more than one KVM session is launched, all sessions have full HID access, which could lead to regression issues. The proposed code changes look fine to me.\n\nI would suggest to consider introducing an access control mechanism (e.g., allowing only one session to have full HID access) to mitigate such potential issues in the near future.",
+      "revId": "d1064b4c7091ab0f6138e008758b008675f33ed7",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
