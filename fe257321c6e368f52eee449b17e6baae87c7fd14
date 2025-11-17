@@ -16,6 +16,24 @@
       "message": "There is already a discussion about making something very similar configurable via a meson option.\n\nhttps://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/79772/4\n\nI think we should take the same approach here",
       "revId": "fe257321c6e368f52eee449b17e6baae87c7fd14",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20bd82c7_97194326",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2025-11-17T11:34:36Z",
+      "side": 0,
+      "message": "We can provide the UDC name using the -u argument, so there’s no need to change the C++ source code. For the create_usbhid.sh script, this approach seems fine to me.",
+      "parentUuid": "971cc26f_87105a41",
+      "revId": "fe257321c6e368f52eee449b17e6baae87c7fd14",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
