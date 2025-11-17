@@ -1,0 +1,11 @@
+Code-Review+1: Hariharan Rangasamy <hariharanr@ami.com>
+Code-Review-1: Roger Gili Coscojuela <roger.gili-coscojuela@sipearl.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Edward A. James <eajames@linux.ibm.com>
+Submitted-by: Edward A. James <eajames@linux.ibm.com>
+Submitted-at: Mon, 17 Nov 2025 20:17:35 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/79771
+Comments-Total: 3
+Comments-Unresolved: 1
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
