@@ -3,7 +3,7 @@
 hid_conf_directory="/sys/kernel/config/usb_gadget/obmc_hid"
 SOC_FAMILY=$(cat /sys/bus/soc/devices/soc0/family)
 
-if [ "${SOC_FAMILY}" = "AST2600" ]; then
+if [ "${SOC_FAMILY}" = "AST2500" ] || [ "${SOC_FAMILY}" = "AST2600" ]; then
     DEV_NAME="1e6a0000.usb-vhub"
 elif [ "${SOC_FAMILY}" = "AST2700" ] || [ "${SOC_FAMILY}" = "AST2750" ]; then
     DEV_NAME="12060000.usb-vhub"
