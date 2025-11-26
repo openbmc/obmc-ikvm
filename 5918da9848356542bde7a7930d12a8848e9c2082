@@ -33,6 +33,24 @@
       "message": "could you look at the path for 2400?\n\nI thought we had some with video capture back port",
       "revId": "5918da9848356542bde7a7930d12a8848e9c2082",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba0d207b_de1c0cd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2025-11-26T16:11:41Z",
+      "side": 1,
+      "message": "Let me check. AST2400 is not listed in supported machines `https://github.com/openbmc/openbmc/blob/master/meta-phosphor/docs/supported-machines.md`, do we need to consider it?",
+      "parentUuid": "58a10a98_2f96cce1",
+      "revId": "5918da9848356542bde7a7930d12a8848e9c2082",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
