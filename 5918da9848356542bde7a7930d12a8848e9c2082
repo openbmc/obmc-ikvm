@@ -68,6 +68,24 @@
       "message": "At this point, and given that the patch broke existing platforms, maybe we can just default to the original 1e6a0000.usb-vhub if the platform is not one of the ones that we expect, instead of outputing the \"SOC Family is unsupported\" message.",
       "revId": "5918da9848356542bde7a7930d12a8848e9c2082",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59bfe2bd_ef374342",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2025-11-27T08:48:38Z",
+      "side": 1,
+      "message": "AST2400 uses the same UDC as AST2500. I have added the fallback to default UDC.",
+      "parentUuid": "35ee8728_84238ef2",
+      "revId": "5918da9848356542bde7a7930d12a8848e9c2082",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
