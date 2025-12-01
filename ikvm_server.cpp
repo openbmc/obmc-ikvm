@@ -34,12 +34,8 @@ Server::Server(const Args& args, Input& i, Video& v) :
             xyz::openbmc_project::Common::InvalidArgument::ARGUMENT_VALUE(""));
     }
 
-    framebuffer.resize(
-        video.getHeight() * video.getWidth() * Video::bytesPerPixel, 0);
-
     server->screenData = this;
     server->desktopName = "OpenBMC IKVM";
-    server->frameBuffer = framebuffer.data();
     server->newClientHook = newClient;
     server->cursor = rfbMakeXCursor(cursorWidth, cursorHeight, (char*)cursor,
                                     (char*)cursorMask);
@@ -212,6 +208,9 @@ void Server::clientGone(rfbClientPtr cl)
 
     if (server->numClients-- == 1)
     {
+        server->framebuffer.clear();
+        server->framebuffer.shrink_to_fit();
+        server->server->frameBuffer = nullptr;
         server->input.disconnect();
         rfbMarkRectAsModified(server->server, 0, 0, server->video.getWidth(),
                               server->video.getHeight());
@@ -228,6 +227,9 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
     cl->clientFramebufferUpdateRequestHook = clientFramebufferUpdateRequest;
     if (!server->numClients++)
     {
+        server->framebuffer.resize(
+            server->video.getHeight() * server->video.getWidth() * Video::bytesPerPixel, 0);
+        server->server->frameBuffer = server->framebuffer.data();
         server->input.connect();
         server->pendingResize = false;
         server->frameCounter = 0;
