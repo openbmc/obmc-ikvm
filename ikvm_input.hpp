@@ -28,10 +28,10 @@ class Input
     Input(const std::string& kbdPath, const std::string& ptrPath,
           const std::string& udc);
     ~Input();
-    Input(const Input&) = default;
-    Input& operator=(const Input&) = default;
-    Input(Input&&) = default;
-    Input& operator=(Input&&) = default;
+    Input(const Input&) = delete;
+    Input& operator=(const Input&) = delete;
+    Input(Input&&) = delete;
+    Input& operator=(Input&&) = delete;
 
     /* @brief Connects HID gadget to host */
     void connect();

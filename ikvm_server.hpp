@@ -55,9 +55,9 @@ class Server
     Server(const Args& args, Input& i, Video& v);
     ~Server();
     Server(const Server&) = default;
-    Server& operator=(const Server&) = default;
+    Server& operator=(const Server&) = delete;
     Server(Server&&) = default;
-    Server& operator=(Server&&) = default;
+    Server& operator=(Server&&) = delete;
 
     /* @brief Resizes the RFB framebuffer */
     void resize();

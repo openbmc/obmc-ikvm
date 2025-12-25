@@ -26,9 +26,9 @@ class Video
     Video(const std::string& p, Input& input, int fr = 30, int sub = 0);
     ~Video();
     Video(const Video&) = default;
-    Video& operator=(const Video&) = default;
+    Video& operator=(const Video&) = delete;
     Video(Video&&) = default;
-    Video& operator=(Video&&) = default;
+    Video& operator=(Video&&) = delete;
 
     /*
      * @brief Gets the video frame data
