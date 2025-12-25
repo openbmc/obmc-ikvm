@@ -13,27 +13,23 @@ Args::Args(int argc, char* argv[]) :
     int option;
     const char* opts = "f:s:h:k:p:u:v:c";
     struct option lopts[] = {
-        {"frameRate", 1, 0, 'f'},
-        {"subsampling", 1, 0, 's'},
-        {"help", 0, 0, 'h'},
-        {"keyboard", 1, 0, 'k'},
-        {"mouse", 1, 0, 'p'},
-        {"udcName", 1, 0, 'u'},
-        {"videoDevice", 1, 0, 'v'},
-        {"calcCRC", 0, 0, 'c'},
-        {0, 0, 0, 0}};
+        {"frameRate", 1, nullptr, 'f'},   {"subsampling", 1, nullptr, 's'},
+        {"help", 0, nullptr, 'h'},        {"keyboard", 1, nullptr, 'k'},
+        {"mouse", 1, nullptr, 'p'},       {"udcName", 1, nullptr, 'u'},
+        {"videoDevice", 1, nullptr, 'v'}, {"calcCRC", 0, nullptr, 'c'},
+        {nullptr, 0, nullptr, 0}};
 
-    while ((option = getopt_long(argc, argv, opts, lopts, NULL)) != -1)
+    while ((option = getopt_long(argc, argv, opts, lopts, nullptr)) != -1)
     {
         switch (option)
         {
             case 'f':
-                frameRate = (int)strtol(optarg, NULL, 0);
+                frameRate = (int)strtol(optarg, nullptr, 0);
                 if (frameRate < 0 || frameRate > 60)
                     frameRate = 30;
                 break;
             case 's':
-                subsampling = (int)strtol(optarg, NULL, 0);
+                subsampling = (int)strtol(optarg, nullptr, 0);
                 if (subsampling < 0 || subsampling > 1)
                     subsampling = 0;
                 break;

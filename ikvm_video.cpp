@@ -80,7 +80,7 @@ void Video::getFrame()
     fd_flags = fcntl(fd, F_GETFL);
     fcntl(fd, F_SETFL, fd_flags | O_NONBLOCK);
 
-    rc = select(fd + 1, &fds, NULL, NULL, &tv);
+    rc = select(fd + 1, &fds, nullptr, nullptr, &tv);
     if (rc > 0)
     {
         do
@@ -327,7 +327,7 @@ void Video::resize()
                     CALLOUT_DEVICE_PATH(path.c_str()));
         }
 
-        buffers[i].data = mmap(NULL, buf.length, PROT_READ | PROT_WRITE,
+        buffers[i].data = mmap(nullptr, buf.length, PROT_READ | PROT_WRITE,
                                MAP_SHARED, fd, buf.m.offset);
         if (buffers[i].data == MAP_FAILED)
         {
