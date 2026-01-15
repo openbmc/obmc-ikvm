@@ -1,0 +1,7 @@
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Code-Review+2: Edward A. James <eajames@linux.ibm.com>
+Submitted-by: Jayanth Othayoth <ojayanth@gmail.com>
+Submitted-at: Thu, 15 Jan 2026 04:34:08 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/86215
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
