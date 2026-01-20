@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221f163f_143a1a56",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-01-20T15:48:20Z",
+      "side": 1,
+      "message": "This doesn’t seem to cause an issue in your test, but did you confirm either in the libvncserver documentation or in the source code that it’s safe to call rfbMarkRectAsModified when the framebuffer is nullptr?",
+      "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dbd7efb_2c2bb8a2",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-01-20T15:48:20Z",
+      "side": 1,
+      "message": "What is the actual benefit of this change? As long as this service is enabled, it implies that this functionality will be used. And once a client connects, the framebuffer should be allocated anyway, right?",
+      "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
