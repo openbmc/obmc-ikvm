@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "455b5b33_51ae57d5",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-01-30T19:34:56Z",
+      "side": 1,
+      "message": "Yes, please check whether the library causes any issues. As you can see in the code, rfbScreenCleanup() is called from the server class destructor. And if you look into the implementation of rfbScreenCleanup() in the library, you’ll notice that it frees the framebuffer when LIBVNCSERVER_HAVE_LIBZ is defined. In our build, LIBVNCSERVER_HAVE_LIBZ is defined, so freeing the framebuffer here could lead to a double-free issue.",
+      "parentUuid": "04d288b6_656a8908",
+      "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6dbd7efb_2c2bb8a2",
         "filename": "ikvm_server.cpp",
         "patchSetId": 5
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "I want to reduce the idle memory usage. When the service is running but no client is connected, it shouldn’t keep the framebuffer in memory. The framebuffer is only needed when a client is actively connected",
       "parentUuid": "6dbd7efb_2c2bb8a2",
+      "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce39838_48b49f42",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-01-30T19:34:56Z",
+      "side": 1,
+      "message": "Then this doesn’t seem to be a bug fix or a proper issue resolution, right? I understand the intention behind this change, but as long as the iKVM feature is enabled, this service can be executed at any time. In other words, if the framebuffer is freed when no client is connected in order to reclaim memory for other services, and later the iKVM service is invoked but memory can no longer be allocated, the feature would simply become unusable. That would indicate a need to revisit the overall memory size and design assumptions.",
+      "parentUuid": "3e169f0a_b0a17ec8",
       "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
