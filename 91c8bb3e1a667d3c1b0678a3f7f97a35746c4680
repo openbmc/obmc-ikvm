@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd192473_7cbc049b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-01-30T09:50:29Z",
+      "side": 1,
+      "message": "I want to reduce the idle memory usage. When the service is running but no client is connected, it shouldn’t keep the framebuffer in memory. The framebuffer is only needed when a client is actively connected",
+      "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "221f163f_143a1a56",
@@ -20,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04d288b6_656a8908",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-01-30T09:50:29Z",
+      "side": 1,
+      "message": "I will check the libvncserver library.",
+      "parentUuid": "221f163f_143a1a56",
+      "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6dbd7efb_2c2bb8a2",
         "filename": "ikvm_server.cpp",
         "patchSetId": 5
@@ -31,6 +66,24 @@
       "writtenOn": "2026-01-20T15:48:20Z",
       "side": 1,
       "message": "What is the actual benefit of this change? As long as this service is enabled, it implies that this functionality will be used. And once a client connects, the framebuffer should be allocated anyway, right?",
+      "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e169f0a_b0a17ec8",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-01-30T09:50:29Z",
+      "side": 1,
+      "message": "I want to reduce the idle memory usage. When the service is running but no client is connected, it shouldn’t keep the framebuffer in memory. The framebuffer is only needed when a client is actively connected",
+      "parentUuid": "6dbd7efb_2c2bb8a2",
       "revId": "91c8bb3e1a667d3c1b0678a3f7f97a35746c4680",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
