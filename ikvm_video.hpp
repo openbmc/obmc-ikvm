@@ -153,7 +153,7 @@ class Video
      *        the open operation
      */
     bool resizeAfterOpen;
-    /* @brief Indicates whether or not timings query was last sucessful */
+    /* @brief Indicates whether or not timings query was last successful */
     bool timingsError;
     /* @brief File descriptor for the V4L2 video device */
     int fd;
