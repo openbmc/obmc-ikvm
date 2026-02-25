@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "543951b6_7811b06f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-02-25T15:43:57Z",
+      "side": 1,
+      "message": "No code changes, only typo fix in the comments. Changes looks good.",
+      "revId": "543696dd5fba7303ddc038165296f8b68aabb69b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
