@@ -12,14 +12,13 @@
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/File/error.hpp>
 
 namespace fs = std::filesystem;
 
 namespace ikvm
 {
-using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
 Input::Input(const std::string& kbdPath, const std::string& ptrPath,
@@ -91,14 +90,14 @@ void Input::connect()
     }
     catch (fs::filesystem_error& e)
     {
-        log<level::ERR>("Failed to search USB virtual hub port",
-                        entry("ERROR=%s", e.what()));
+        lg2::error("Failed to search USB virtual hub port {ERROR}",
+                   "ERROR"s, e.what());
         return;
     }
     catch (std::ofstream::failure& e)
     {
-        log<level::ERR>("Failed to connect HID gadget",
-                        entry("ERROR=%s", e.what()));
+        lg2::error("Failed to connect HID gadget {ERROR}",
+                   "ERROR"s, e.what());
         return;
     }
 
@@ -108,9 +107,9 @@ void Input::connect()
             open(keyboardPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (keyboardFd < 0)
         {
-            log<level::ERR>("Failed to open input device",
-                            entry("PATH=%s", keyboardPath.c_str()),
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to open input device {PATH} {ERROR}",
+                       "PATH"s, keyboardPath.c_str(),
+                       "ERROR"s, strerror(errno));
             elog<Open>(xyz::openbmc_project::Common::File::Open::ERRNO(errno),
                        xyz::openbmc_project::Common::File::Open::PATH(
                            keyboardPath.c_str()));
@@ -122,9 +121,9 @@ void Input::connect()
         pointerFd = open(pointerPath.c_str(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
         if (pointerFd < 0)
         {
-            log<level::ERR>("Failed to open input device",
-                            entry("PATH=%s", pointerPath.c_str()),
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to open input device {PATH} {ERROR}",
+                       "PATH"s, pointerPath.c_str(),
+                       "ERROR"s, strerror(errno));
             elog<Open>(xyz::openbmc_project::Common::File::Open::ERRNO(errno),
                        xyz::openbmc_project::Common::File::Open::PATH(
                            pointerPath.c_str()));
@@ -152,8 +151,8 @@ void Input::disconnect()
     }
     catch (std::ofstream::failure& e)
     {
-        log<level::ERR>("Failed to disconnect HID gadget",
-                        entry("ERROR=%s", e.what()));
+        lg2::error("Failed to disconnect HID gadget {ERROR}",
+                   "ERROR"s, e.what());
     }
 }
 
@@ -549,8 +548,8 @@ bool Input::writeKeyboard(const uint8_t* report)
         {
             if (errno != ESHUTDOWN)
             {
-                log<level::ERR>("Failed to write keyboard report",
-                                entry("ERROR=%s", strerror(errno)));
+                lg2::error("Failed to write keyboard report {ERROR}",
+                           "ERROR"s, strerror(errno));
             }
 
             break;
@@ -581,8 +580,8 @@ void Input::writePointer(const uint8_t* report)
         {
             if (errno != ESHUTDOWN)
             {
-                log<level::ERR>("Failed to write pointer report",
-                                entry("ERROR=%s", strerror(errno)));
+                lg2::error("Failed to write pointer report {ERROR}",
+                           "ERROR"s, strerror(errno));
             }
 
             break;

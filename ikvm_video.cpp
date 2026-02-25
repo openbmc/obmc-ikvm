@@ -15,7 +15,7 @@
 
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/Device/error.hpp>
 #include <xyz/openbmc_project/Common/File/error.hpp>
 
@@ -26,7 +26,6 @@ const int Video::bitsPerSample(8);
 const int Video::bytesPerPixel(4);
 const int Video::samplesPerPixel(3);
 
-using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 
@@ -123,8 +122,8 @@ void Video::getFrame()
             rc = ioctl(fd, VIDIOC_QBUF, &buf);
             if (rc)
             {
-                log<level::ERR>("Failed to queue buffer",
-                                entry("ERROR=%s", strerror(errno)));
+                lg2::error("Failed to queue buffer {ERROR}",
+                           "ERROR"s, strerror(errno));
             }
             else
             {
@@ -155,8 +154,8 @@ bool Video::needsResize()
     {
         if (!timingsError)
         {
-            log<level::ERR>("Failed to query timings",
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to query timings {ERROR}",
+                       "ERROR"s, strerror(errno));
             timingsError = true;
         }
 
@@ -175,9 +174,9 @@ bool Video::needsResize()
 
         if (!width || !height)
         {
-            log<level::ERR>("Failed to get new resolution",
-                            entry("WIDTH=%d", width),
-                            entry("HEIGHT=%d", height));
+            lg2::error("Failed to get new resolution {WIDTH} {HEIGHT}",
+                       "WIDTH"s, width,
+                       "HEIGHT"s, height);
             elog<Open>(
                 xyz::openbmc_project::Common::File::Open::ERRNO(-EPROTO),
                 xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
@@ -223,8 +222,8 @@ void Video::resize()
         rc = ioctl(fd, VIDIOC_STREAMOFF, &type);
         if (rc)
         {
-            log<level::ERR>("Failed to stop streaming",
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to stop streaming {ERROR}",
+                       "ERROR"s, strerror(errno));
             elog<ReadFailure>(
                 xyz::openbmc_project::Common::Device::ReadFailure::
                     CALLOUT_ERRNO(errno),
@@ -254,8 +253,8 @@ void Video::resize()
         rc = ioctl(fd, VIDIOC_REQBUFS, &req);
         if (rc < 0)
         {
-            log<level::ERR>("Failed to zero streaming buffers",
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to zero streaming buffers {ERROR}",
+                       "ERROR"s, strerror(errno));
             elog<ReadFailure>(
                 xyz::openbmc_project::Common::Device::ReadFailure::
                     CALLOUT_ERRNO(errno),
@@ -267,8 +266,8 @@ void Video::resize()
         rc = ioctl(fd, VIDIOC_QUERY_DV_TIMINGS, &timings);
         if (rc < 0)
         {
-            log<level::ERR>("Failed to query timings, restart",
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to query timings, restart {ERROR}",
+                       "ERROR"s, strerror(errno));
             restart();
             return;
         }
@@ -276,8 +275,8 @@ void Video::resize()
         rc = ioctl(fd, VIDIOC_S_DV_TIMINGS, &timings);
         if (rc < 0)
         {
-            log<level::ERR>("Failed to set timings",
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to set timings {ERROR}",
+                       "ERROR"s, strerror(errno));
             elog<ReadFailure>(
                 xyz::openbmc_project::Common::Device::ReadFailure::
                     CALLOUT_ERRNO(errno),
@@ -295,8 +294,8 @@ void Video::resize()
     rc = ioctl(fd, VIDIOC_REQBUFS, &req);
     if (rc < 0 || req.count < 2)
     {
-        log<level::ERR>("Failed to request streaming buffers",
-                        entry("ERROR=%s", strerror(errno)));
+        lg2::error("Failed to request streaming buffers {ERROR}",
+                   "ERROR"s, strerror(errno));
         elog<ReadFailure>(
             xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
                 errno),
@@ -318,8 +317,8 @@ void Video::resize()
         rc = ioctl(fd, VIDIOC_QUERYBUF, &buf);
         if (rc < 0)
         {
-            log<level::ERR>("Failed to query buffer",
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to query buffer {ERROR}",
+                       "ERROR"s, strerror(errno));
             elog<ReadFailure>(
                 xyz::openbmc_project::Common::Device::ReadFailure::
                     CALLOUT_ERRNO(errno),
@@ -331,8 +330,8 @@ void Video::resize()
                                MAP_SHARED, fd, buf.m.offset);
         if (buffers[i].data == MAP_FAILED)
         {
-            log<level::ERR>("Failed to mmap buffer",
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to mmap buffer {ERROR}",
+                       "ERROR"s, strerror(errno));
             elog<ReadFailure>(
                 xyz::openbmc_project::Common::Device::ReadFailure::
                     CALLOUT_ERRNO(errno),
@@ -345,8 +344,8 @@ void Video::resize()
         rc = ioctl(fd, VIDIOC_QBUF, &buf);
         if (rc < 0)
         {
-            log<level::ERR>("Failed to queue buffer",
-                            entry("ERROR=%s", strerror(errno)));
+            lg2::error("Failed to queue buffer {ERROR}",
+                       "ERROR"s, strerror(errno));
             elog<ReadFailure>(
                 xyz::openbmc_project::Common::Device::ReadFailure::
                     CALLOUT_ERRNO(errno),
@@ -360,8 +359,8 @@ void Video::resize()
     rc = ioctl(fd, VIDIOC_STREAMON, &type);
     if (rc)
     {
-        log<level::ERR>("Failed to start streaming",
-                        entry("ERROR=%s", strerror(errno)));
+        lg2::error("Failed to start streaming {ERROR}",
+                   "ERROR"s, strerror(errno));
         elog<ReadFailure>(
             xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
                 errno),
@@ -390,9 +389,9 @@ void Video::start()
     fd = open(path.c_str(), O_RDWR);
     if (fd < 0)
     {
-        log<level::ERR>("Failed to open video device",
-                        entry("PATH=%s", path.c_str()),
-                        entry("ERROR=%s", strerror(errno)));
+        lg2::error("Failed to open video device {PATH} {ERROR}",
+                   "PATH"s, path.c_str(),
+                   "ERROR"s, strerror(errno));
         elog<Open>(
             xyz::openbmc_project::Common::File::Open::ERRNO(errno),
             xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
@@ -402,8 +401,8 @@ void Video::start()
     rc = ioctl(fd, VIDIOC_QUERYCAP, &cap);
     if (rc < 0)
     {
-        log<level::ERR>("Failed to query video device capabilities",
-                        entry("ERROR=%s", strerror(errno)));
+        lg2::error("Failed to query video device capabilities {ERROR}",
+                   "ERROR"s, strerror(errno));
         elog<ReadFailure>(
             xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
                 errno),
@@ -414,7 +413,7 @@ void Video::start()
     if (!(cap.capabilities & V4L2_CAP_VIDEO_CAPTURE) ||
         !(cap.capabilities & V4L2_CAP_STREAMING))
     {
-        log<level::ERR>("Video device doesn't support this application");
+        lg2::error("Video device doesn't support this application");
         elog<Open>(
             xyz::openbmc_project::Common::File::Open::ERRNO(errno),
             xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
@@ -425,8 +424,8 @@ void Video::start()
     rc = ioctl(fd, VIDIOC_G_FMT, &fmt);
     if (rc < 0)
     {
-        log<level::ERR>("Failed to query video device format",
-                        entry("ERROR=%s", strerror(errno)));
+        lg2::error("Failed to query video device format {ERROR}",
+                   "ERROR"s, strerror(errno));
         elog<ReadFailure>(
             xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
                 errno),
@@ -441,8 +440,8 @@ void Video::start()
     rc = ioctl(fd, VIDIOC_S_PARM, &sparm);
     if (rc < 0)
     {
-        log<level::WARNING>("Failed to set video device frame rate",
-                            entry("ERROR=%s", strerror(errno)));
+        lg2::warning("Failed to set video device frame rate {ERROR}",
+                     "ERROR"s, strerror(errno));
     }
 
     ctrl.id = V4L2_CID_JPEG_CHROMA_SUBSAMPLING;
@@ -451,8 +450,8 @@ void Video::start()
     rc = ioctl(fd, VIDIOC_S_CTRL, &ctrl);
     if (rc < 0)
     {
-        log<level::WARNING>("Failed to set video jpeg subsampling",
-                            entry("ERROR=%s", strerror(errno)));
+        lg2::warning("Failed to set video jpeg subsampling {ERROR}",
+                     "ERROR"s, strerror(errno));
     }
 
     height = fmt.fmt.pix.height;
@@ -461,8 +460,8 @@ void Video::start()
 
     if (pixelformat != V4L2_PIX_FMT_RGB24 && pixelformat != V4L2_PIX_FMT_JPEG)
     {
-        log<level::ERR>("Pixel Format not supported",
-                        entry("PIXELFORMAT=%d", pixelformat));
+        lg2::error("Pixel Format not supported {PIXELFORMAT}",
+                   "PIXELFORMAT"s, pixelformat);
     }
 
     resize();
@@ -489,8 +488,8 @@ void Video::stop()
     rc = ioctl(fd, VIDIOC_STREAMOFF, &type);
     if (rc)
     {
-        log<level::ERR>("Failed to stop streaming",
-                        entry("ERROR=%s", strerror(errno)));
+        lg2::error("Failed to stop streaming {ERROR}",
+                   "ERROR"s, strerror(errno));
     }
 
     for (i = 0; i < buffers.size(); ++i)
