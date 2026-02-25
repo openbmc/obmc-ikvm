@@ -6,7 +6,7 @@
 #include <boost/crc.hpp>
 #include <phosphor-logging/elog-errors.hpp>
 #include <phosphor-logging/elog.hpp>
-#include <phosphor-logging/log.hpp>
+#include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/error.hpp>
 
 namespace ikvm
@@ -28,7 +28,7 @@ Server::Server(const Args& args, Input& i, Video& v) :
 
     if (!server)
     {
-        log<level::ERR>("Failed to get VNC screen due to invalid arguments");
+        lg2::error("Failed to get VNC screen due to invalid arguments");
         elog<InvalidArgument>(
             xyz::openbmc_project::Common::InvalidArgument::ARGUMENT_NAME(""),
             xyz::openbmc_project::Common::InvalidArgument::ARGUMENT_VALUE(""));
