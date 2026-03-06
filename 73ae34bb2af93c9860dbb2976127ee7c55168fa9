@@ -16,6 +16,23 @@
       "message": "@hwchang2@nuvoton.com Are you working on the review comments? If not, I can help.",
       "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf274eae_913bec08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-03-06T14:43:33Z",
+      "side": 1,
+      "message": "Thank you! The part where the pixel format is checked in the Video constructor looks okay to me. I\u0027m adding +1 now. Let\u0027s give the other reviewers a bit more time to take a look.",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
