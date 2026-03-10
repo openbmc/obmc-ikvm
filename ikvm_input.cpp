@@ -159,6 +159,8 @@ void Input::keyEvent(rfbBool down, rfbKeySym key, rfbClientPtr cl)
     Server::ClientData* cd = (Server::ClientData*)cl->clientData;
     Input* input = cd->input;
     bool sendKeyboard = false;
+    /* Update the last activity time for session timeout */
+    cd->lastActivityTime = std::chrono::steady_clock::now();
 
     if (input->keyboardFd < 0)
     {
@@ -234,6 +236,8 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
     Input* input = cd->input;
     Server* server = (Server*)cl->screen->screenData;
     const Video& video = server->getVideo();
+    /* Update the last activity time for session timeout */
+    cd->lastActivityTime = std::chrono::steady_clock::now();
 
     if (input->pointerFd < 0)
     {
