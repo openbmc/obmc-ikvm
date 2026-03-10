@@ -8,16 +8,17 @@
 namespace ikvm
 {
 Args::Args(int argc, char* argv[]) :
-    frameRate(30), subsampling(0), calcFrameCRC{false}, commandLine(argc, argv)
+    frameRate(30), subsampling(0), calcFrameCRC{false}, timeoutSeconds(-1),
+    commandLine(argc, argv)
 {
     int option;
-    const char* opts = "f:s:h:k:p:u:v:c";
+    const char* opts = "f:s:h:k:p:u:v:c:t";
     struct option lopts[] = {
-        {"frameRate", 1, nullptr, 'f'},   {"subsampling", 1, nullptr, 's'},
-        {"help", 0, nullptr, 'h'},        {"keyboard", 1, nullptr, 'k'},
-        {"mouse", 1, nullptr, 'p'},       {"udcName", 1, nullptr, 'u'},
-        {"videoDevice", 1, nullptr, 'v'}, {"calcCRC", 0, nullptr, 'c'},
-        {nullptr, 0, nullptr, 0}};
+        {"frameRate", 1, nullptr, 'f'},      {"subsampling", 1, nullptr, 's'},
+        {"help", 0, nullptr, 'h'},           {"keyboard", 1, nullptr, 'k'},
+        {"mouse", 1, nullptr, 'p'},          {"udcName", 1, nullptr, 'u'},
+        {"videoDevice", 1, nullptr, 'v'},    {"calcCRC", 0, nullptr, 'c'},
+        {"timeoutSeconds", 1, nullptr, 't'}, {nullptr, 0, nullptr, 0}};
 
     while ((option = getopt_long(argc, argv, opts, lopts, nullptr)) != -1)
     {
@@ -51,6 +52,11 @@ Args::Args(int argc, char* argv[]) :
             case 'c':
                 calcFrameCRC = true;
                 break;
+            case 't':
+                timeoutSeconds = (int)strtol(optarg, nullptr, 0);
+                if (timeoutSeconds < 0)
+                    timeoutSeconds = -1;
+                break;
         }
     }
 }
@@ -71,6 +77,7 @@ void Args::printUsage()
     fprintf(
         stderr,
         "-c, --calcCRC          Calculate CRC for each frame to save bandwidth\n");
+    fprintf(stderr, "-t timeout             Idle timeout in seconds \n");
     rfbUsage();
 }
 
