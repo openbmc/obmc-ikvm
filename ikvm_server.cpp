@@ -16,7 +16,8 @@ using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 
 Server::Server(const Args& args, Input& i, Video& v) :
-    pendingResize(false), frameCounter(0), numClients(0), input(i), video(v)
+    pendingResize(false), frameCounter(0), numClients(0),
+    timeoutSeconds(args.getTimeoutSeconds()), input(i), video(v)
 {
     std::string ip("localhost");
     const Args::CommandLine& commandLine = args.getCommandLine();
@@ -98,6 +99,7 @@ void Server::sendFrame()
     rfbClientIteratorPtr it;
     rfbClientPtr cl;
     int64_t frame_crc = -1;
+    auto now = std::chrono::steady_clock::now();
 
     if (!data || pendingResize)
     {
@@ -114,6 +116,24 @@ void Server::sendFrame()
         if (!cd)
         {
             continue;
+        }
+
+        // Check if client has been idle for more than configured timeout
+        // Only if timeout is enabled (timeoutSeconds >= 0)
+        if (timeoutSeconds >= 0)
+        {
+            auto inactivityDuration =
+                std::chrono::duration_cast<std::chrono::seconds>(
+                    now - cd->lastActivityTime);
+
+            if (inactivityDuration.count() > timeoutSeconds)
+            {
+                lg2::info(
+                    "Closing idle client connection after {DURATION} seconds",
+                    "DURATION", inactivityDuration.count());
+                rfbCloseClient(cl);
+                continue;
+            }
         }
 
         if (cd->skipFrame)
