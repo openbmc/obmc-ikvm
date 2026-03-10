@@ -50,6 +50,42 @@
       "message": "The keyboard and mouse won’t work with the upstream code because the UDC value is different for the Nuvoton Arbel EVB. Do you plan to include the UDC changes in this PR, or will you submit them in a separate one?",
       "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4510e0de_e8500a44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002344
+      },
+      "writtenOn": "2026-03-10T08:24:30Z",
+      "side": 1,
+      "message": "@hariharanr@ami.com Thanks for the support. This part is complete; if there are no further issues from the reviewers, it will be merged.",
+      "parentUuid": "dac05528_22e4244b",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8550c867_c5235fb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002344
+      },
+      "writtenOn": "2026-03-10T08:24:30Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. I think it\u0027s better to submit the UDC changes in a separate PR.",
+      "parentUuid": "8d0a9d86_95661f67",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
