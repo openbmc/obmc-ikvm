@@ -128,6 +128,16 @@ class Args
         return calcFrameCRC;
     }
 
+    /*
+     * @brief Get the idle timeout for clients
+     *
+     * @return Value of the idle timeout in seconds
+     */
+    inline int getTimeoutSeconds() const
+    {
+        return timeoutSeconds;
+    }
+
   private:
     /* @brief Prints the application usage to stderr */
     void printUsage();
@@ -147,6 +157,8 @@ class Args
     std::string udcName;
     /* @brief Path to the V4L2 video device */
     std::string videoPath;
+    /* @brief Idle timeout duration in seconds */
+    int timeoutSeconds;
     /* @brief Identical frames detection */
     bool calcFrameCRC;
     /* @brief Original command line arguments passed to the application */

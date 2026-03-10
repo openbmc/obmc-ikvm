@@ -6,6 +6,7 @@
 
 #include <rfb/rfb.h>
 
+#include <chrono>
 #include <vector>
 
 namespace ikvm
@@ -29,7 +30,8 @@ class Server
          * @param[in] s - Number of frames to skip when client connects
          * @param[in] i - Pointer to Input object
          */
-        ClientData(int s, Input* i) : skipFrame(s), input(i), last_crc{-1}
+        ClientData(int s, Input* i) : skipFrame(s), input(i), last_crc{-1},
+                                        lastActivityTime(std::chrono::steady_clock::now())
         {
             needUpdate = false;
         }
@@ -43,6 +45,7 @@ class Server
         Input* input;
         bool needUpdate;
         int64_t last_crc;
+        std::chrono::steady_clock::time_point lastActivityTime;
     };
 
     /*
@@ -118,6 +121,8 @@ class Server
     unsigned int numClients;
     /* @brief Microseconds to process RFB events every frame */
     long int processTime;
+    /* @brief Idle timeout duration in seconds */
+    int timeoutSeconds;
     /* @brief Handle to the RFB server object */
     rfbScreenInfoPtr server;
     /* @brief Reference to the Input object */
