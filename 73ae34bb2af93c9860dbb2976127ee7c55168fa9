@@ -33,6 +33,23 @@
       "message": "Thank you! The part where the pixel format is checked in the Video constructor looks okay to me. I\u0027m adding +1 now. Let\u0027s give the other reviewers a bit more time to take a look.",
       "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d0a9d86_95661f67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-03-10T07:14:32Z",
+      "side": 1,
+      "message": "The keyboard and mouse won’t work with the upstream code because the UDC value is different for the Nuvoton Arbel EVB. Do you plan to include the UDC changes in this PR, or will you submit them in a separate one?",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
