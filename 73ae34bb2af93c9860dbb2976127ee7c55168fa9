@@ -88,6 +88,23 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc00b087_37b508dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-03-11T10:45:18Z",
+      "side": 1,
+      "message": "Clearing the approval since Min has added review comments.",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c0fb02c_541f53f0",
