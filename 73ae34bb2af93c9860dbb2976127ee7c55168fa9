@@ -86,6 +86,108 @@
       "parentUuid": "8d0a9d86_95661f67",
       "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c0fb02c_541f53f0",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-03-11T06:27:50Z",
+      "side": 1,
+      "message": "delete it.",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "250d3fa2_57a263a0",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-03-11T06:27:50Z",
+      "side": 1,
+      "message": "Refer to the code snippet below, as using the map will degrade performance.\nconst int redBits \u003d 5;\nconst int greenBits \u003d 6;\nconst int blueBits \u003d 5;\nuint32_t pixelformat \u003d video.getPixelformat();\nif (pixelformat \u003d\u003d V4L2_PIX_FMT_RGB565 || pixelformat \u003d\u003d  V4L2_PIX_FMT_HEXTILE) {\n    format-\u003eredMax \u003d (1 \u003c\u003c redBits) - 1;\n    format-\u003egreenMax \u003d (1 \u003c\u003c greenBits) - 1;\n    format-\u003eblueMax \u003d (1 \u003c\u003c blueBits) - 1;",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da9152f9_c9afc388",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-03-11T06:27:50Z",
+      "side": 1,
+      "message": "int compressedLen is replaced with size_t compressedLen",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c69a0ef_aaae27be",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-03-11T06:27:50Z",
+      "side": 1,
+      "message": "size_t i \u003d 0,",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa4ce3c3_cfc22c0e",
+        "filename": "ikvm_server.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-03-11T06:27:50Z",
+      "side": 1,
+      "message": "The RGBBits structure could potentially be removed, as it is only used in a your case.",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c013b34f_58e40a00",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-03-11T06:27:50Z",
+      "side": 1,
+      "message": "This operation is only executed when a video is opened, not when it is constructed.",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
