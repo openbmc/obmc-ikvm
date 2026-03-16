@@ -122,6 +122,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dc1e284_7d1fb778",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1002344
+      },
+      "writtenOn": "2026-03-16T08:21:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "9c0fb02c_541f53f0",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "250d3fa2_57a263a0",
@@ -135,6 +153,24 @@
       "writtenOn": "2026-03-11T06:27:50Z",
       "side": 1,
       "message": "Refer to the code snippet below, as using the map will degrade performance.\nconst int redBits \u003d 5;\nconst int greenBits \u003d 6;\nconst int blueBits \u003d 5;\nuint32_t pixelformat \u003d video.getPixelformat();\nif (pixelformat \u003d\u003d V4L2_PIX_FMT_RGB565 || pixelformat \u003d\u003d  V4L2_PIX_FMT_HEXTILE) {\n    format-\u003eredMax \u003d (1 \u003c\u003c redBits) - 1;\n    format-\u003egreenMax \u003d (1 \u003c\u003c greenBits) - 1;\n    format-\u003eblueMax \u003d (1 \u003c\u003c blueBits) - 1;",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac02053f_b9cba4cf",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1002344
+      },
+      "writtenOn": "2026-03-16T08:21:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "250d3fa2_57a263a0",
       "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -156,6 +192,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c827e4b3_a9a4d3c1",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1002344
+      },
+      "writtenOn": "2026-03-16T08:21:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "da9152f9_c9afc388",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c69a0ef_aaae27be",
@@ -169,6 +223,24 @@
       "writtenOn": "2026-03-11T06:27:50Z",
       "side": 1,
       "message": "size_t i \u003d 0,",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c302ac6d_78de4be6",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1002344
+      },
+      "writtenOn": "2026-03-16T08:21:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "9c69a0ef_aaae27be",
       "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
@@ -190,6 +262,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0320fe7c_8fc3ee27",
+        "filename": "ikvm_server.hpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002344
+      },
+      "writtenOn": "2026-03-16T08:21:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "aa4ce3c3_cfc22c0e",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c013b34f_58e40a00",
@@ -203,6 +293,24 @@
       "writtenOn": "2026-03-11T06:27:50Z",
       "side": 1,
       "message": "This operation is only executed when a video is opened, not when it is constructed.",
+      "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce5730e8_5d672a84",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002344
+      },
+      "writtenOn": "2026-03-16T08:21:35Z",
+      "side": 1,
+      "message": "Reorganize: add a new function to probe the video format in the server constructor",
+      "parentUuid": "c013b34f_58e40a00",
       "revId": "73ae34bb2af93c9860dbb2976127ee7c55168fa9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
