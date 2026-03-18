@@ -16,6 +16,24 @@
       "message": "LGTM. @wangmin@phytium.com.cn We are looking forward to your review of the new patch set.",
       "revId": "ac8773307cd9b0cb3532f1f5b4b505a9e94d71c9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39d61d4a_211cafef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-03-18T09:53:59Z",
+      "side": 1,
+      "message": "Hi @jae.yoo@oss.qualcomm.com, thanks for your notification. The patch looks good to me as well. I have no further questions.",
+      "parentUuid": "3f147167_e41b75bd",
+      "revId": "ac8773307cd9b0cb3532f1f5b4b505a9e94d71c9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
