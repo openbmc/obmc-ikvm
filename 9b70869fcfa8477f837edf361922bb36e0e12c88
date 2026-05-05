@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6459100_4abb017a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-05-05T06:56:37Z",
+      "side": 1,
+      "message": "@jae.yoo@oss.qualcomm.com I have addressed the comments and updated the testing steps. Could you review?",
+      "revId": "9b70869fcfa8477f837edf361922bb36e0e12c88",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
