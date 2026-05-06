@@ -34,6 +34,22 @@ executable(
     install: true,
 )
 
+# Unit tests
+gtest = dependency('gtest', main: true, required: false)
+if gtest.found()
+    executable(
+        'ikvm_args_test',
+        [
+            'ikvm_args.cpp',
+            'ikvm_args_test.cpp',
+        ],
+        dependencies: [
+            gtest,
+            dependency('libvncserver'),
+        ],
+    )
+endif
+
 fs = import('fs')
 fs.copyfile(
     'obmc-ikvm.service',
