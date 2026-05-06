@@ -34,6 +34,24 @@
       "parentUuid": "cbd0780c_96d0f411",
       "revId": "25e44721abac42e992c13ad2faf56db5f3296dfb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "821c2d75_1f31b907",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-06T16:27:16Z",
+      "side": 1,
+      "message": "I don’t see the clientGone(cl) call included in patch set 7. Did you actually make any changes?\n\nAlso, based on my testing, calling clientGone(cl) on timeout introduces an issue. When streaming stops due to a timeout on the BMCWeb KVM page, if the browser window remains open and we navigate to another menu and then start KVM again, the video stream resumes but the keyboard and mouse no longer work. This happens because clientGone(cl) triggers server-\u003einput.disconnect().\n\nBecause of that, it seems better not to call clientGone(cl) on timeout and instead let the browser session be handled by the clientGoneHook callback. As it stands now, it looks good to me. Let’s wait for a bit more feedback from others.",
+      "parentUuid": "309f6338_7929eeb0",
+      "revId": "25e44721abac42e992c13ad2faf56db5f3296dfb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
