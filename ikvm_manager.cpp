@@ -6,6 +6,7 @@ namespace ikvm
 {
 Manager::Manager(const Args& args) :
     continueExecuting(true), serverDone(false), videoDone(true),
+    videoPaused(false),
     input(args.getKeyboardPath(), args.getPointerPath(), args.getUdcName()),
     video(args.getVideoPath(), input, args.getFrameRate(),
           args.getSubsampling()),
@@ -31,8 +32,7 @@ void Manager::run()
 
         if (video.needsResize())
         {
-            waitServer();
-            videoDone = false;
+            waitServer(true);
             video.resize();
             server.resize();
             setVideoDone();
@@ -73,7 +73,7 @@ void Manager::setVideoDone()
     sync.notify_all();
 }
 
-void Manager::waitServer()
+void Manager::waitServer(bool pauseVideo)
 {
     std::unique_lock<std::mutex> ulock(lock);
 
@@ -83,6 +83,19 @@ void Manager::waitServer()
     }
 
     serverDone = false;
+
+    if (pauseVideo)
+    {
+        videoDone = false;
+        // Wait until the server thread has actually entered waitVideo() and
+        // observed videoDone=false. Without this, the server could race
+        // past waitVideo() (where videoDone was still true) and start
+        // another iteration of server.run() concurrently with the resize.
+        while (!videoPaused)
+        {
+            sync.wait(ulock);
+        }
+    }
 }
 
 void Manager::waitVideo()
@@ -91,8 +104,11 @@ void Manager::waitVideo()
 
     while (!videoDone)
     {
+        videoPaused = true;
+        sync.notify_all();
         sync.wait(ulock);
     }
+    videoPaused = false;
 
     // don't reset videoDone
 }
