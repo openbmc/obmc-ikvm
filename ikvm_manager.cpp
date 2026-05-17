@@ -31,8 +31,8 @@ void Manager::run()
 
         if (video.needsResize())
         {
-            waitServer();
-            videoDone = false;
+            setVideoDone();
+            waitServer(true);
             video.resize();
             server.resize();
             setVideoDone();
@@ -73,7 +73,7 @@ void Manager::setVideoDone()
     sync.notify_all();
 }
 
-void Manager::waitServer()
+void Manager::waitServer(bool pauseVideo)
 {
     std::unique_lock<std::mutex> ulock(lock);
 
@@ -83,6 +83,8 @@ void Manager::waitServer()
     }
 
     serverDone = false;
+    if (pauseVideo)
+        videoDone = false;
 }
 
 void Manager::waitVideo()

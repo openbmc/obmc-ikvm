@@ -46,7 +46,7 @@ class Manager
     /* @brief Notifies thread waiters that video operations are complete */
     void setVideoDone();
     /* @brief Blocks until RFB operations complete */
-    void waitServer();
+    void waitServer(bool pauseVideo = false);
     /* @brief Blocks until video operations are complete */
     void waitVideo();
 
