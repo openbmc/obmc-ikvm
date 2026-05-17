@@ -45,8 +45,18 @@ class Manager
     void setServerDone();
     /* @brief Notifies thread waiters that video operations are complete */
     void setVideoDone();
-    /* @brief Blocks until RFB operations complete */
-    void waitServer();
+    /*
+     * @brief Blocks until RFB operations complete
+     *
+     * @param[in] pauseVideo - If true, after the server signals completion,
+     *                         resets videoDone under the lock and waits
+     *                         until the server thread has actually entered
+     *                         waitVideo() with videoDone=false (i.e.
+     *                         videoPaused becomes true). Guarantees the
+     *                         server is paused before the caller proceeds.
+     *                         Defaults to false.
+     */
+    void waitServer(bool pauseVideo = false);
     /* @brief Blocks until video operations are complete */
     void waitVideo();
 
@@ -59,6 +69,8 @@ class Manager
     bool serverDone;
     /* @brief Boolean to indicate that video operations are complete */
     bool videoDone;
+    /* @brief Boolean indicating the server thread is blocked in waitVideo() */
+    bool videoPaused;
     /* @brief Input object */
     Input input;
     /* @brief Video object */
