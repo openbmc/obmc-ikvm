@@ -528,6 +528,9 @@ uint8_t Input::keyToScancode(rfbKeySym key)
             case XK_KP_0:
                 scancode = USBHID_KEY_KP_0;
                 break;
+            case XK_Menu:
+                scancode = USBHID_MENU;
+                break;
         }
     }
 
