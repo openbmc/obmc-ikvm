@@ -34,6 +34,24 @@
       "parentUuid": "057695b1_ad9763e8",
       "revId": "cd93cc3ba7984838fea2bf3c4f645106f11bcc82",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4b462c4_06cd2bfd",
+        "filename": "ikvm_manager.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-21T17:06:48Z",
+      "side": 1,
+      "message": "Added into the patch set #3",
+      "parentUuid": "c8e8fab6_bb8df380",
+      "revId": "cd93cc3ba7984838fea2bf3c4f645106f11bcc82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
