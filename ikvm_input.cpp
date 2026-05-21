@@ -266,16 +266,20 @@ void Input::pointerEvent(int buttonMask, int x, int y, rfbClientPtr cl)
 
     if (x >= 0 && (unsigned int)x < video.getWidth())
     {
-        uint16_t xx = (uint16_t)(x * (SHRT_MAX + 1) / video.getWidth());
+        uint16_t xx = (video.getWidth() > 1)
+                          ? (uint16_t)(x * SHRT_MAX / (video.getWidth() - 1))
+                          : 0;
 
-        memcpy(&input->pointerReport[1], &xx, 2);
+        memcpy(&input->pointerReport[1], &xx, sizeof(xx));
     }
 
     if (y >= 0 && (unsigned int)y < video.getHeight())
     {
-        uint16_t yy = (uint16_t)(y * (SHRT_MAX + 1) / video.getHeight());
+        uint16_t yy = (video.getHeight() > 1)
+                          ? (uint16_t)(y * SHRT_MAX / (video.getHeight() - 1))
+                          : 0;
 
-        memcpy(&input->pointerReport[3], &yy, 2);
+        memcpy(&input->pointerReport[3], &yy, sizeof(yy));
     }
 
     rfbDefaultPtrAddEvent(buttonMask, x, y, cl);
