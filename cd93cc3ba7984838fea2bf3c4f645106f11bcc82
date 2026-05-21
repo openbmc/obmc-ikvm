@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "057695b1_ad9763e8",
+        "filename": "ikvm_manager.hpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-05-21T16:45:14Z",
+      "side": 1,
+      "message": "can we update the comment?\n\n    /*\n     * @brief Blocks until RFB operations complete\n     *\n     * @param[in] pauseVideo - If true, resets videoDone flag under lock to\n     *                         pause video operations. Defaults to false to\n     *                         keep server running continuously.\n     */",
+      "revId": "cd93cc3ba7984838fea2bf3c4f645106f11bcc82",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
