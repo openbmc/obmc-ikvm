@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30efc213_7dae489e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-05-25T08:17:06Z",
+      "side": 1,
+      "message": "Please conduct the following two tests:\nFirst, remove the delay while maintaining 30 FPS frame rate.\nSecond, raise the frame rate to 60 FPS and switch resolution every two seconds.",
+      "revId": "e34c0619c34e193034dd194aaff0e0139c4a23aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b062edf_7557f206",
+        "filename": "ikvm_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-05-25T08:17:06Z",
+      "side": 1,
+      "message": "Hi Jae Hyun Yoo, I believe this line of code is redundant. The variable videoDone is always true before the waitServer function runs. Additionally, as it is shared with the server thread, any updates to its value will be visible to the server thread.",
+      "revId": "e34c0619c34e193034dd194aaff0e0139c4a23aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
