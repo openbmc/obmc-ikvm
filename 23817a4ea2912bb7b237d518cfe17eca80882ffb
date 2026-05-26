@@ -16,6 +16,24 @@
       "message": "I improved this fix a bit further. There was still a remaining a small race window, so I uploaded an updated version in patch set #4 that addresses it as well. With the patch set #4, even the \u0027Failed to query timings\u0027 error is not observed and the garbage frames that occasionally appeared as corrupted pixel lines during resolution changes are no longer visible either.\n\nThis change intentionally drops frames during resolution changes, but the normal image streaming performance remains unchanged.\n\nPlease review the patch set #4. Thanks!",
       "revId": "23817a4ea2912bb7b237d518cfe17eca80882ffb",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e2051c_8bfcaa33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-05-26T07:47:53Z",
+      "side": 1,
+      "message": "It’s awesome! I really appreciate that this patch resolves the small race window I had missed. Thank you for your further improvements and your ingenious fix. I’ll dive into the updated patches right away.",
+      "parentUuid": "2cceade7_953f7478",
+      "revId": "23817a4ea2912bb7b237d518cfe17eca80882ffb",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
