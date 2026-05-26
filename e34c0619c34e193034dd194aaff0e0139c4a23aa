@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1457f83e_9fbdcc99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-05-26T02:38:15Z",
+      "side": 1,
+      "message": "Excellent work 👍",
+      "parentUuid": "66cd66ec_e3e1fdeb",
+      "revId": "e34c0619c34e193034dd194aaff0e0139c4a23aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1852adac_2d1a8b02",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "The \u0027videoDone \u003d false\u0027 inside waitServer(true) is not redundant — it is the critical piece of synchronization that prevents a race during resize.\n\nHere is the timing that makes it necessary:\n\n  1. setVideoDone()     - videoDone \u003d true, server thread wakes from waitVideo()\n  2. waitServer(true)   - waiting for serverDone \u003d\u003d true\n  3.   [server thread]  - exits waitVideo(), runs rfbProcessEvents, sets serverDone \u003d true, loops back\n  4.   [under lock]     - waitServer sees serverDone \u003d\u003d true, resets serverDone \u003d false, videoDone \u003d false  ← must happen here\n  5.   [server thread]  - calls waitVideo() again, sees videoDone \u003d\u003d false, blocks\n  6. video.resize()     - safe, server is blocked\n  7. server.resize()\n  8. setVideoDone()     - videoDone \u003d true, server unblocks\n\nIf videoDone is not reset to false inside the lock at step 4, there is a window between steps 3 and 5 where the server thread calls waitVideo(), sees videoDone still true, and passes straight through — racing with video.resize() and server.resize().\n\nThe concern is not about visibility — it is about ordering. Resetting videoDone under the same lock that waitVideo() also acquires creates a happens-before guarantee: by the time the server thread next observes videoDone, it will always see false. Without the reset inside the lock, that guarantee does not exist.\n\nIn fact, this is exactly the bug that existed in the original code: videoDone \u003d false was set outside the lock, leaving a race window. Moving it inside waitServer() under the lock is the fix,not dead code.\n\nPlease see below journal logs.\n\nThis is log pattern from original code:\n```\nMay 25 23:21:22 qcom-bmc-ast2600-d6bc0bf5efe0 obmc-ikvm[315]: Failed to query timings Link has been severed\nMay 25 23:21:23 qcom-bmc-ast2600-d6bc0bf5efe0 obmc-ikvm[315]: 25/05/2026 23:21:23 Pixel format for client 127.0.0.1:\nMay 25 23:21:23 qcom-bmc-ast2600-d6bc0bf5efe0 obmc-ikvm[315]: 25/05/2026 23:21:23   32 bpp, depth 24, little endian\nMay 25 23:21:23 qcom-bmc-ast2600-d6bc0bf5efe0 obmc-ikvm[315]: 25/05/2026 23:21:23   true colour: max r 255 g 255 b 255, shift r 0 g 8 b 16\n```\n\nAnd, this is log pattern after applying this fix:\n```\nMay 25 23:43:42 qcom-bmc-ast2600-d6bc0bf5efe0 obmc-ikvm[308]: Failed to query timings\nMay 25 23:43:42 qcom-bmc-ast2600-d6bc0bf5efe0 obmc-ikvm[308]: 25/05/2026 23:43:42 Sending rfbEncodingExtDesktopSize for size (1152x864)\n```\n\nThe \"Link has been severed\" message from the original code is the kernel\u0027s string representation of ENOLINK, returned by the V4L2 driver when a timings query (e.g. VIDIOC_QUERYSTD) fails because the video signal between the host GPU and the kernel video capture engine is momentarily lost. This is expected behavior during a resolution switch — the host briefly drops sync while renegotiating timings for the new mode.\n\nBefore the patch, the process stalled at this point due to the deadlock, so the resize can\u0027t be completed properly. After the patch, \"Link has been severed\" no longer appears because the resize path now proceeds correctly past the transient signal loss and delivers rfbEncodingExtDesktopSize to the client with the new resolution, confirming the fix works as intended.",
       "parentUuid": "6b062edf_7557f206",
+      "revId": "e34c0619c34e193034dd194aaff0e0139c4a23aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeebce55_aedc041c",
+        "filename": "ikvm_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-05-26T02:38:15Z",
+      "side": 1,
+      "message": "Maybe I wasn\u0027t clear. Line 34 is unnecessary. Please remove it and attempt to reproduce the deadlock.",
+      "parentUuid": "787c3375_bbfb7498",
       "revId": "e34c0619c34e193034dd194aaff0e0139c4a23aa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
