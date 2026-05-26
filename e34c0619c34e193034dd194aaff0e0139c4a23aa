@@ -122,6 +122,24 @@
       "parentUuid": "787c3375_bbfb7498",
       "revId": "e34c0619c34e193034dd194aaff0e0139c4a23aa",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c57544f_9b80e0ba",
+        "filename": "ikvm_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-05-26T03:13:50Z",
+      "side": 1,
+      "message": "Based on the logs you shared, the deadlock tends to occur on the dual-core AST2600, while it does not manifest on the single-core AST2500. I have previously resolved a similar deadlock issue on single-core SoCs.",
+      "parentUuid": "aeebce55_aedc041c",
+      "revId": "e34c0619c34e193034dd194aaff0e0139c4a23aa",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
