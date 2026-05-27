@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c6a84c_f17b35ac",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-05-27T04:01:10Z",
+      "side": 1,
+      "message": "Compared to the original formula x * (SHRT_MAX + 1), it does not cause overflow and yields a larger result than your patched formula x * SHRT_MAX. Additionally, overflow will not occur in practice even at 8K resolution. Therefore, I believe casting x to uint32_t is unnecessary.",
+      "revId": "a39fa19a0b0dfb2adf538c305dcc483235bc7147",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46931077_197bb76e",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-05-27T04:01:10Z",
+      "side": 1,
+      "message": "Could you please also fix this hard-coded part while you\u0027re at it?\nmemcpy(\u0026input-\u003epointerReport[1], \u0026xx, sizeof(xx));",
+      "revId": "a39fa19a0b0dfb2adf538c305dcc483235bc7147",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
