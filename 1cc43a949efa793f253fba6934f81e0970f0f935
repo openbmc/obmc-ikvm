@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc58b650_20dd87b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-27T04:31:29Z",
+      "side": 1,
+      "message": "All feedback addressed in patch set #2. Please take another look when you get a chance, Thanks!",
+      "revId": "1cc43a949efa793f253fba6934f81e0970f0f935",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

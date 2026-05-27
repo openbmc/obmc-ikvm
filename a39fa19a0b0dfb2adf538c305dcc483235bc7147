@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e1a67a3_69dc406d",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-27T04:31:29Z",
+      "side": 1,
+      "message": "Good point. The uint32_t cast was defensive — x * SHRT_MAX only overflows int32_t once W gets past ~65535, which isn\u0027t a realistic resolution. I\u0027ll drop the cast. Updated in patch set #2.",
+      "parentUuid": "04c6a84c_f17b35ac",
+      "revId": "a39fa19a0b0dfb2adf538c305dcc483235bc7147",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46931077_197bb76e",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-27T04:01:10Z",
       "side": 1,
       "message": "Could you please also fix this hard-coded part while you\u0027re at it?\nmemcpy(\u0026input-\u003epointerReport[1], \u0026xx, sizeof(xx));",
+      "revId": "a39fa19a0b0dfb2adf538c305dcc483235bc7147",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6ff158c_ddb41620",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-05-27T04:31:29Z",
+      "side": 1,
+      "message": "Good catch. Let\u0027s fix those parts using this patch. I\u0027ve replaced both hard-coded 2s with sizeof(xx) / sizeof(yy) in patch set #2.",
+      "parentUuid": "46931077_197bb76e",
       "revId": "a39fa19a0b0dfb2adf538c305dcc483235bc7147",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
