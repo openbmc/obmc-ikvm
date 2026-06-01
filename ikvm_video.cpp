@@ -228,7 +228,7 @@ bool Video::needsResize()
             lg2::error("Failed to get new resolution {WIDTH} {HEIGHT}", "WIDTH",
                        width, "HEIGHT", height);
             elog<Open>(
-                xyz::openbmc_project::Common::File::Open::ERRNO(-EPROTO),
+                xyz::openbmc_project::Common::File::Open::ERRNO(EPROTO),
                 xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
         }
 
@@ -344,11 +344,12 @@ void Video::resize()
     rc = ioctl(fd, VIDIOC_REQBUFS, &req);
     if (rc < 0 || req.count < 2)
     {
+        int err = (rc < 0) ? errno : ENOSPC;
         lg2::error("Failed to request streaming buffers {ERROR}", "ERROR",
-                   strerror(errno));
+                   strerror(err));
         elog<ReadFailure>(
             xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
-                errno),
+                err),
             xyz::openbmc_project::Common::Device::ReadFailure::
                 CALLOUT_DEVICE_PATH(path.c_str()));
     }
@@ -464,7 +465,7 @@ void Video::start()
     {
         lg2::error("Video device doesn't support this application");
         elog<Open>(
-            xyz::openbmc_project::Common::File::Open::ERRNO(errno),
+            xyz::openbmc_project::Common::File::Open::ERRNO(EOPNOTSUPP),
             xyz::openbmc_project::Common::File::Open::PATH(path.c_str()));
     }
 
