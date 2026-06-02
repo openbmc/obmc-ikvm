@@ -115,6 +115,20 @@ class Server
     void doResize();
 
     /*
+     * @brief Resizes the framebuffer and applies the current pixel format and
+     *        geometry to the RFB server. Shared by initializePixelFormat() and
+     *        doResize().
+     */
+    void applyPixelFormat();
+
+    /*
+     * @brief Probes the video device for its pixel format and applies it to
+     *        the RFB server. Deferred until the first client connects so the
+     *        video device is not opened while nobody is watching.
+     */
+    void initializePixelFormat();
+
+    /*
      * @brief Performs the server pixel format setting
      *
      * @param[in] screen - Handle to the RFB server object
@@ -141,6 +155,8 @@ class Server
     long int processTime;
     /* @brief Idle timeout duration in seconds */
     int timeoutSeconds;
+    /* @brief Whether the pixel format has been probed and applied */
+    bool formatInitialized;
     /* @brief Handle to the RFB server object */
     rfbScreenInfoPtr server;
     /* @brief Reference to the Input object */

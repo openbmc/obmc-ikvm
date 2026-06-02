@@ -62,6 +62,8 @@ void Video::probePixelFormat()
     {
         lg2::error("Failed to query video device capabilities {ERROR}", "ERROR",
                    strerror(errno));
+        close(fd);
+        fd = -1;
         elog<ReadFailure>(
             xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
                 errno),
