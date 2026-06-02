@@ -17,13 +17,16 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 
 Server::Server(const Args& args, Input& i, Video& v) :
     pendingResize(false), frameCounter(0), numClients(0),
-    timeoutSeconds(args.getTimeoutSeconds()), input(i), video(v)
+    timeoutSeconds(args.getTimeoutSeconds()), formatInitialized(false),
+    input(i), video(v)
 {
     std::string ip("localhost");
     const Args::CommandLine& commandLine = args.getCommandLine();
     int argc = commandLine.argc;
 
-    video.probePixelFormat();
+    // Create the screen with the default pixel format/geometry. The real pixel
+    // format is probed from the video device later, in initializePixelFormat(),
+    // so that the device is not opened before the first client connects.
     server = rfbGetScreen(&argc, commandLine.argv, video.getWidth(),
                           video.getHeight(), Video::bitsPerSample,
                           Video::samplesPerPixel, Video::bytesPerPixel);
@@ -39,8 +42,6 @@ Server::Server(const Args& args, Input& i, Video& v) :
     framebuffer.resize(
         video.getHeight() * video.getWidth() * Video::bytesPerPixel, 0);
 
-    rfbSetServerPixelFormat(server);
-
     server->screenData = this;
     server->desktopName = "OpenBMC IKVM";
     server->frameBuffer = framebuffer.data();
@@ -54,8 +55,6 @@ Server::Server(const Args& args, Input& i, Video& v) :
 
     rfbInitServer(server);
 
-    rfbMarkRectAsModified(server, 0, 0, video.getWidth(), video.getHeight());
-
     server->kbdAddEvent = Input::keyEvent;
     server->ptrAddEvent = Input::pointerEvent;
 
@@ -67,6 +66,30 @@ Server::Server(const Args& args, Input& i, Video& v) :
 Server::~Server()
 {
     rfbScreenCleanup(server);
+}
+
+void Server::initializePixelFormat()
+{
+    // Probe the video device for its pixel format on demand. Deferred from the
+    // constructor so the device is not opened until a client is watching.
+    video.probePixelFormat();
+
+    // probePixelFormat() may change the samples/bytes per pixel, so rebuild the
+    // framebuffer and update the screen geometry and pixel format. This runs
+    // from the newClient hook before the client completes its handshake, so the
+    // correct serverFormat is sent in the ServerInit message.
+    framebuffer.resize(
+        video.getHeight() * video.getWidth() * Video::bytesPerPixel, 0);
+
+    rfbNewFramebuffer(server, framebuffer.data(), video.getWidth(),
+                      video.getHeight(), Video::bitsPerSample,
+                      Video::samplesPerPixel, Video::bytesPerPixel);
+
+    rfbSetServerPixelFormat(server);
+
+    rfbMarkRectAsModified(server, 0, 0, video.getWidth(), video.getHeight());
+
+    formatInitialized = true;
 }
 
 void Server::rfbSetServerPixelFormat(rfbScreenInfoPtr screen)
@@ -305,6 +328,10 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
     cl->clientFramebufferUpdateRequestHook = clientFramebufferUpdateRequest;
     if (!server->numClients++)
     {
+        if (!server->formatInitialized)
+        {
+            server->initializePixelFormat();
+        }
         server->input.connect();
         server->pendingResize = false;
         server->frameCounter = 0;
