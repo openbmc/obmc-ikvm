@@ -34,7 +34,6 @@
 owners:
 - eajames@linux.ibm.com
 - jae.yoo@oss.qualcomm.com
-- wangmin@phytium.com.cn
 
 reviewers:
 - hariharanr@ami.com
@@ -45,12 +44,9 @@ openbmc:
 - name: Eddie James
   email: eajames@linux.ibm.com
   discord: eajames
-- name: Jae Hyun Yoo
-  email: jae.yoo@oss.qualcomm.com
-  discord: jae
-- name: Min Wang
-  email: wangmin@phytium.com.cn
-  discord:
 - name: Hariharan Rangasamy
   email: hariharanr@ami.com
   discord: rdotdk
+- name: Jae Hyun Yoo
+  email: jae.yoo@oss.qualcomm.com
+  discord: jae
