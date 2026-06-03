@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b16369d7_ba2ae623",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-06-03T12:30:23Z",
+      "side": 1,
+      "message": "@jae.yoo@oss.qualcomm.com - Please revert this commit.  @wangmin@phytium.com.cn only has a single one-line commit to the entire openbmc organization.  They are not sufficiently qualified to be listed as a maintainer.\n\nAdding members of the TOF for visibility.",
+      "revId": "9cfcb2d4037fcd3301687da9f7cc833b54303c95",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
