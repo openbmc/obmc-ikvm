@@ -37,6 +37,7 @@ owners:
 - wangmin@phytium.com.cn
 
 reviewers:
+- hariharanr@ami.com
 
 matchers:
 
@@ -50,3 +51,6 @@ openbmc:
 - name: Min Wang
   email: wangmin@phytium.com.cn
   discord:
+- name: Hariharan Rangasamy
+  email: hariharanr@ami.com
+  discord: rdotdk
