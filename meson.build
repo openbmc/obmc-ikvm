@@ -37,16 +37,40 @@ executable(
 # Unit tests
 gtest = dependency('gtest', main: true, required: false)
 if gtest.found()
-    executable(
+    test(
         'ikvm_args_test',
-        [
-            'ikvm_args.cpp',
-            'ikvm_args_test.cpp',
-        ],
-        dependencies: [
-            gtest,
-            dependency('libvncserver'),
-        ],
+        executable(
+            'ikvm_args_test',
+            [
+                'ikvm_args.cpp',
+                'test/ikvm_args_test.cpp',
+            ],
+            include_directories: include_directories('.'),
+            dependencies: [
+                gtest,
+                dependency('libvncserver'),
+            ],
+        ),
+    )
+
+    test(
+        'ikvm_input_test',
+        executable(
+            'ikvm_input_test',
+            [
+                'ikvm_input.cpp',
+                'test/ikvm_input_test.cpp',
+            ],
+            include_directories: include_directories('.'),
+            dependencies: [
+                gtest,
+                dependency('libvncserver'),
+                dependency('phosphor-logging'),
+                dependency('phosphor-dbus-interfaces'),
+                dependency('sdbusplus'),
+                dependency('threads'),
+            ],
+        ),
     )
 endif
 
