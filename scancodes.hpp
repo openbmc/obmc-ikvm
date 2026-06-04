@@ -98,3 +98,13 @@
 #define USBHID_KEY_KP_DECIMAL 0x63
 #define USBHID_MENU 0x65
 #define USBHID_KEY_KP_EQUAL 0x67
+
+/* @brief HID modifier byte bit masks */
+#define USBHID_MOD_CTRL_L 0x01
+#define USBHID_MOD_SHIFT_L 0x02
+#define USBHID_MOD_ALT_L 0x04
+#define USBHID_MOD_META_L 0x08
+#define USBHID_MOD_CTRL_R 0x10
+#define USBHID_MOD_SHIFT_R 0x20
+#define USBHID_MOD_ALT_R 0x40
+#define USBHID_MOD_META_R 0x80
