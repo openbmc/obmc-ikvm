@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08d98931_bccd1aff",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-06-04T07:26:55Z",
+      "side": 1,
+      "message": "I suggest substituting lines 75–85 with doResize(). It leverages real pixel format and geometry rather than default values, and client iteration overhead inside the function is negligible given zero connected clients at server initialization. Please point out any mistakes in my proposal, as I haven’t validated it yet.\n\nvideo.probePixelFormat();\ndoResize();\nformatInitialized \u003d true;",
+      "revId": "8b36b64e3b9d9c25e7f6ca1761dd0a58271c2463",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b15598fd_b410eae2",
         "filename": "ikvm_server.cpp",
         "patchSetId": 2
