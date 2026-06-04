@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1292a6a_c701c8ca",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-04T19:55:44Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. You\u0027re right that the format-setup block (lines 75–84) is identical to doResize(), so I factored it out into a shared applyPixelFormat() helper that both call.\n\nI didn\u0027t substitute the whole doResize() call, though. The premise that there are zero connected clients here isn\u0027t quite accurate: initializePixelFormat() runs from the newClient hook, and libvncserver links the connecting client into screen-\u003eclientHead before invoking that hook (rfbNewTCPOrUDPClient() adds to clientHead, then calls newClientHook()). So doResize()\u0027s client iterator would actually visit the just-connecting client and set cd-\u003eskipFrame \u003d frameRate on it — delaying the very first frame — plus call setTranslateFunction() mid-handshake.\n\nExtracting just the shared format setup gives us the de-duplication you\u0027re after while keeping that client-iteration side effect out of the first-connect path. Updated the patch accordingly.",
+      "parentUuid": "08d98931_bccd1aff",
+      "revId": "8b36b64e3b9d9c25e7f6ca1761dd0a58271c2463",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b15598fd_b410eae2",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "probePixelFormat() can throw (via elog) when the video device open/ioctl fails.\nIf we want the service to stay up and only reject that client, catch the exception in newClient() and return RFB_CLIENT_REFUSE.",
       "parentUuid": "184c5ffb_fedfe62d",
+      "revId": "8b36b64e3b9d9c25e7f6ca1761dd0a58271c2463",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "360de0fb_7c53fcde",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-04T19:55:44Z",
+      "side": 1,
+      "message": "Good catch - this is actually worse than just a rejected client today. newClient() is a C callback invoked by libvncserver, and serverThread has no try/catch, so an elog thrown from probePixelFormat() propagates across the C frames and escapes the thread function -\u003e std::terminate() -\u003e the whole service dies. So one client connecting while the video device is unavailable currently takes down the daemon.\n\nFixed as you suggested: initializePixelFormat() is now wrapped in a try/catch in newClient(), returning RFB_CLIENT_REFUSE on failure. The cleanup falls out correctly - clientGoneHook is set before the throwing block, so on refuse libvncserver calls clientGone(), which decrements numClients back to 0 and frees the ClientData. formatInitialized stays false, so the next client retries the probe (good for transient device errors).\n\nI also fixed a related fd leak: the VIDIOC_G_FMT failure path in probePixelFormat() threw without closing the already-opened fd. Harmless when it crashed, but now that the service survives and clients keep retrying, it would leak an fd per failed attempt - so it closes the fd before the elog.",
+      "parentUuid": "035c347c_1fcb06f4",
       "revId": "8b36b64e3b9d9c25e7f6ca1761dd0a58271c2463",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
