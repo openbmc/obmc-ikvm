@@ -37,6 +37,7 @@ owners:
 
 reviewers:
 - hariharanr@ami.com
+- wangmin@phytium.com.cn
 
 matchers:
 
@@ -50,3 +51,6 @@ openbmc:
 - name: Jae Hyun Yoo
   email: jae.yoo@oss.qualcomm.com
   discord: jae
+- name: Min Wang
+  email: wangmin@phytium.com.cn
+  discord:
