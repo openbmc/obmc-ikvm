@@ -60,24 +60,9 @@ class Input
     void sendWakeupPacket();
 
   private:
-    static constexpr int NUM_MODIFIER_BITS = 4;
     static constexpr int KEY_REPORT_LENGTH = 8;
     static constexpr int PTR_REPORT_LENGTH = 6;
 
-    /* @brief HID modifier bits mapped to shift and control key codes */
-    static constexpr uint8_t shiftCtrlMap[NUM_MODIFIER_BITS] = {
-        0x02, // left shift
-        0x20, // right shift
-        0x01, // left control
-        0x10  // right control
-    };
-    /* @brief HID modifier bits mapped to meta and alt key codes */
-    static constexpr uint8_t metaAltMap[NUM_MODIFIER_BITS] = {
-        0x08, // left meta
-        0x80, // right meta
-        0x04, // left alt
-        0x40  // right alt
-    };
     /* @brief Path to the HID gadget UDC */
     static constexpr const char* hidUdcPath =
         "/sys/kernel/config/usb_gadget/obmc_hid/UDC";
@@ -86,18 +71,6 @@ class Input
         "/sys/bus/platform/devices/1e6a0000.usb-vhub";
     /* @brief Retry limit for writing an HID report */
     static constexpr int HID_REPORT_RETRY_MAX = 5;
-    /*
-     * @brief Translates a RFB-specific key code to HID modifier bit
-     *
-     * @param[in] key - key code
-     */
-    static uint8_t keyToMod(rfbKeySym key);
-    /*
-     * @brief Translates a RFB-specific key code to HID scancode
-     *
-     * @param[in] key - key code
-     */
-    static uint8_t keyToScancode(rfbKeySym key);
 
     bool writeKeyboard(const uint8_t* report);
     void writePointer(const uint8_t* report);
