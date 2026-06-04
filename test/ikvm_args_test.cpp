@@ -38,7 +38,7 @@ class ArgsTest : public ::testing::Test
     // Reset getopt state before each test
     void SetUp() override
     {
-        optind = 1;
+        optind = 0;
     }
 };
 
