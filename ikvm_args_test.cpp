@@ -35,10 +35,10 @@ class ArgsTest : public ::testing::Test
         delete[] argv;
     }
 
-    // Reset getopt state before each test
+    // Reset getopt state before each test.
     void SetUp() override
     {
-        optind = 1;
+        optind = 0;
     }
 };
 

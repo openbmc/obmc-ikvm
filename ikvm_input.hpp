@@ -17,6 +17,9 @@ namespace ikvm
  */
 class Input
 {
+    /* @brief Grants the unit test fixture access to private key mappings */
+    friend class InputTest;
+
   public:
     /*
      * @brief Constructs Input object
