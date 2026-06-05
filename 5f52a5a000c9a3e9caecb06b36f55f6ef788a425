@@ -69,6 +69,24 @@
       "parentUuid": "2c522b15_aefbc967",
       "revId": "5f52a5a000c9a3e9caecb06b36f55f6ef788a425",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bcd93b4_bdbec31d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-05T06:04:27Z",
+      "side": 1,
+      "message": "I don\u0027t think there\u0027s any need to rush. The most important thing is making sure this change works across all supported BMC SoCs. If it ends up breaking on a particular platform, that\u0027s a much bigger problem. It\u0027s better to test it thoroughly and merge it once we\u0027re confident in the results. That\u0027s why I usually let changes sit for about a week before merging them as well.",
+      "parentUuid": "ce116c01_f95aef67",
+      "revId": "5f52a5a000c9a3e9caecb06b36f55f6ef788a425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
