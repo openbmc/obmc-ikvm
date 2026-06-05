@@ -36,6 +36,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "949ac322_36bec18a",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-06-05T03:46:21Z",
+      "side": 1,
+      "message": "Got it, thanks for the detailed explanation.",
+      "parentUuid": "d1292a6a_c701c8ca",
+      "revId": "8b36b64e3b9d9c25e7f6ca1761dd0a58271c2463",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b15598fd_b410eae2",
