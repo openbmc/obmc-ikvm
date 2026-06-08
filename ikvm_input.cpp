@@ -33,18 +33,7 @@ Input::Input(const std::string& kbdPath, const std::string& ptrPath,
 
 Input::~Input()
 {
-    if (keyboardFd >= 0)
-    {
-        close(keyboardFd);
-    }
-
-    if (pointerFd >= 0)
-    {
-        close(pointerFd);
-    }
-
     disconnect();
-    hidUdcStream.close();
 }
 
 void Input::connect()
