@@ -87,6 +87,24 @@
       "parentUuid": "ce116c01_f95aef67",
       "revId": "5f52a5a000c9a3e9caecb06b36f55f6ef788a425",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "226d9bc7_8a76ff87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-06-11T05:44:00Z",
+      "side": 1,
+      "message": "I tested this with Nuvoton EVB and KVM works.",
+      "parentUuid": "0bcd93b4_bdbec31d",
+      "revId": "5f52a5a000c9a3e9caecb06b36f55f6ef788a425",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
