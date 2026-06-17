@@ -1,0 +1,9 @@
+Code-Review+2: Jae Hyun Yoo <jae.yoo@oss.qualcomm.com>
+Code-Review+1: Hariharan Rangasamy <hariharanr@ami.com>
+Verified+1: OpenBMC CI <openbmcbump-ci@yahoo.com>
+Submitted-by: Min Wang <wangmin@phytium.com.cn>
+Submitted-at: Wed, 17 Jun 2026 03:37:49 +0000
+Reviewed-on: https://gerrit.openbmc.org/c/openbmc/obmc-ikvm/+/91052
+Comments-Total: 1
+Project: openbmc/obmc-ikvm
+Branch: refs/heads/master
