@@ -1,5 +1,7 @@
 #include "ikvm_manager.hpp"
 
+#include <phosphor-logging/lg2.hpp>
+
 #include <thread>
 
 namespace ikvm
@@ -21,7 +23,17 @@ void Manager::run()
     {
         if (server.wantsFrame())
         {
-            video.start();
+            try
+            {
+                video.start();
+            }
+            catch (const std::exception& e)
+            {
+                lg2::error("Video operation failed {ERROR}", "ERROR",
+                           e.what());
+                video.stop();
+            }
+
             video.getFrame();
             server.sendFrame();
         }
