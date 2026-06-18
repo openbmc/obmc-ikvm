@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15fc277c_f11a54f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-18T13:38:08Z",
+      "side": 1,
+      "message": "Code change looks good to me. Run the clang-format before submitting a commit to avoid the CI build error.",
+      "revId": "d7add00b31af963e7657a3ebb4ae8bd87a21343c",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
