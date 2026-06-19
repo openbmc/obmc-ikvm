@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a3793d6_ca80d822",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-06-19T12:32:11Z",
+      "side": 1,
+      "message": "Nice work with the test coverage. \nNon blocking comment: Can we remove/avoid exposing the test only friendship API? It would be good if we can do that. Long term we need a clean design.",
+      "revId": "f059b384b2bfda8a5be6057dfbd566e8b6ff268f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
