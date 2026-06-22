@@ -1,12 +1,20 @@
 #!/bin/sh
 
 hid_conf_directory="/sys/kernel/config/usb_gadget/obmc_hid"
-SOC_FAMILY=$(cat /sys/bus/soc/devices/soc0/family)
+
+if [ -f /sys/bus/soc/devices/soc0/family ]; then
+    SOC_FAMILY=$(cat /sys/bus/soc/devices/soc0/family)
+else
+    SOC_FAMILY="NPCM"
+    echo "SOC_FAMILY not found in sysfs, detected as NPCM"
+fi
 
 if [ "${SOC_FAMILY}" = "AST2500" ] || [ "${SOC_FAMILY}" = "AST2600" ]; then
     DEV_NAME="1e6a0000.usb-vhub"
 elif [ "${SOC_FAMILY}" = "AST2700" ] || [ "${SOC_FAMILY}" = "AST2750" ]; then
     DEV_NAME="12060000.usb-vhub"
+elif [ "${SOC_FAMILY}" = "NPCM" ]; then
+    DEV_NAME="ci_hdrc.0"
 else
     DEV_NAME="1e6a0000.usb-vhub"
     echo "Unknown SOC_FAMILY '${SOC_FAMILY}', defaulting DEV_NAME to '${DEV_NAME}'"
@@ -135,7 +143,9 @@ create_hid() {
 }
 
 connect_hid() {
-    if ! grep -q "${DEV_NAME}:p" UDC; then
+    if [ "${DEV_NAME}" = "ci_hdrc.0" ]; then
+        echo "${DEV_NAME}" > UDC
+    elif ! grep -q "${DEV_NAME}:p" UDC; then
         i=0
         num_ports=5
         base_usb_dir="/sys/bus/platform/devices/${DEV_NAME}/${DEV_NAME}:p"
@@ -151,7 +161,9 @@ connect_hid() {
 }
 
 disconnect_hid() {
-    if grep -q "${DEV_NAME}:p" UDC; then
+    if [ "${DEV_NAME}" = "ci_hdrc.0" ]; then
+        echo "" > UDC
+    elif grep -q "${DEV_NAME}:p" UDC; then
         echo "" > UDC
     fi
 }
