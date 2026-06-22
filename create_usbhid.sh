@@ -1,16 +1,41 @@
 #!/bin/sh
 
 hid_conf_directory="/sys/kernel/config/usb_gadget/obmc_hid"
-SOC_FAMILY=$(cat /sys/bus/soc/devices/soc0/family)
+SOC_TYPE=""
+AST25XX_DEV_NAME="1e6a0000.usb-vhub"
+AST27XX_DEV_NAME="12060000.usb-vhub"
+NPCM_DEV_NAME="ci_hdrc.0"
 
-if [ "${SOC_FAMILY}" = "AST2500" ] || [ "${SOC_FAMILY}" = "AST2600" ]; then
-    DEV_NAME="1e6a0000.usb-vhub"
-elif [ "${SOC_FAMILY}" = "AST2700" ] || [ "${SOC_FAMILY}" = "AST2750" ]; then
-    DEV_NAME="12060000.usb-vhub"
+if [ -r /sys/firmware/devicetree/base/compatible ]; then
+    DT_COMPATIBLE=$(tr '\000' '\n' < /sys/firmware/devicetree/base/compatible)
+    case "${DT_COMPATIBLE}" in
+        *aspeed,ast2500*)
+            SOC_TYPE="AST2500"
+            ;;
+        *aspeed,ast2600*)
+            SOC_TYPE="AST2600"
+            ;;
+        *aspeed,ast2700*)
+            SOC_TYPE="AST2700"
+            ;;
+        *aspeed,ast2750*)
+            SOC_TYPE="AST2750"
+            ;;
+        *nuvoton,npcm*)
+            SOC_TYPE="NPCM"
+            ;;
+    esac
+fi
+
+if [ "${SOC_TYPE}" = "AST2500" ] || [ "${SOC_TYPE}" = "AST2600" ]; then
+    DEV_NAME="${AST25XX_DEV_NAME}"
+elif [ "${SOC_TYPE}" = "AST2700" ] || [ "${SOC_TYPE}" = "AST2750" ]; then
+    DEV_NAME="${AST27XX_DEV_NAME}"
+elif [ "${SOC_TYPE}" = "NPCM" ]; then
+    DEV_NAME="${NPCM_DEV_NAME}"
 else
-    DEV_NAME="1e6a0000.usb-vhub"
-    echo "Unknown SOC_FAMILY '${SOC_FAMILY}', defaulting DEV_NAME to '${DEV_NAME}'"
-    exit 1
+    DEV_NAME="${AST25XX_DEV_NAME}"
+    echo >&2 "Unknown SOC_TYPE '${SOC_TYPE}', defaulting DEV_NAME to '${DEV_NAME}'"
 fi
 
 create_hid() {
@@ -135,7 +160,11 @@ create_hid() {
 }
 
 connect_hid() {
-    if ! grep -q "${DEV_NAME}:p" UDC; then
+    if [ "${DEV_NAME}" = "${NPCM_DEV_NAME}" ]; then
+        if ! grep -q "${NPCM_DEV_NAME}" UDC; then
+            echo "${DEV_NAME}" > UDC
+        fi
+    elif ! grep -q "${DEV_NAME}:p" UDC; then
         i=0
         num_ports=5
         base_usb_dir="/sys/bus/platform/devices/${DEV_NAME}/${DEV_NAME}:p"
@@ -151,7 +180,11 @@ connect_hid() {
 }
 
 disconnect_hid() {
-    if grep -q "${DEV_NAME}:p" UDC; then
+    if [ "${DEV_NAME}" = "${NPCM_DEV_NAME}" ]; then
+        if grep -q "${NPCM_DEV_NAME}" UDC; then
+            echo "" > UDC
+        fi
+    elif grep -q "${DEV_NAME}:p" UDC; then
         echo "" > UDC
     fi
 }
