@@ -33,6 +33,24 @@
       "message": "Looking at the logs in issue #15 (https://github.com/openbmc/obmc-ikvm/issues/15), calling the stop function may be unnecessary.",
       "revId": "d9d18ffb395f7efc9c657921ae3464a789022e04",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9f72bcf_66fbb7da",
+        "filename": "ikvm_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-06-22T08:17:48Z",
+      "side": 1,
+      "message": "An exception is thrown due to failure to open the video device file, so subsequent operations are not executed.",
+      "parentUuid": "3cd10bf4_1f48e152",
+      "revId": "d9d18ffb395f7efc9c657921ae3464a789022e04",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
