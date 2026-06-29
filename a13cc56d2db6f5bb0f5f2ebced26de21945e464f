@@ -163,6 +163,30 @@
       },
       "revId": "a13cc56d2db6f5bb0f5f2ebced26de21945e464f",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30caf4ae_7469c3c9",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-06-29T22:41:45Z",
+      "side": 1,
+      "message": "I meant a case where the UDC is already bound. In that case \u0027Device or resource busy\u0027 error could be returned. In case of Aspeed flow, there is a guard to prevent the case but it does not.",
+      "parentUuid": "73773773_abe72462",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 147,
+        "endChar": 32
+      },
+      "revId": "a13cc56d2db6f5bb0f5f2ebced26de21945e464f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
