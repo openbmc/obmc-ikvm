@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08df6bb4_432085af",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-06-29T14:22:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b152a23a_9e583912",
+      "revId": "a13cc56d2db6f5bb0f5f2ebced26de21945e464f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a68c930_02bcd3f6",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-06-22T15:52:26Z",
       "side": 1,
       "message": "It\u0027s repeating 3 points in this script. Would it be better if we set a variable here so that in other points can use the variable to determine how to connect and disconnect it?",
+      "range": {
+        "startLine": 17,
+        "startChar": 14,
+        "endLine": 17,
+        "endChar": 23
+      },
+      "revId": "a13cc56d2db6f5bb0f5f2ebced26de21945e464f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31cc324d_7d50050e",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-06-29T14:22:22Z",
+      "side": 1,
+      "message": "Added AST25XX_DEV_NAME, AST27XX_DEV_NAME, NPCM_DEV_NAME for dev names",
+      "parentUuid": "2a68c930_02bcd3f6",
       "range": {
         "startLine": 17,
         "startChar": 14,
@@ -58,6 +100,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11fb139d_6ce5ee59",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-06-29T14:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b25ff5b3_03d12d9d",
+      "revId": "a13cc56d2db6f5bb0f5f2ebced26de21945e464f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c8c5ec1_a61623c6",
@@ -71,6 +131,30 @@
       "writtenOn": "2026-06-22T15:52:26Z",
       "side": 1,
       "message": "It couldn\u0027t cover a case when UDC is already bound, right?",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 147,
+        "endChar": 32
+      },
+      "revId": "a13cc56d2db6f5bb0f5f2ebced26de21945e464f",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73773773_abe72462",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-06-29T14:22:22Z",
+      "side": 1,
+      "message": "Nuvoton is not port oriented so it will not have :pN style.",
+      "parentUuid": "7c8c5ec1_a61623c6",
       "range": {
         "startLine": 147,
         "startChar": 8,
