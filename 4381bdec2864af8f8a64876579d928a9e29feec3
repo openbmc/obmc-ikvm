@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75620c2c_7f7aae07",
+        "filename": "keymap.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-07-01T10:40:08Z",
+      "side": 1,
+      "message": "Try swapping lines 13–47 with the snippet below.\n\nstatic constexpr int NUM_MODIFIER_BITS \u003d 8;\nstatic constexpr std::pair\u003crfbKeySym, uint8_t\u003e keyModMap[NUM_MODIFIER_BITS] \u003d {\n    {XK_Shift_L,    USBHID_KEY_SHIFT_L  },\n    {XK_Shift_R,    USBHID_KEY_SHIFT_R  },\n    {XK_Control_L,  USBHID_KEY_CONTROL_L},\n    {XK_Control_R,  USBHID_KEY_CONTROL_R},\n    {XK_Meta_L,     USBHID_Meta_L       },\n    {XK_Meta_R,     USBHID_Meta_R       },\n    {XK_Alt_L,      USBHID_Alt_L        },\n    {XK_Alt_R,      USBHID_Alt_R        }\n};\n\nuint8_t keyToMod(rfbKeySym key)\n{\n    uint8_t mod \u003d 0;\n    for (int i \u003d 0; i \u003c NUM_MODIFIER_BITS; ++i) {\n        if (key \u003d\u003d keyModMap[i].first) {\n            mod \u003d keyModMap[i].second;\n            break;\n        }\n    }\n    return mod;\n}",
+      "revId": "4381bdec2864af8f8a64876579d928a9e29feec3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10d4de29_d41f5df1",
+        "filename": "keymap.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-07-01T10:40:08Z",
+      "side": 1,
+      "message": "Since this function is overly long, it’s best to split the code from line 74 to line 250 into multiple dedicated functions.",
+      "revId": "4381bdec2864af8f8a64876579d928a9e29feec3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8f253e2_3f284865",
         "filename": "test/ikvm_input_test.cpp",
         "patchSetId": 4
