@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c0ca30c_8776fffa",
+        "filename": "keymap.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-01T17:08:24Z",
+      "side": 1,
+      "message": "The primary purpose of this MR was actually to add unit tests for the key input logic, so this kind of refactoring would normally belong in a separate commit.  However, since I was already touching the source structure, I went ahead and included it as well. As you suggested, I updated the code to use macros for the modifier key bits.",
+      "parentUuid": "75620c2c_7f7aae07",
+      "revId": "4381bdec2864af8f8a64876579d928a9e29feec3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10d4de29_d41f5df1",
@@ -70,6 +88,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e80cd63_175add14",
+        "filename": "keymap.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-01T17:08:24Z",
+      "side": 1,
+      "message": "Okay, let\u0027s refactor this as well.  I split the logic into helper functions based on the key categories to make the code cleaner and easier to follow.",
+      "parentUuid": "10d4de29_d41f5df1",
+      "revId": "4381bdec2864af8f8a64876579d928a9e29feec3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8f253e2_3f284865",
@@ -83,6 +119,24 @@
       "writtenOn": "2026-07-01T09:09:13Z",
       "side": 1,
       "message": "I recommend replacing these hardcoded magic numbers—including 0x02, 0x20, 0x01, through to 0x04 and 0x40—with dedicated macros defined in scancodes.hpp, following the same naming convention as the existing USBHID_MENU macro.",
+      "revId": "4381bdec2864af8f8a64876579d928a9e29feec3",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4af4179_d50b2589",
+        "filename": "test/ikvm_input_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-01T17:08:24Z",
+      "side": 1,
+      "message": "I updated this to use a macro as well.",
+      "parentUuid": "a8f253e2_3f284865",
       "revId": "4381bdec2864af8f8a64876579d928a9e29feec3",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
