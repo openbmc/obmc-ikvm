@@ -24,6 +24,30 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12fefbea_57b3e6b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-07-06T10:22:39Z",
+      "side": 1,
+      "message": "updated the commit message",
+      "parentUuid": "273184d3_2d6a6c62",
+      "range": {
+        "startLine": 16,
+        "startChar": 59,
+        "endLine": 16,
+        "endChar": 70
+      },
+      "revId": "52d9f249a01fcf8d9cd1adfd710e5343bbc4cacf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "087ebd27_70ff1931",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c115cae_dc4bc162",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-07-06T10:22:39Z",
+      "side": 1,
+      "message": "changed to SOC_TYPE. is this fine?",
+      "parentUuid": "087ebd27_70ff1931",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "52d9f249a01fcf8d9cd1adfd710e5343bbc4cacf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95924930_06fbe761",
         "filename": "create_usbhid.sh",
         "patchSetId": 4
@@ -60,6 +108,30 @@
       "writtenOn": "2026-06-29T22:41:45Z",
       "side": 1,
       "message": "This is covered by *nuvoton,npcm* already, right?",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 25
+      },
+      "revId": "52d9f249a01fcf8d9cd1adfd710e5343bbc4cacf",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51145cc5_a65c2389",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-07-06T10:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95924930_06fbe761",
       "range": {
         "startLine": 24,
         "startChar": 7,
