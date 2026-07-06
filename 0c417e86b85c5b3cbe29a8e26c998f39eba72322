@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bbe85d9_93b46b38",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-06T17:09:26Z",
+      "side": 1,
+      "message": "nit: plz no double blank lines",
+      "revId": "0c417e86b85c5b3cbe29a8e26c998f39eba72322",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7122c3a_ba01f220",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-06T17:09:26Z",
+      "side": 1,
+      "message": "If we\u0027re going to exit here, there\u0027s no need to specify a default. If we want to use the default, shouldn\u0027t we fall through and continue instead of exiting?",
+      "range": {
+        "startLine": 40,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 10
+      },
+      "revId": "0c417e86b85c5b3cbe29a8e26c998f39eba72322",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b6e1760_1eb1edce",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-06T17:09:26Z",
+      "side": 1,
+      "message": "It\u0027s still the same in patch #5. How do you think about below flow?\n\n```\nif [ \"${DEV_NAME}\" \u003d \"${NPCM_DEV_NAME}\" ]; then\n    if ! grep -q \"${NPCM_DEV_NAME}\" UDC; then\n        echo \"${DEV_NAME}\" \u003e UDC\n    fi\nelif ...\n```",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 32
+      },
+      "revId": "0c417e86b85c5b3cbe29a8e26c998f39eba72322",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a57f9006_565a1efe",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-06T17:09:26Z",
+      "side": 1,
+      "message": "Likewise:\n\n```\nif [ \"${DEV_NAME}\" \u003d \"${NPCM_DEV_NAME}\" ]; then\n    if ! grep -q \"${NPCM_DEV_NAME}\" UDC; then\n        echo \"${DEV_NAME}\" \u003e UDC\n    fi\nelif ...\n```\n\n?",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 7
+      },
+      "revId": "0c417e86b85c5b3cbe29a8e26c998f39eba72322",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
