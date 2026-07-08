@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7da3c764_6ae431b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-08T01:46:00Z",
+      "side": 1,
+      "message": "Looks like this commit message also needs to be fixed.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "0c417e86b85c5b3cbe29a8e26c998f39eba72322",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2bbe85d9_93b46b38",
         "filename": "create_usbhid.sh",
         "patchSetId": 5
