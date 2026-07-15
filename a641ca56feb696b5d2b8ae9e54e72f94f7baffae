@@ -16,6 +16,23 @@
       "message": "@jae.yoo@oss.qualcomm.com @wangmin@phytium.com.cn Please review",
       "revId": "a641ca56feb696b5d2b8ae9e54e72f94f7baffae",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04cb8cad_5456c40f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-07-15T21:59:05Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "a641ca56feb696b5d2b8ae9e54e72f94f7baffae",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
