@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937d4429_0c02e4e4",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-07-15T09:27:30Z",
+      "side": 0,
+      "message": "It would be best to keep line 13, since this exit handles invalid SOC_FAMILY inputs by stopping the script.",
+      "revId": "9c731266760f7b7aae0288f52121adaec1c9f6dd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
