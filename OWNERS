@@ -32,7 +32,6 @@
 # data within them will be kept sorted.
 
 owners:
-- eajames@linux.ibm.com
 - jae.yoo@oss.qualcomm.com
 
 reviewers:
@@ -42,9 +41,6 @@ reviewers:
 matchers:
 
 openbmc:
-- name: Eddie James
-  email: eajames@linux.ibm.com
-  discord: eajames
 - name: Hariharan Rangasamy
   email: hariharanr@ami.com
   discord: rdotdk
