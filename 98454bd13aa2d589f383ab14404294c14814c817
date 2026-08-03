@@ -34,6 +34,23 @@
       "parentUuid": "85dea80a_2d6e97c2",
       "revId": "98454bd13aa2d589f383ab14404294c14814c817",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95ed60c7_cc031b3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-08-03T14:49:43Z",
+      "side": 1,
+      "message": "The CI passed, and the Submit button is now enabled. Merging it now.",
+      "revId": "98454bd13aa2d589f383ab14404294c14814c817",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
