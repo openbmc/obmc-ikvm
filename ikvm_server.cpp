@@ -352,12 +352,12 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
         }
         catch (const std::exception& e)
         {
-            // Opening the HID gadget devices can throw; refuse the client
-            // instead of letting the exception escape the server thread.
-            lg2::error("Failed to connect HID gadget, refusing client "
+            // HID gadget open failures leave the fds at -1, which the input
+            // handlers already treat as "no HID"; keep serving video-only
+            // instead of refusing the client.
+            lg2::error("Failed to connect HID gadget, continuing video-only "
                        "{ERROR}",
                        "ERROR", e.what());
-            return RFB_CLIENT_REFUSE;
         }
 
         server->pendingResize = false;
