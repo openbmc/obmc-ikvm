@@ -40,11 +40,32 @@ void Manager::run()
             video.stop();
         }
 
-        if (video.needsResize())
+        bool resizeNeeded = false;
+
+        try
+        {
+            resizeNeeded = video.needsResize();
+        }
+        catch (const std::exception& e)
+        {
+            lg2::error("Video resize check failed {ERROR}", "ERROR", e);
+        }
+
+        if (resizeNeeded)
         {
             waitServer(true);
-            video.resize();
-            server.resize();
+
+            try
+            {
+                video.resize();
+                server.resize();
+            }
+            catch (const std::exception& e)
+            {
+                lg2::error("Video resize failed {ERROR}", "ERROR", e);
+            }
+
+            // Always release the paused server thread, even on failure.
             setVideoDone();
         }
         else
