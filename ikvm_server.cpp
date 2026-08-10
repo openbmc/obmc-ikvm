@@ -345,7 +345,21 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
                 return RFB_CLIENT_REFUSE;
             }
         }
-        server->input.connect();
+
+        try
+        {
+            server->input.connect();
+        }
+        catch (const std::exception& e)
+        {
+            // Opening the HID gadget devices can throw; refuse the client
+            // instead of letting the exception escape the server thread.
+            lg2::error("Failed to connect HID gadget, refusing client "
+                       "{ERROR}",
+                       "ERROR", e.what());
+            return RFB_CLIENT_REFUSE;
+        }
+
         server->pendingResize = false;
         server->frameCounter = 0;
     }
