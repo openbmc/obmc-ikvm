@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "792a8358_d7ac1c8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-08-10T19:56:12Z",
+      "side": 1,
+      "message": "LGTM with the fixed version.",
+      "revId": "a3e6afebdc5f30049fbdf2926d6024b6997c7b3a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}

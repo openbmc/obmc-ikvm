@@ -34,6 +34,24 @@
       "parentUuid": "87572662_01bfdf83",
       "revId": "bfc388ff71a1f8fa89f1dc3d552b02cb19499550",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a800e7f_119e5e12",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-08-10T19:56:12Z",
+      "side": 1,
+      "message": "If this issue actually occurs, I don’t think it would be a temporary or intermittent problem. It would likely be a consistent issue caused by an incorrect HID interface path option.  In that case, we would naturally need to check the journal logs to identify the root cause and then fix the configuration accordingly.  \nGiven the current mechanism, I don’t think we need to consider adding a way to indicate the error status through the rfbClient.",
+      "parentUuid": "90955620_efadbdc1",
+      "revId": "bfc388ff71a1f8fa89f1dc3d552b02cb19499550",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
