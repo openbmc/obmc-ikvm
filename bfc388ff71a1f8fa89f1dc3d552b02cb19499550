@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87572662_01bfdf83",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-08-10T14:16:10Z",
+      "side": 1,
+      "message": "I think adding the try-catch is the right direction. However, even if the HID connection fails, I think we should print the error log and keep the session valid with the video connection at least.\n\nIf the video connection fails, RFB_CLIENT_REFUSE makes sense. But if the HID connection fails, I think it would be better to print the error log and continue with RFB_CLIENT_ACCEPT. Our code already supports running with the HID fd set to -1.",
+      "revId": "bfc388ff71a1f8fa89f1dc3d552b02cb19499550",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
