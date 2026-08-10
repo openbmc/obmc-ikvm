@@ -341,11 +341,24 @@ enum rfbNewClientAction Server::newClient(rfbClientPtr cl)
                 // and formatInitialized stays false so the next client retries.
                 lg2::error("Failed to initialize pixel format, refusing "
                            "client {ERROR}",
-                           "ERROR", e.what());
+                           "ERROR", e);
                 return RFB_CLIENT_REFUSE;
             }
         }
-        server->input.connect();
+
+        try
+        {
+            server->input.connect();
+        }
+        catch (const std::exception& e)
+        {
+            // HID gadget open failures leave the fds at -1, which the input
+            // handlers already treat as "no HID"; keep serving video-only
+            // instead of refusing the client.
+            lg2::error("Failed to connect HID gadget, continuing video-only "
+                       "{ERROR}",
+                       "ERROR", e);
+        }
         server->pendingResize = false;
         server->frameCounter = 0;
     }

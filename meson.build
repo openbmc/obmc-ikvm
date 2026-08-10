@@ -42,15 +42,9 @@ if gtest.found()
         'ikvm_args_test',
         executable(
             'ikvm_args_test',
-            [
-                'ikvm_args.cpp',
-                'test/ikvm_args_test.cpp',
-            ],
+            ['ikvm_args.cpp', 'test/ikvm_args_test.cpp'],
             include_directories: include_directories('.'),
-            dependencies: [
-                gtest,
-                dependency('libvncserver'),
-            ],
+            dependencies: [gtest, dependency('libvncserver')],
         ),
     )
 
@@ -58,15 +52,9 @@ if gtest.found()
         'ikvm_input_test',
         executable(
             'ikvm_input_test',
-            [
-                'keymap.cpp',
-                'test/ikvm_input_test.cpp',
-            ],
+            ['keymap.cpp', 'test/ikvm_input_test.cpp'],
             include_directories: include_directories('.'),
-            dependencies: [
-                gtest,
-                dependency('libvncserver'),
-            ],
+            dependencies: [gtest, dependency('libvncserver')],
         ),
     )
 endif
