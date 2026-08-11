@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "277ec1fd_97af63a5",
+        "filename": "ikvm_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-08-11T11:09:31Z",
+      "side": 1,
+      "message": "When VIDIOC_QUERY_DV_TIMINGS reports V4L2_IN_ST_NO_SIGNAL for video status, the AST2500 and AST2600 video drivers return a minimal resolution of 640×480 to obmc‑ikvm.",
+      "revId": "13f66bfddeb0f1af474aae7abb3898d7cf15bd49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c52d5705_7be30b6a",
+        "filename": "ikvm_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-08-11T11:09:31Z",
+      "side": 1,
+      "message": "The size of the buffers member variable within the Video class never exceeds ASPEED_VIDEO_V4L2_MIN_BUF_REQ (defined with a value of 3), so the corresponding code path is unlikely to throw exceptions.\n\nPer the official documentation for https://en.cppreference.com/cpp/container/vector/resize: when resizing a vector to a smaller size, its capacity will not shrink. This design avoids invalidating all iterators; the standard only invalidates iterators pointing to or following the erased elements.",
+      "revId": "13f66bfddeb0f1af474aae7abb3898d7cf15bd49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da02f6f8_317893f4",
+        "filename": "ikvm_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-08-11T11:09:31Z",
+      "side": 1,
+      "message": "Three separate C++ exception catch blocks exist within the frequently executed main-thread loop, which can significantly degrade runtime performance and consume excessive thread stack space.",
+      "revId": "13f66bfddeb0f1af474aae7abb3898d7cf15bd49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
