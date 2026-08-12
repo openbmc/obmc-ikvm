@@ -104,6 +104,24 @@
       "parentUuid": "da02f6f8_317893f4",
       "revId": "13f66bfddeb0f1af474aae7abb3898d7cf15bd49",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7b5d627_210393b7",
+        "filename": "ikvm_manager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-08-12T04:27:24Z",
+      "side": 1,
+      "message": "My apologies. I have performed assembly comparison and runtime verification, and confirm your point holds true: try-catch imposes negligible overhead on the normal happy path.\n\nThe function below is used to verify the execution flow of the try‑catch block.\n\n\nvoid tryGetIndex(vector\u003cint\u003e\u0026 intArr, int index)\n{\n\n    try\n    {\n        intArr.at(index);\n    }\n    catch (exception\u0026 e)\n    {\n        cout \u003c\u003c \" exception \" \u003c\u003c e.what() \u003c\u003c endl;\n    }\n    \n    return;\n}\n\n\nint main()\n{\n    vector\u003cint\u003e pool(4);\n\n    tryGetIndex(pool, 50);\n\n    return 0;\n}",
+      "parentUuid": "8ce31498_0d811bad",
+      "revId": "13f66bfddeb0f1af474aae7abb3898d7cf15bd49",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
