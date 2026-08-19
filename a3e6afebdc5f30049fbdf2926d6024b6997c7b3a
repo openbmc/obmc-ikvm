@@ -33,6 +33,41 @@
       "message": "@wangmin@phytium.com.cn Can you review the latest patch?",
       "revId": "a3e6afebdc5f30049fbdf2926d6024b6997c7b3a",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "947f3e26_02b0a3de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-08-19T07:08:44Z",
+      "side": 1,
+      "message": "Thanks for the ping. I\u0027ll review patchset 4 and provide my comments soon.",
+      "parentUuid": "3aee49b7_83a550d0",
+      "revId": "a3e6afebdc5f30049fbdf2926d6024b6997c7b3a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcf4d60a_0f0f79c1",
+        "filename": "ikvm_server.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-08-19T07:08:44Z",
+      "side": 1,
+      "message": "As Palaniappan pointed out in the previous patchset, the what() member function can be dropped.",
+      "revId": "a3e6afebdc5f30049fbdf2926d6024b6997c7b3a",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
