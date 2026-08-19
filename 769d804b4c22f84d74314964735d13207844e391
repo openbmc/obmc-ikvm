@@ -33,6 +33,23 @@
       "message": "LGTM",
       "revId": "769d804b4c22f84d74314964735d13207844e391",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0224bac_f30fe1cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-08-19T02:45:50Z",
+      "side": 1,
+      "message": "@wangmin@phytium.com.cn Can you review the latest patch?",
+      "revId": "769d804b4c22f84d74314964735d13207844e391",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
