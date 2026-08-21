@@ -124,13 +124,34 @@ class Video
     {
         subSampling = _sub;
     }
-
-    /* @brief Number of bits per component of a pixel */
-    static int bitsPerSample;
-    /* @brief Number of bytes of storage for a pixel */
-    static int bytesPerPixel;
-    /* @brief Number of components in a pixel (i.e. 3 for RGB pixel) */
-    static int samplesPerPixel;
+    /*
+     * @brief Gets the number of bits per component of a pixel
+     *
+     * @return Value of the number of bits per component of a pixel
+     */
+    inline int getBitsPerSample() const
+    {
+        return bitsPerSample;
+    }
+    /*
+     * @brief Gets the number of bytes of storage for a pixel
+     *
+     * @return Value of the number of bytes of storage for a pixel
+     */
+    inline int getBytesPerPixel() const
+    {
+        return bytesPerPixel;
+    }
+    /*
+     * @brief Gets the number of components in a pixel
+     *
+     * @return Value of the number of components in a pixel (i.e. 3 for RGB
+     *         pixel)
+     */
+    inline int getSamplesPerPixel() const
+    {
+        return samplesPerPixel;
+    }
 
   private:
     /*
@@ -181,6 +202,12 @@ class Video
 
     /* @brief Pixel Format  */
     uint32_t pixelformat;
+    /* @brief Number of bits per component of a pixel */
+    int bitsPerSample;
+    /* @brief Number of bytes of storage for a pixel */
+    int bytesPerPixel;
+    /* @brief Number of components in a pixel (i.e. 3 for RGB pixel) */
+    int samplesPerPixel;
 };
 
 } // namespace ikvm
