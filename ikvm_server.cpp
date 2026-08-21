@@ -28,8 +28,8 @@ Server::Server(const Args& args, Input& i, Video& v) :
     // format is probed from the video device later, in initializePixelFormat(),
     // so that the device is not opened before the first client connects.
     server = rfbGetScreen(&argc, commandLine.argv, video.getWidth(),
-                          video.getHeight(), Video::bitsPerSample,
-                          Video::samplesPerPixel, Video::bytesPerPixel);
+                          video.getHeight(), video.getBitsPerSample(),
+                          video.getSamplesPerPixel(), video.getBytesPerPixel());
 
     if (!server)
     {
@@ -40,7 +40,7 @@ Server::Server(const Args& args, Input& i, Video& v) :
     }
 
     framebuffer.resize(
-        video.getHeight() * video.getWidth() * Video::bytesPerPixel, 0);
+        video.getHeight() * video.getWidth() * video.getBytesPerPixel(), 0);
 
     server->screenData = this;
     server->desktopName = "OpenBMC IKVM";
@@ -71,11 +71,11 @@ Server::~Server()
 void Server::applyPixelFormat()
 {
     framebuffer.resize(
-        video.getHeight() * video.getWidth() * Video::bytesPerPixel, 0);
+        video.getHeight() * video.getWidth() * video.getBytesPerPixel(), 0);
 
     rfbNewFramebuffer(server, framebuffer.data(), video.getWidth(),
-                      video.getHeight(), Video::bitsPerSample,
-                      Video::samplesPerPixel, Video::bytesPerPixel);
+                      video.getHeight(), video.getBitsPerSample(),
+                      video.getSamplesPerPixel(), video.getBytesPerPixel());
 
     rfbSetServerPixelFormat(server);
 

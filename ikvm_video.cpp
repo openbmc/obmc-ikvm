@@ -22,10 +22,6 @@
 namespace ikvm
 {
 
-int Video::bitsPerSample(8);
-int Video::bytesPerPixel(4);
-int Video::samplesPerPixel(3);
-
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
@@ -33,7 +29,7 @@ using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 Video::Video(const std::string& p, Input& input, int fr, int sub) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
     lastFrameIndex(-1), height(600), width(800), subSampling(sub), input(input),
-    path(p)
+    path(p), bitsPerSample(8), bytesPerPixel(4), samplesPerPixel(3)
 {}
 
 Video::~Video()
