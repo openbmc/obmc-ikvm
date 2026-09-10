@@ -16,6 +16,23 @@
       "message": "Looks good to me.",
       "revId": "f499cf2ccd317b3c180edfd8db63144ab89a05ed",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddb5ede9_3a503e3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-09-10T21:46:58Z",
+      "side": 1,
+      "message": "libvncserver also uses int for width, height, bitsPerSample, and samplesPerPixel.  Using size_t for width and height in obmc-ikvm has been the case since the first commit in this repo. Ideally, it would be better to align these types with those used by libvncserver where possible, but to avoid introducing any regressions, we can treat this as a long-term TODO and address it separately.\n\nFor this commit, the focus is on bitsPerSample, bytesPerPixel, and samplesPerPixel. As Hariharan mentioned, these values are very small, so int is more than sufficient, and it also matches the types used by libvncserver.",
+      "revId": "f499cf2ccd317b3c180edfd8db63144ab89a05ed",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
