@@ -5,11 +5,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <phosphor-logging/lg2.hpp>
+
 namespace ikvm
 {
 Args::Args(int argc, char* argv[]) :
-    frameRate(30), subsampling(0), timeoutSeconds(-1), calcFrameCRC{false},
-    commandLine(argc, argv)
+    frameRate(frameRateDefault), subsampling(0), timeoutSeconds(-1),
+    calcFrameCRC{false}, commandLine(argc, argv)
 {
     int option;
     const char* opts = "f:s:hk:p:u:v:ct:";
@@ -26,8 +28,13 @@ Args::Args(int argc, char* argv[]) :
         {
             case 'f':
                 frameRate = (int)strtol(optarg, nullptr, 0);
-                if (frameRate < 0 || frameRate > 60)
-                    frameRate = 30;
+                if (frameRate < frameRateMin || frameRate > frameRateMax)
+                {
+                    lg2::warning(
+                        "Invalid frame rate {VALUE}, using default {DEFAULT}",
+                        "VALUE", optarg, "DEFAULT", frameRateDefault);
+                    frameRate = frameRateDefault;
+                }
                 break;
             case 's':
                 subsampling = (int)strtol(optarg, nullptr, 0);

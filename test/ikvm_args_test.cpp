@@ -49,7 +49,7 @@ TEST_F(ArgsTest, DefaultValuesWithNoArguments)
 
     Args parser(args.size(), argv);
 
-    EXPECT_EQ(parser.getFrameRate(), 30);
+    EXPECT_EQ(parser.getFrameRate(), frameRateDefault);
     EXPECT_EQ(parser.getSubsampling(), 0);
     EXPECT_TRUE(parser.getKeyboardPath().empty());
     EXPECT_TRUE(parser.getPointerPath().empty());
@@ -130,7 +130,7 @@ TEST_F(ArgsTest, FrameRateOutOfRangeHigh)
 
     Args parser(args.size(), argv);
 
-    EXPECT_EQ(parser.getFrameRate(), 30);
+    EXPECT_EQ(parser.getFrameRate(), frameRateDefault);
 
     deleteArgv(argv, args.size());
 }
@@ -142,7 +142,31 @@ TEST_F(ArgsTest, FrameRateOutOfRangeLow)
 
     Args parser(args.size(), argv);
 
-    EXPECT_EQ(parser.getFrameRate(), 30);
+    EXPECT_EQ(parser.getFrameRate(), frameRateDefault);
+
+    deleteArgv(argv, args.size());
+}
+
+TEST_F(ArgsTest, FrameRateZeroFallsBackToDefault)
+{
+    std::vector<std::string> args = {"obmc-ikvm", "-f", "0"};
+    char** argv = createArgv(args);
+
+    Args parser(args.size(), argv);
+
+    EXPECT_EQ(parser.getFrameRate(), frameRateDefault);
+
+    deleteArgv(argv, args.size());
+}
+
+TEST_F(ArgsTest, NonNumericFrameRateFallsBackToDefault)
+{
+    std::vector<std::string> args = {"obmc-ikvm", "-f", "invalid"};
+    char** argv = createArgv(args);
+
+    Args parser(args.size(), argv);
+
+    EXPECT_EQ(parser.getFrameRate(), frameRateDefault);
 
     deleteArgv(argv, args.size());
 }

@@ -4,6 +4,10 @@
 
 namespace ikvm
 {
+constexpr int frameRateDefault = 30;
+constexpr int frameRateMin = 1;
+constexpr int frameRateMax = 60;
+
 /*
  * @class Args
  * @brief Command line argument parser and storage
