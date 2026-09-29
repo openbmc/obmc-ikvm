@@ -147,6 +147,30 @@ TEST_F(ArgsTest, FrameRateOutOfRangeLow)
     deleteArgv(argv, args.size());
 }
 
+TEST_F(ArgsTest, FrameRateZeroDefaultsToThirty)
+{
+    std::vector<std::string> args = {"obmc-ikvm", "-f", "0"};
+    char** argv = createArgv(args);
+
+    Args parser(args.size(), argv);
+
+    EXPECT_EQ(parser.getFrameRate(), 30);
+
+    deleteArgv(argv, args.size());
+}
+
+TEST_F(ArgsTest, NonNumericFrameRateDefaultsToThirty)
+{
+    std::vector<std::string> args = {"obmc-ikvm", "-f", "invalid"};
+    char** argv = createArgv(args);
+
+    Args parser(args.size(), argv);
+
+    EXPECT_EQ(parser.getFrameRate(), 30);
+
+    deleteArgv(argv, args.size());
+}
+
 TEST_F(ArgsTest, SubsamplingOutOfRange)
 {
     std::vector<std::string> args = {"obmc-ikvm", "-s", "5"};

@@ -44,7 +44,11 @@ if gtest.found()
             'ikvm_args_test',
             ['ikvm_args.cpp', 'test/ikvm_args_test.cpp'],
             include_directories: include_directories('.'),
-            dependencies: [gtest, dependency('libvncserver')],
+            dependencies: [
+                gtest,
+                dependency('libvncserver'),
+                dependency('phosphor-logging'),
+            ],
         ),
     )
 
