@@ -26,7 +26,7 @@ Args::Args(int argc, char* argv[]) :
         {
             case 'f':
                 frameRate = (int)strtol(optarg, nullptr, 0);
-                if (frameRate < 0 || frameRate > 60)
+                if (frameRate <= 0 || frameRate > 60)
                     frameRate = 30;
                 break;
             case 's':
