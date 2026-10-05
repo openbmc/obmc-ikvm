@@ -18,6 +18,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fd89978_8b18102d",
+        "filename": "test/ikvm_args_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-10-05T16:28:14Z",
+      "side": 1,
+      "message": "Done. Hopefully I’ve covered everything. Let me know if I missed anything.",
+      "parentUuid": "057052b5_a6389810",
+      "revId": "4624535f56cbd4f111ed55284bef6c1cb94fa5c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d5ea8bd_b39ac8a0",
@@ -31,6 +49,30 @@
       "writtenOn": "2026-10-05T15:49:16Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 169,
+        "startChar": 37,
+        "endLine": 169,
+        "endChar": 39
+      },
+      "revId": "4624535f56cbd4f111ed55284bef6c1cb94fa5c4",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9d2bfea_95a8771a",
+        "filename": "test/ikvm_args_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-10-05T16:28:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d5ea8bd_b39ac8a0",
       "range": {
         "startLine": 169,
         "startChar": 37,
