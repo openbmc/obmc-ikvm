@@ -79,6 +79,16 @@ class Args
     }
 
     /*
+     * @brief Get the JPEG compression quality
+     *
+     * @return Value of the JPEG quality, or -1 to use the driver default
+     */
+    inline int getJpegQuality() const
+    {
+        return jpegQuality;
+    }
+
+    /*
      * @brief Get the path to the USB keyboard device
      *
      * @return Reference to the string storing the path to the keyboard device
@@ -149,6 +159,8 @@ class Args
     int frameRate;
     /* @brief Desired subsampling (0: 444, 1: 420) */
     int subsampling;
+    /* @brief JPEG compression quality (-1: driver default) */
+    int jpegQuality;
     /* @brief Path to the USB keyboard device */
     std::string keyboardPath;
     /* @brief Path to the USB mouse device */
