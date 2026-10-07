@@ -11,7 +11,7 @@ Manager::Manager(const Args& args) :
     videoPaused(false),
     input(args.getKeyboardPath(), args.getPointerPath(), args.getUdcName()),
     video(args.getVideoPath(), input, args.getFrameRate(),
-          args.getSubsampling()),
+          args.getSubsampling(), args.getJpegQuality()),
     server(args, input, video)
 {}
 
