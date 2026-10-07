@@ -56,6 +56,43 @@ TEST_F(ArgsTest, DefaultValuesWithNoArguments)
     EXPECT_TRUE(parser.getUdcName().empty());
     EXPECT_TRUE(parser.getVideoPath().empty());
     EXPECT_FALSE(parser.getCalcFrameCRC());
+    EXPECT_EQ(parser.getJpegQuality(), -1);
+
+    deleteArgv(argv, args.size());
+}
+
+TEST_F(ArgsTest, ParseValidJpegQuality)
+{
+    std::vector<std::string> args = {"obmc-ikvm", "-q", "4"};
+    char** argv = createArgv(args);
+
+    Args parser(args.size(), argv);
+
+    EXPECT_EQ(parser.getJpegQuality(), 4);
+
+    deleteArgv(argv, args.size());
+}
+
+TEST_F(ArgsTest, ParseJpegQualityLongOption)
+{
+    std::vector<std::string> args = {"obmc-ikvm", "--jpegQuality", "0"};
+    char** argv = createArgv(args);
+
+    Args parser(args.size(), argv);
+
+    EXPECT_EQ(parser.getJpegQuality(), 0);
+
+    deleteArgv(argv, args.size());
+}
+
+TEST_F(ArgsTest, JpegQualityNegative)
+{
+    std::vector<std::string> args = {"obmc-ikvm", "-q", "-1"};
+    char** argv = createArgv(args);
+
+    Args parser(args.size(), argv);
+
+    EXPECT_EQ(parser.getJpegQuality(), -1);
 
     deleteArgv(argv, args.size());
 }

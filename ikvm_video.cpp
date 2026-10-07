@@ -19,6 +19,8 @@
 #include <xyz/openbmc_project/Common/Device/error.hpp>
 #include <xyz/openbmc_project/Common/File/error.hpp>
 
+#include <algorithm>
+
 namespace ikvm
 {
 
@@ -26,10 +28,11 @@ using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 using namespace sdbusplus::xyz::openbmc_project::Common::Device::Error;
 
-Video::Video(const std::string& p, Input& input, int fr, int sub) :
+Video::Video(const std::string& p, Input& input, int fr, int sub, int q) :
     resizeAfterOpen(false), timingsError(false), fd(-1), frameRate(fr),
-    lastFrameIndex(-1), height(600), width(800), subSampling(sub), input(input),
-    path(p), bitsPerSample(8), bytesPerPixel(4), samplesPerPixel(3)
+    lastFrameIndex(-1), height(600), width(800), subSampling(sub),
+    jpegQuality(q), input(input), path(p), bitsPerSample(8), bytesPerPixel(4),
+    samplesPerPixel(3)
 {}
 
 Video::~Video()
@@ -500,6 +503,40 @@ void Video::start()
     {
         lg2::warning("Failed to set video jpeg subsampling {ERROR}", "ERROR",
                      strerror(errno));
+    }
+
+    if (jpegQuality >= 0)
+    {
+        v4l2_queryctrl qctrl{};
+        qctrl.id = V4L2_CID_JPEG_COMPRESSION_QUALITY;
+        rc = ioctl(fd, VIDIOC_QUERYCTRL, &qctrl);
+        if (rc < 0)
+        {
+            lg2::warning("Video device does not support jpeg quality {ERROR}",
+                         "ERROR", strerror(errno));
+        }
+        else
+        {
+            // The kernel clamps silently, so report the value actually used.
+            int quality = std::clamp(jpegQuality, qctrl.minimum, qctrl.maximum);
+            if (quality != jpegQuality)
+            {
+                lg2::warning(
+                    "JPEG quality {QUALITY} is outside the device range "
+                    "{MIN}-{MAX}, using {USED}",
+                    "QUALITY", jpegQuality, "MIN", qctrl.minimum, "MAX",
+                    qctrl.maximum, "USED", quality);
+            }
+
+            ctrl.id = qctrl.id;
+            ctrl.value = quality;
+            rc = ioctl(fd, VIDIOC_S_CTRL, &ctrl);
+            if (rc < 0)
+            {
+                lg2::warning("Failed to set video jpeg quality {ERROR}",
+                             "ERROR", strerror(errno));
+            }
+        }
     }
 
     height = fmt.fmt.pix.height;

@@ -22,8 +22,11 @@ class Video
      * @param[in] p     - Path to the V4L2 video device
      * @param[in] input - Reference to the Input object
      * @param[in] fr    - desired frame rate of the video
+     * @param[in] sub   - JPEG subsampling, 1:420/0:444
+     * @param[in] q     - JPEG quality, -1 to use the driver default
      */
-    Video(const std::string& p, Input& input, int fr = 30, int sub = 0);
+    Video(const std::string& p, Input& input, int fr = 30, int sub = 0,
+          int q = -1);
     ~Video();
     Video(const Video&) = default;
     Video& operator=(const Video&) = delete;
@@ -193,6 +196,8 @@ class Video
     size_t width;
     /* @brief jpeg's subsampling, 1:420/0:444 */
     int subSampling;
+    /* @brief JPEG compression quality, -1 to use the driver default */
+    int jpegQuality;
     /* @brief Reference to the Input object */
     Input& input;
     /* @brief Path to the V4L2 video device */

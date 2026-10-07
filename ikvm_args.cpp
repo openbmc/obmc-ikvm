@@ -8,17 +8,18 @@
 namespace ikvm
 {
 Args::Args(int argc, char* argv[]) :
-    frameRate(30), subsampling(0), timeoutSeconds(-1), calcFrameCRC{false},
-    commandLine(argc, argv)
+    frameRate(30), subsampling(0), jpegQuality(-1), timeoutSeconds(-1),
+    calcFrameCRC{false}, commandLine(argc, argv)
 {
     int option;
-    const char* opts = "f:s:hk:p:u:v:ct:";
+    const char* opts = "f:s:q:hk:p:u:v:ct:";
     struct option lopts[] = {
-        {"frameRate", 1, nullptr, 'f'},      {"subsampling", 1, nullptr, 's'},
-        {"help", 0, nullptr, 'h'},           {"keyboard", 1, nullptr, 'k'},
-        {"mouse", 1, nullptr, 'p'},          {"udcName", 1, nullptr, 'u'},
-        {"videoDevice", 1, nullptr, 'v'},    {"calcCRC", 0, nullptr, 'c'},
-        {"timeoutSeconds", 1, nullptr, 't'}, {nullptr, 0, nullptr, 0}};
+        {"frameRate", 1, nullptr, 'f'},   {"subsampling", 1, nullptr, 's'},
+        {"jpegQuality", 1, nullptr, 'q'}, {"help", 0, nullptr, 'h'},
+        {"keyboard", 1, nullptr, 'k'},    {"mouse", 1, nullptr, 'p'},
+        {"udcName", 1, nullptr, 'u'},     {"videoDevice", 1, nullptr, 'v'},
+        {"calcCRC", 0, nullptr, 'c'},     {"timeoutSeconds", 1, nullptr, 't'},
+        {nullptr, 0, nullptr, 0}};
 
     while ((option = getopt_long(argc, argv, opts, lopts, nullptr)) != -1)
     {
@@ -33,6 +34,11 @@ Args::Args(int argc, char* argv[]) :
                 subsampling = (int)strtol(optarg, nullptr, 0);
                 if (subsampling < 0 || subsampling > 1)
                     subsampling = 0;
+                break;
+            case 'q':
+                jpegQuality = (int)strtol(optarg, nullptr, 0);
+                if (jpegQuality < 0)
+                    jpegQuality = -1;
                 break;
             case 'h':
                 printUsage();
@@ -68,6 +74,8 @@ void Args::printUsage()
     fprintf(stderr, "Usage: obmc-ikvm [options]\n");
     fprintf(stderr, "-f frame rate          try this frame rate\n");
     fprintf(stderr, "-s subsampling         try this subsampling\n");
+    fprintf(stderr,
+            "-q, --jpegQuality q    JPEG quality, range set by driver\n");
     fprintf(stderr, "-h, --help             show this message and exit\n");
     fprintf(stderr, "-k device              HID keyboard gadget device\n");
     fprintf(stderr, "-p device              HID mouse gadget device\n");
