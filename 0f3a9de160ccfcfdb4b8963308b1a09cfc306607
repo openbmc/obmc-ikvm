@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b489a56_832ca9df",
+        "filename": "ikvm_args.hpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-10-07T00:30:18Z",
+      "side": 1,
+      "message": "One last nit thing: \u0027inline constexpr\u0027 instead.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "0f3a9de160ccfcfdb4b8963308b1a09cfc306607",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
