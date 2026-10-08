@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395eb0c5_b11af632",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-10-08T10:34:07Z",
+      "side": 1,
+      "message": "Replace hardcoded V4L2_CID_JPEG_COMPRESSION_QUALITY for ctrl.id with qctrl.id",
+      "revId": "fd9f85f56dec49477130ca9fbad2e3a20ae6b35e",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
