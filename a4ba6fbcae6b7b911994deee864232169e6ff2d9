@@ -51,6 +51,24 @@
       "message": "@wangmin@phytium.com.cn Can you review this change?",
       "revId": "a4ba6fbcae6b7b911994deee864232169e6ff2d9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaaba7f1_c57e33e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-10-09T03:08:59Z",
+      "side": 1,
+      "message": "Sure, this change looks good to me.",
+      "parentUuid": "5cc44eef_c3ce9296",
+      "revId": "a4ba6fbcae6b7b911994deee864232169e6ff2d9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
