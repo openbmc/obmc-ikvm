@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb9362e_76e77ecd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-10-15T03:33:27Z",
+      "side": 1,
+      "message": "Did you actually hit this crash on hardware, or was it found only through LLM analysis?\n\nIf you did hit it, please add the crash details to the commit message.\n\nEither way, please test this on hardware with -c enabled. Check whether frames are skipped or sent to the client as expected, and whether video redirection is affected in practice. Please add the results to the Tested: section.\n\nAlso, only Aspeed uses JPEG. NPCM uses HEXTILE. The 0x30 JFIF header skip only makes sense for JPEG, but the -c CRC check runs for every pixel format, so this change affects both platforms.  If you can, please test on NPCM as well.",
+      "revId": "3950fd4408e8e357687561ce6259949c8ef51cc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
