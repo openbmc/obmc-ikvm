@@ -15,6 +15,13 @@ namespace ikvm
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::Error;
 
+namespace
+{
+/* Bytes at the start of a JPEG frame that carry varying data (JFIF
+ * header); they are skipped by the frame checksum when present. */
+constexpr size_t jfifSkip = 0x30;
+} // namespace
+
 Server::Server(const Args& args, Input& i, Video& v) :
     pendingResize(false), frameCounter(0), numClients(0),
     timeoutSeconds(args.getTimeoutSeconds()), formatInitialized(false),
@@ -194,10 +201,15 @@ void Server::sendFrame()
             if (frame_crc == -1)
             {
                 /* JFIF header contains some varying data so skip it for
-                 * checksum calculation */
+                 * checksum calculation. Nothing in this layer bounds the
+                 * driver-reported frame size to at least the skipped
+                 * header; subtracting unconditionally would underflow and
+                 * read past the buffer, so skip only when it fits. */
+                const size_t frameSize = video.getFrameSize();
+                const size_t skip = frameSize >= jfifSkip ? jfifSkip : 0;
                 frame_crc =
                     boost::crc<32, 0x04C11DB7, 0xFFFFFFFF, 0xFFFFFFFF, true,
-                               true>(data + 0x30, video.getFrameSize() - 0x30);
+                               true>(data + skip, frameSize - skip);
             }
 
             if (cd->last_crc == frame_crc)
