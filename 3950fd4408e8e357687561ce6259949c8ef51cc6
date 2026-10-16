@@ -50,6 +50,24 @@
       "message": "Please reword this as hardening (no observed crash). Remove the crash and signal-loss claims, say Tested: was a standalone harness only and not on hardware. We need to test these changes in hardware. @wangmin@phytium.com.cn @jae.yoo@oss.qualcomm.com thoughts?",
       "revId": "3950fd4408e8e357687561ce6259949c8ef51cc6",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4477a8e2_5d4ebac7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-10-16T03:49:40Z",
+      "side": 1,
+      "message": "I think this patch is unnecessary, for three main reasons.\nFirst, the JPEG engine guarantees every generated JPEG frame includes a 756-byte JPEG header, and the total size of each JPEG frame is well over `0x30` bytes.\nSecond, while the `-c` CRC function is an optional feature, adding extra conditional checks for a non-existent error path still introduces minor overhead.\nLastly, this issue has never been observed on real hardware.\n\nI have hardware resources available to verify this patch on Aspeed AST2500 and Phytium E2000S. But I have no idea how to construct this error path.\n\n@hariharanr@ami.com, @jae.yoo@oss.qualcomm.com, @alex_chen@supermicro.com could you give me some advice on how to reproduce this issue?",
+      "parentUuid": "c0f41aef_4594cb3a",
+      "revId": "3950fd4408e8e357687561ce6259949c8ef51cc6",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
