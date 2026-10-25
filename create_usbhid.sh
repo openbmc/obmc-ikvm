@@ -159,6 +159,13 @@ create_hid() {
     ln -s functions/hid.1 configs/c.1
 }
 
+port_in_use() {
+    for f in "$1"/gadget*/suspended; do
+        [ -e "${f}" ] && return 0
+    done
+    return 1
+}
+
 connect_hid() {
     if [ "${DEV_NAME}" = "${NPCM_DEV_NAME}" ]; then
         if ! grep -q "${NPCM_DEV_NAME}" UDC; then
@@ -171,10 +178,14 @@ connect_hid() {
         while [ "${i}" -lt "${num_ports}" ]; do
             port=$(("${i}" + 1))
             i="${port}"
-            if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
+            if ! port_in_use "${base_usb_dir}${port}"; then
                 break
             fi
         done
+        if port_in_use "${base_usb_dir}${port}"; then
+            echo >&2 "All ${num_ports} ports on ${DEV_NAME} are in use. Unable to connect."
+            exit 1
+        fi
         echo "${DEV_NAME}:p${port}" > UDC
     fi
 }
