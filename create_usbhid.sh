@@ -175,6 +175,10 @@ connect_hid() {
                 break
             fi
         done
+        if [ -e "${base_usb_dir}${port}/gadget/suspended" ]; then
+            echo >&2 "All ${num_ports} ports on ${DEV_NAME} are in use, not connecting"
+            exit 1
+        fi
         echo "${DEV_NAME}:p${port}" > UDC
     fi
 }
