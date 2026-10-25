@@ -72,6 +72,13 @@ void Input::connect()
                     break;
                 }
             }
+
+            if (!found)
+            {
+                lg2::error("All ports on {HUB} are in use. Unable to connect.",
+                           "HUB", usbVirtualHubPath);
+                return;
+            }
         }
         else // If UDC has been specified by '-u' parameter, connect to it.
         {
