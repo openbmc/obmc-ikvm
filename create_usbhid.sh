@@ -171,10 +171,14 @@ connect_hid() {
         while [ "${i}" -lt "${num_ports}" ]; do
             port=$(("${i}" + 1))
             i="${port}"
-            if [ ! -e "${base_usb_dir}${port}/gadget/suspended" ]; then
+            if [ ! -e "${base_usb_dir}${port}"/gadget*/suspended ]; then
                 break
             fi
         done
+        if [ -e "${base_usb_dir}${port}"/gadget*/suspended ]; then
+            echo >&2 "All ${num_ports} ports on ${DEV_NAME} are in use. Unable to connect."
+            exit 1
+        fi
         echo "${DEV_NAME}:p${port}" > UDC
     fi
 }
