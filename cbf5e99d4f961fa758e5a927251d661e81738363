@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80bc46f1_89ca7107",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-10-30T03:24:58Z",
+      "side": 1,
+      "message": "@wangmin@phytium.com.cn @jae.yoo@oss.qualcomm.com Can you review this PR?",
+      "revId": "cbf5e99d4f961fa758e5a927251d661e81738363",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
