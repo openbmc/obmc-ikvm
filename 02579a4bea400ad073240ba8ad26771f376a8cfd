@@ -34,6 +34,63 @@
       "parentUuid": "54ba4864_0e39d483",
       "revId": "02579a4bea400ad073240ba8ad26771f376a8cfd",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3024422_138d999f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-11-02T15:03:07Z",
+      "side": 1,
+      "message": "Losing the race once leaves keyboard and mouse dead until a service restart (existing bug, triggered by this scenario)\n\nThe commit message says \"The session keeps working with video only.\" That\u0027s true for the current session, but this is what would happen next:\n\n1. connect() finds no free port and returns without binding the UDC.\n2. When the last client leaves, clientGone() calls disconnect(), which writes \"\" to the UDC.\n3. Nothing is bound, so the kernel unregister_gadget() returns -ENODEV.\n4. hidUdcStream gets failbit/badbit set. The exception is caught and logged, but nothing ever calls clear() on the stream.\n5. On the next client, every hidUdcStream \u003c\u003c ... in connect() throws right away and logs \"Failed to connect HID gadget\". This keeps happening even after a port frees up, until obmc-ikvm restarts.\n\nThis behaviour was already there before the patch, so it isn\u0027t a regression. But the patch is about exactly this situation, and the commit message implies it degrades gracefully, so it would be good to fix it here or in a follow-up.",
+      "revId": "02579a4bea400ad073240ba8ad26771f376a8cfd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00dc0105_56105c0e",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-11-02T15:03:07Z",
+      "side": 1,
+      "message": "So on current kernels, the existing loop and the new guard both would see every port as free, and the script would always binds p1. The test was a fake sysfs tree using the old layout, so it wouldn\u0027t have caught this.\n\nSuggestion: match with a glob such as ${base_usb_dir}${port}/gadget*/suspended, in both the loop and the new check. That could fit in this patch or a separate one, but at least note in the commit message that the guard only works on the kernel 5.x layout.",
+      "revId": "02579a4bea400ad073240ba8ad26771f376a8cfd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d27ca24e_213f1ece",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-11-02T15:03:07Z",
+      "side": 1,
+      "message": "usbVirtualHubPath is fixed to 1e6a0000.usb-vhub, while the script also handles 12060000 on AST2700. That\u0027s outside this patch, but the log will show the wrong hub on AST2700.",
+      "range": {
+        "startLine": 79,
+        "startChar": 34,
+        "endLine": 79,
+        "endChar": 51
+      },
+      "revId": "02579a4bea400ad073240ba8ad26771f376a8cfd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
