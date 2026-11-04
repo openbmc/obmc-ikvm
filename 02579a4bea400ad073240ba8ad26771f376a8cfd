@@ -70,6 +70,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff3a9ed9_041f5e7d",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-11-04T08:25:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00dc0105_56105c0e",
+      "revId": "02579a4bea400ad073240ba8ad26771f376a8cfd",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d27ca24e_213f1ece",
