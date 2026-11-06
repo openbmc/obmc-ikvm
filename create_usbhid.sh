@@ -38,6 +38,15 @@ else
     exit 1
 fi
 
+if [ "$1" = "get-vhub" ]; then
+    if [ "${SOC_TYPE}" = "NPCM" ]; then
+        echo >&2 "NPCM does not use an ASPEED virtual hub; specify a UDC with -u."
+        exit 2
+    fi
+    printf '%s\n' "${DEV_NAME}"
+    exit 0
+fi
+
 create_hid() {
     # create gadget
     mkdir "${hid_conf_directory}"
@@ -200,6 +209,6 @@ if [ "$1" = "connect" ]; then
 elif [ "$1" = "disconnect" ]; then
     disconnect_hid
 else
-    echo >&2 "Invalid option: $1. Use 'connect' or 'disconnect'."
+    echo >&2 "Invalid option: $1. Use 'connect', 'disconnect' or 'get-vhub'."
     exit 1
 fi

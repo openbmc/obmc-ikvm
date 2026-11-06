@@ -17,6 +17,16 @@ For example:
 
 `obmc-ikvm -v /dev/video0 -i /dev/hidg0`
 
+### USB HID controller selection
+
+Without `-u`, the daemon queries `create_usbhid.sh get-vhub` for the ASPEED
+virtual hub name and selects a free port. The script uses the running system's
+Device Tree compatible strings; the query does not modify the HID gadget. No hub
+build-time option is required.
+
+Use `-u` to select an explicit UDC instead. Other controller types, including
+NPCM, still require an explicit UDC.
+
 ## Accessing Remote KVM via Web Interface
 
 1. Log in to the BMC Web UI.

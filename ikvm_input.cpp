@@ -15,12 +15,47 @@
 #include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/File/error.hpp>
 
+#include <array>
+#include <cstdio>
+#include <optional>
+#include <string>
+
 namespace fs = std::filesystem;
 
 namespace ikvm
 {
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
+
+namespace
+{
+
+std::optional<fs::path> getUsbVirtualHubPath()
+{
+    std::array<char, 256> buffer{};
+    FILE* query = popen("/usr/bin/create_usbhid.sh get-vhub", "re");
+    if (query == nullptr)
+    {
+        lg2::error("Failed to query USB virtual hub {ERROR}", "ERROR",
+                   strerror(errno));
+        return std::nullopt;
+    }
+    const size_t length = fread(buffer.data(), 1, buffer.size(), query);
+    const bool readError = ferror(query) != 0;
+    const int status = pclose(query);
+    if (readError || status != 0 || length < 2 || length == buffer.size() ||
+        buffer[length - 1] != '\n')
+    {
+        lg2::error("Failed to read USB virtual hub name, wait status {STATUS}",
+                   "STATUS", status);
+        return std::nullopt;
+    }
+
+    return fs::path("/sys/bus/platform/devices") /
+           std::string(buffer.data(), length - 1);
+}
+
+} // namespace
 
 Input::Input(const std::string& kbdPath, const std::string& ptrPath,
              const std::string& udc) :
@@ -42,8 +77,14 @@ void Input::connect()
     {
         if (udcName.empty())
         {
+            const auto usbVirtualHubPath = getUsbVirtualHubPath();
+            if (!usbVirtualHubPath)
+            {
+                return;
+            }
+
             bool found = false;
-            for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
+            for (const auto& port : fs::directory_iterator(*usbVirtualHubPath))
             {
                 // /sys/bus/platform/devices/1e6a0000.usb-vhub/1e6a0000.usb-vhub:pX
                 if (fs::is_directory(port) && !fs::is_symlink(port))
