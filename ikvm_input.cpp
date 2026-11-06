@@ -22,6 +22,32 @@ namespace ikvm
 using namespace phosphor::logging;
 using namespace sdbusplus::xyz::openbmc_project::Common::File::Error;
 
+namespace
+{
+
+fs::path getUsbVirtualHubPath()
+{
+    // Each hub bound to the driver is a symlink to its device directory.
+    // If there is more than one hub, use the first one in name order.
+    fs::path usbVirtualHubPath;
+    for (const auto& entry :
+         fs::directory_iterator("/sys/bus/platform/drivers/aspeed_vhub"))
+    {
+        if (entry.is_symlink() && entry.path().filename() != "module" &&
+            (usbVirtualHubPath.empty() || entry.path() < usbVirtualHubPath))
+        {
+            usbVirtualHubPath = entry.path();
+        }
+    }
+    if (usbVirtualHubPath.empty())
+    {
+        lg2::error("No USB virtual hub is bound to the aspeed_vhub driver");
+    }
+    return usbVirtualHubPath;
+}
+
+} // namespace
+
 Input::Input(const std::string& kbdPath, const std::string& ptrPath,
              const std::string& udc) :
     keyboardFd(-1), pointerFd(-1), keyboardReport{0}, pointerReport{0},
@@ -42,6 +68,12 @@ void Input::connect()
     {
         if (udcName.empty())
         {
+            const fs::path usbVirtualHubPath = getUsbVirtualHubPath();
+            if (usbVirtualHubPath.empty())
+            {
+                return;
+            }
+
             bool found = false;
             for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
             {

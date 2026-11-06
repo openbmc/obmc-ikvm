@@ -17,6 +17,15 @@ For example:
 
 `obmc-ikvm -v /dev/video0 -i /dev/hidg0`
 
+### USB HID controller selection
+
+Without `-u`, the daemon selects a free port on the USB virtual hub bound to the
+`aspeed_vhub` driver. If more than one hub is bound, the first one in name order
+is used.
+
+Use `-u` to select an explicit UDC instead. Other controller types, including
+NPCM, still require an explicit UDC.
+
 ## Accessing Remote KVM via Web Interface
 
 1. Log in to the BMC Web UI.
