@@ -7,6 +7,13 @@ project(
     meson_version: '>=1.1.1',
 )
 
+conf_data = configuration_data()
+conf_data.set_quoted(
+    'USB_VIRTUAL_HUB_PATH',
+    '/sys/bus/platform/devices/' + get_option('usb-virtual-hub'),
+)
+configure_file(output: 'config.h', configuration: conf_data)
+
 install_data(
     'create_usbhid.sh',
     install_mode: 'rwxr-xr-x',

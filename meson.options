@@ -1,0 +1,6 @@
+option(
+    'usb-virtual-hub',
+    type: 'string',
+    value: '1e6a0000.usb-vhub',
+    description: 'USB virtual hub to connect the HID gadget to a free port of',
+)
