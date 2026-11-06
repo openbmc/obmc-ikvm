@@ -15,6 +15,9 @@
 #include <phosphor-logging/lg2.hpp>
 #include <xyz/openbmc_project/Common/File/error.hpp>
 
+#include <array>
+#include <cstdio>
+
 namespace fs = std::filesystem;
 
 namespace ikvm
@@ -42,6 +45,29 @@ void Input::connect()
     {
         if (udcName.empty())
         {
+            std::array<char, 256> buffer{};
+            FILE* query = popen("/usr/bin/create_usbhid.sh get-vhub", "re");
+            if (query == nullptr)
+            {
+                lg2::error("Failed to query USB virtual hub {ERROR}", "ERROR",
+                           strerror(errno));
+                return;
+            }
+            const size_t length = fread(buffer.data(), 1, buffer.size(), query);
+            const bool readError = ferror(query) != 0;
+            const int status = pclose(query);
+            if (readError || status != 0 || length < 2 ||
+                length == buffer.size() || buffer[length - 1] != '\n')
+            {
+                lg2::error("Failed to read USB virtual hub name, wait status "
+                           "{STATUS}",
+                           "STATUS", status);
+                return;
+            }
+
+            const std::string hubName(buffer.data(), length - 1);
+            const fs::path usbVirtualHubPath =
+                fs::path("/sys/bus/platform/devices") / hubName;
             bool found = false;
             for (const auto& port : fs::directory_iterator(usbVirtualHubPath))
             {
