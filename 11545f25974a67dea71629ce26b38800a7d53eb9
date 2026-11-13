@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "82745705_f89433df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-11-13T06:35:10Z",
+      "side": 1,
+      "message": "Hi @tomaszx.sankowski@intel.com,\n\nI suggest adding `EXTRA_OEMESON +\u003d \"-Dsoc-family\u003d${SOC_FAMILY}\"` in `obmc-ikvm_git.bb` to pass the BMC `SOC_FAMILY` into meson.\nI’ve validated this build flow, and the compiler output works as intended. I do not have AST2600 / AST2700 hardware available for runtime testing on these platforms.\n\nA mapping table from `SOC_FAMILY` to the USB virtual hub device entry will be maintained in `meson.build`, so we no longer need manually hardcoded base addresses.",
+      "revId": "11545f25974a67dea71629ce26b38800a7d53eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85328dd2_4e219ce0",
         "filename": "meson.build",
         "patchSetId": 1
