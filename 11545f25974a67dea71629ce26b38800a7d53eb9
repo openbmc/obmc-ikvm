@@ -50,6 +50,24 @@
       "message": "I suggest reading the BMC chip variant via `SOC_FAMILY` in `./meta-phosphor/recipes-graphics/obmc-ikvm/obmc-ikvm_git.bb`.\n\nSOC_FAMILY is already defined in machine includes for supported platforms:\n\n`./meta-aspeed/conf/machine/include/ast2400.inc:1:SOC_FAMILY \u003d \"aspeed-g4\"`\n`./meta-aspeed/conf/machine/include/ast2500.inc:1:SOC_FAMILY \u003d \"aspeed-g5\"`\n`./meta-aspeed/conf/machine/include/ast2600.inc:1:SOC_FAMILY \u003d \"aspeed-g6\"`\n`./meta-aspeed/conf/machine/include/ast2700.inc:1:SOC_FAMILY \u003d \"aspeed-g7\"`\n`./meta-hpe/meta-gxp/conf/machine/include/gxp.inc:11:SOC_FAMILY \u003d \"gxp-b1\"`\n`./meta-nuvoton/conf/machine/include/npcm7xx.inc:29:SOC_FAMILY \u003d \"npcm7xx\"`\n`./meta-nuvoton/conf/machine/include/npcm8xx.inc:32:SOC_FAMILY \u003d \"npcm8xx\"`\n\n\nThen maintain a mapping table in `obmc-ikvm/meson.build` to associate each SOC_FAMILY with its corresponding USB virtual hub platform device entry. With this mapping, developers no longer need to manually check hardware documentation for the base address.\n\n`chip_vhub_map \u003d {`\n`    \u0027aspeed-g4\u0027: \u00271e6a0000.usb-vhub\u0027,`\n`    \u0027aspeed-g5\u0027: \u00271e6a0000.usb-vhub\u0027,`\n`    \u0027aspeed-g6\u0027: \u00271e6a0000.usb-vhub\u0027,`\n`    \u0027aspeed-g7\u0027: \u002712060000.usb-vhub\u0027,`\n`    \u0027npcm7xx\u0027: \u0027f0800000.usb-vhub\u0027,`\n`    \u0027npcm8xx\u0027: \u002710800000.usb-vhub\u0027,`\n`    \u0027gxp-b1\u0027: \u002710040000.usb-vhub\u0027, `\n`}`\n\n@jae.yoo@oss.qualcomm.com, @hariharanr@ami.com, @eajames@linux.ibm.com, @tomaszx.sankowski@intel.com, @bradleyb@fuzziesquirrel.com, @ed@tanous.net, @geissonator@yahoo.com, @patrick@stwcx.xyz what do you think?",
       "revId": "11545f25974a67dea71629ce26b38800a7d53eb9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e51467d5_3de0f7c4",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1001397
+      },
+      "writtenOn": "2026-11-16T03:07:35Z",
+      "side": 1,
+      "message": "Agree that nobody should have to look up the hub address per platform, but I\u0027d solve it at runtime rather than through SOC_FAMILY. Mapping SOC_FAMILY in meson.build ties the build to Yocto\u0027s naming, still needs an obmc-ikvm change for every new SoC, and adds a third copy of what create_usbhid.sh already works out from the DT compatible.\n\nThe daemon can find the hub without any table by enumerating /sys/bus/platform/drivers/aspeed_vhub/. Failing that, matching the DT compatible at runtime the way create_usbhid.sh does keeps it in one place.\n\nAlso, the npcm7xx/npcm8xx entries wouldn\u0027t work as listed. Nuvoton uses ci_hdrc (create_usbhid.sh uses ci_hdrc.0), and the port walk in Input::connect() only fits the aspeed vhub layout.",
+      "parentUuid": "85328dd2_4e219ce0",
+      "revId": "11545f25974a67dea71629ce26b38800a7d53eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
