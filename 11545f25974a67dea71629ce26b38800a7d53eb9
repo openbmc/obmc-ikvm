@@ -86,6 +86,24 @@
       "parentUuid": "e51467d5_3de0f7c4",
       "revId": "11545f25974a67dea71629ce26b38800a7d53eb9",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40cef537_9864a483",
+        "filename": "meson.build",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002825
+      },
+      "writtenOn": "2026-11-17T09:38:23Z",
+      "side": 1,
+      "message": "I\u0027ve updated the change to reuse the existing DT-compatible detection\nin create_usbhid.sh instead of duplicating it in C++.\n\nThe script now provides a query-only get-vhub mode. Input::connect()\nuses its output and retains the existing free-port selection.\nThe explicit -u option is unchanged.\n\nTested on AST2750. I was able to interact with the host using the\nKVM keyboard.\n\nCould you review whether this approach is acceptable?",
+      "parentUuid": "da38dced_fbe39c8a",
+      "revId": "11545f25974a67dea71629ce26b38800a7d53eb9",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
