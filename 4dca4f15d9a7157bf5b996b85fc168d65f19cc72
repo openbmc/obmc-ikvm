@@ -16,6 +16,24 @@
       "message": "Can you format the md file? The pipeline fails due to this\nhttps://jenkins.openbmc.org/job/ci-repository/156770/consoleFull\n\n```\nREADME.md:20 error MD022/blanks-around-headings Headings should be surrounded by blank lines [Expected: 1; Actual: 0; Above] [Context: \"### USB HID controller selection\"]\n```",
       "revId": "4dca4f15d9a7157bf5b996b85fc168d65f19cc72",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cb21bbb_cfecd3cf",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002825
+      },
+      "writtenOn": "2026-11-17T09:45:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2f66bb7_5adaaed9",
+      "revId": "4dca4f15d9a7157bf5b996b85fc168d65f19cc72",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
