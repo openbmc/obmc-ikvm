@@ -78,6 +78,13 @@ void Video::probePixelFormat()
     {
         lg2::error("Pixel Format not supported {PIXELFORMAT}", "PIXELFORMAT",
                    pixelformat);
+        close(fd);
+        fd = -1;
+        elog<ReadFailure>(
+            xyz::openbmc_project::Common::Device::ReadFailure::CALLOUT_ERRNO(
+                EOPNOTSUPP),
+            xyz::openbmc_project::Common::Device::ReadFailure::
+                CALLOUT_DEVICE_PATH(path.c_str()));
     }
 
     if (pixelformat == V4L2_PIX_FMT_RGB565 ||
