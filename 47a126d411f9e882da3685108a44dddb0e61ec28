@@ -53,6 +53,24 @@
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83ec4cbf_0d095a1c",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002825
+      },
+      "writtenOn": "2026-11-18T12:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50030e50_a2d6dd57",
+      "revId": "47a126d411f9e882da3685108a44dddb0e61ec28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f30b7336_853b2a6d",
@@ -66,6 +84,24 @@
       "writtenOn": "2026-11-18T09:55:07Z",
       "side": 1,
       "message": "The function body is already quite large. I suggest refactoring this part into a dedicated helper function to improve readability and maintainability.",
+      "revId": "47a126d411f9e882da3685108a44dddb0e61ec28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d1f4f09_6dd0bba2",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002825
+      },
+      "writtenOn": "2026-11-18T12:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f30b7336_853b2a6d",
       "revId": "47a126d411f9e882da3685108a44dddb0e61ec28",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
