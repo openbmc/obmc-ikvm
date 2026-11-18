@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26b63b79_ff6294a2",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-11-18T09:55:07Z",
+      "side": 1,
+      "message": "using another error code, since the member function named Input::connect call pclose to get the child process status, it is diffcult to differ the 1 is returned by line 38 or 44.",
+      "revId": "47a126d411f9e882da3685108a44dddb0e61ec28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50030e50_a2d6dd57",
+        "filename": "create_usbhid.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-11-18T09:55:07Z",
+      "side": 1,
+      "message": "Suggest using a distinct exit code here. Since `Input::connect` reads the child exit status via `pclose`, it cannot distinguish whether return code `1` comes from line 38 or line 44.",
+      "revId": "47a126d411f9e882da3685108a44dddb0e61ec28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f30b7336_853b2a6d",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1001000
+      },
+      "writtenOn": "2026-11-18T09:55:07Z",
+      "side": 1,
+      "message": "The function body is already quite large. I suggest refactoring this part into a dedicated helper function to improve readability and maintainability.",
+      "revId": "47a126d411f9e882da3685108a44dddb0e61ec28",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    }
+  ]
+}
