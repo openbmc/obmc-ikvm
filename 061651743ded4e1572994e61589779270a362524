@@ -50,6 +50,24 @@
       "message": "open() succeeded here, so File::Open with EOPNOTSUPP reads a bit odd. Device::ReadFailure, like the G_FMT failure above, or Common::Error::UnsupportedRequest might fit better. Not a blocker though.",
       "revId": "061651743ded4e1572994e61589779270a362524",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4811ada_7488862c",
+        "filename": "ikvm_video.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1001886
+      },
+      "writtenOn": "2026-11-23T06:50:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2844d5ba_cfbe89b4",
+      "revId": "061651743ded4e1572994e61589779270a362524",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
   ]
 }
