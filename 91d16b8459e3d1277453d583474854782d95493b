@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9bc2066d_1d3d4159",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002825
+      },
+      "writtenOn": "2026-11-24T09:20:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d820e11_c5a4c5e3",
+      "revId": "91d16b8459e3d1277453d583474854782d95493b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf53f458_2fe51723",
         "filename": "ikvm_input.cpp",
         "patchSetId": 5
@@ -55,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87fcdb0e_8247c9ed",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002825
+      },
+      "writtenOn": "2026-11-24T09:20:42Z",
+      "side": 1,
+      "message": "Done. Switched to enumerating /sys/bus/platform/drivers/aspeed_vhub/, so there is no subprocess and no per-SoC table.\n\nIf more than one hub is bound, the first one in name order is used. On AST2700 this is vhuba0 (12060000), the same hub the script\u0027s table selects. On our AST2750 board all three hubs (12060000, 12062000, 14120000) are bound and 12060000 is used.\n\nI\u0027m not sure name order is the best rule for the multi-hub case, though. I\u0027m open to suggestions if you\u0027d prefer a different selection policy.",
+      "parentUuid": "8e2d00a3_51f97ef3",
+      "revId": "91d16b8459e3d1277453d583474854782d95493b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "318b759c_6a6e7e44",
         "filename": "ikvm_input.cpp",
         "patchSetId": 5
@@ -72,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed1741de_6af57d61",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002825
+      },
+      "writtenOn": "2026-11-24T09:20:42Z",
+      "side": 1,
+      "message": "No longer applicable, the script is not used anymore.",
+      "parentUuid": "318b759c_6a6e7e44",
+      "revId": "91d16b8459e3d1277453d583474854782d95493b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b7c1bbe_e58bb77d",
         "filename": "ikvm_input.cpp",
         "patchSetId": 5
@@ -83,6 +137,24 @@
       "writtenOn": "2026-11-19T19:28:34Z",
       "side": 1,
       "message": "The exit code split in the script (1 vs 2) is lost here since the raw wait status is logged (exit 2 shows as 512). Please decode it with WIFEXITED()/WEXITSTATUS(), and log read failures separately from non-zero exits.",
+      "revId": "91d16b8459e3d1277453d583474854782d95493b",
+      "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4052fb5_3b0c0768",
+        "filename": "ikvm_input.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002825
+      },
+      "writtenOn": "2026-11-24T09:20:42Z",
+      "side": 1,
+      "message": "No longer applicable, the script is not used anymore.",
+      "parentUuid": "8b7c1bbe_e58bb77d",
       "revId": "91d16b8459e3d1277453d583474854782d95493b",
       "serverId": "adbd0a64-1f21-4d83-b585-671fe73cb6e4"
     }
