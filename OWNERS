@@ -33,9 +33,9 @@
 
 owners:
 - jae.yoo@oss.qualcomm.com
+- hariharanr@ami.com
 
 reviewers:
-- hariharanr@ami.com
 - wangmin@phytium.com.cn
 
 matchers:
